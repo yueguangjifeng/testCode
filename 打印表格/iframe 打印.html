@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/bootstrap.js" ></script>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" id="parentId" >
+<div class="box">
+    父页面
+
+</div>
+<button class="btn btn-info" id="btnn"  data-target="modal00" data-toggle="modal" >按钮</button>
+<div class="modal fade" id="modal00">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>模态框增加</h5>
+                <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe ng-src="{{myUrl}}" id="childIframe" frameborder="0" width="300px;" height="200px;" >
+
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ng-view">
+
+</div>
+
+</body>
+</html>
+<script>
+    $(function () {
+        $('#modal00').modal({
+            keyboard:true
+        })
+    });
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope,$sce) {
+        console.log($('iframe')[0]);
+        $('#iframe')[0].document.angular.element('#childBody').scope().variable=1000;
+        $scope.myUrl=$sce.trustAsResourceUrl('iframeContent.html');
+        console.log($('#iframe')[0]);
+
+
+        $scope.variable=1000;
+        $scope.value00=200;
+
+    })
+
+
+
+</script>

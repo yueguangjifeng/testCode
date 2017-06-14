@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js" ></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+时间: <input type="datetime-local" ng-model="timm"  />
+<button>按钮</button>
+
+
+
+</body>
+</html>
+<script>
+    var btn=document.getElementsByTagName('button')[0];
+    var inp=document.getElementsByTagName('input')[0];
+   /* btn.onclick= function () {
+        inp.value= '2001-02-01T18:03:00';
+    }*/
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+//        $scope.timm= new Date('2001-02-01T18:03:00+08:00');
+/*        document.getElementsByTagName('button')[0].onclick= function () {
+         console.log(inp.value);
+         console.log($scope.timm.valueOf());
+         }*/
+
+        $scope.timm=new Date().
+
+    })
+
+
+
+</script>

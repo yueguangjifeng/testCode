@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社区政务</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="社区政务">
+    <meta name="keyword" content="社区政务">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/glyphicons.css" rel="stylesheet">
+    <link href="css/glyphicons-filetypes.css" rel="stylesheet">
+    <link href="css/glyphicons-social.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="scss/bootstrap-theme.css" rel="stylesheet"> -->
+    <!-- <link href="scss/bootstrap.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="wangEditor/dist/css/wangEditor.css"/>
+
+    <!--引入ymm css 文件-->
+    <link rel="stylesheet" href="css/total_ymm.css"/>
+    <link href="css/total_zsh.css" rel="stylesheet">
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/tether.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+
+    <script src="js/libs/pace.min.js"></script>
+    <script src="js/libs/Chart.min.js"></script>
+    <!-- <script src="js/libs/toastr.min.js"></script> -->
+    <script src="js/libs/gauge.min.js"></script>
+    <script src="js/libs/moment.min.js"></script>
+    <script src="js/libs/daterangepicker.js"></script>
+    <script src="js/views/shared.js"></script>
+    <script src="js/views/main.js"></script>
+    <script src="js/views/charts.js"></script>
+    <!--<script src="js/app.js"></script>-->
+    <script src="js/views/total_zsh.js"></script>
+
+    <!-- 线形图与圆环图开始-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- 线形图与圆环图结束-->
+
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up nav_zhedie" type="button">☰</button>
+    <a class="navbar-brand left_top_log_bar" href="#"></a>
+    <fieldset class="form-group hidden-md-down place_choice">
+        <div class="controls">
+            <select id="select2-1" class="form-control">
+                <a href="">
+                    <option>桃花镇</option>
+                </a>
+            </select>
+        </div>
+    </fieldset>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown pull-right">
+            <a class="nav-link dropdown-toggle nav-link user_img" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="hidden-md-down">admin</span>
+                <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+            </a>
+        </li>
+    </ul>
+</header>
+<div class="app-body">
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav " style="text-indent:10px;">
+                <li class="nav-title">
+                    数据统计
+                </li>
+                    <li class="nav-item open">
+                        <a class="nav-link" href="#">
+                            用户统计
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            交易统计
+                        </a>
+                    </li>
+
+                <li class="divider"></li>
+
+                <li class="nav-title">
+                    功能模块
+                </li>
+                <li class="nav-item set nav-dropdown ">
+                    <a class="nav-link nav-dropdown-toggle"  href="#">
+                        街道管理
+                    </a>
+                    <ul class="nav-dropdown-items" >
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">
+                                首页轮播
+                            </a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="社区政务.html" class="nav-link">社区政务</a>
+                        </li>
+                        <li  class="nav-item set nav-dropdown">
+                            <a href="智慧党建.html" class="nav-link" >智慧党建</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="平安社区.html" class="nav-link" >平安社区</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="社区服务.html" class="nav-link" >社区服务</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="服务企业.html" class="nav-link" >服务企业</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="城区管理.html" class="nav-link" >城区管理</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="文化中心.html" class="nav-link ">文化中心</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="便民指南.html" class="nav-link ">便民指南</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-title">
+                    用户管理
+                </li>
+                <li class="nav-item set nav-dropdown" >
+                    <a href="#" class="nav-link ">
+                        用户信息
+                    </a>
+                </li>
+                <li class="nav-item set nav-dropdown">
+                    <a href="#" class="nav-link">用户提交数据</a>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-title">
+                    账号管理
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">&emsp;设置子管理员</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 主要内容区 -->
+    <main class="main">
+        <div class=""  style="height:100%">
+            <div class="animated" style="height:100%">
+                <!-- 自定义内容区域 -->
+
+                <div class="container-fluid" style="display:flex; padding:0;height:100%">
+                    <!-- 左侧内容区-->
+                    <div class="col-md-2 hidden-sm-down" style="height:100%;padding:0;">
+                        <ul class="threeCl_ym nav-dropdown-items" >
+                            <li class="nav-item"><a href="#" class="nav-link " style="line-height:50px;padding-top:0;padding-bottom:0; color:black;background-color: #B8C0C9;">社区政务</a></li>
+                            <li class="nav-item"><a href="#街道概况" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; " >街道概况</a></li>
+                            <li class="nav-item"><a href="城区管理.html" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; " >办公职能</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; ">居委信息</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; ">街道特色</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; ">社情民意</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; ">兵役共作</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link " style="color:black;line-height:40px;padding-top:0;padding-bottom:0; ">满意测评</a></li>
+                        </ul>
+                    </div>
+                    <!-- 右侧主要内容区-->
+                    <div class="right" >
+                        <div class="col-md-10" style="margin-top:15px;margin-left:30px;padding-left:0">
+                            <div id="街道概况">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#commuPolcAdd_ym" style="width:80px;height:34px;" >新增</button>
+                            </div>
+                            <div class="content">
+                                <div class="container-fluid " style="padding-left:0;margin-top:15px;">
+                                    <div class="contentArea_ym">
+                                        <table class="table">
+                                            <thead>
+                                            <tr class="text-center">
+                                                <th class="text-center">标题</th>
+                                                <th class="text-center hidden-md-down ">浏览量</th>
+                                                <th class="text-center hidden-md-down rotate_ym">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <span>上传时间</span>
+                                                </th>
+                                                <th class="text-center">作者</th>
+                                                <th class="text-center">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="text-center" ng-repeat="x in originDataBase" >
+                                                <td class="hidden-md-down" >{{x.title}}</td>
+                                                <td class="hidden-md-down">2625</td>
+                                                <td class="hidden-md-down" >{{x.createDate}}</td>
+                                                <td>{{x.author}}</td>
+                                                <td ng-if="x.title" ng-init="newId=x.id;obj=x">
+                                                    <button type="button" ng-click="saveInfo(obj)" data-toggle="modal" data-target="#firstPageCircleEdit_ym" class="btn btn-info btnedit">
+                                                        <i class="fa fa-edit "></i>
+                                                    </button>
+                                                    <button type="button" ng-click="saveId(newId)" class="btn btn-danger" data-target="#bannDele_ym" data-toggle="modal" >
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 新增 模态框-->
+                        <div class="modal fade" id="commuPolcAdd_ym" >
+                            <div class="modal-dialog modal-lg ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">新增</h5>
+                                        <button type="button" class="close" data-dismiss="modal"  >
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" class="" >
+                                            <div class="container-fluid">
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 form-control-label" required for="">所在版块</label>
+                                                    <div class="col-md-9">
+                                                        <select name="" class="col-md-12"  id="">
+                                                            <option value="">街道概况</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label  class="col-md-3 form-control-label"  for="">内容</label>
+                                                    <div class="col-md-9">
+                                                        <textarea class="col-md-12" ng-model="textareaAdd" id="commuPolcAdd" style="height:100px;" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div>
+                                            <button type="button" ng-click="banCarsAddSubm()" data-dismiss="modal" class="btn btn-success btn-ladda btn-save">保存</button>
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+    </main>
+
+</div>
+<div id="containers"></div>
+</body>
+</html>
+<!-- Bootstrap and necessary plugins -->
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/tether.min.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/libs/pace.min.js"></script>
+
+
+<!-- Plugins and scripts required by all views -->
+<script src="js/libs/Chart.min.js"></script>
+<script src="js/views/shared.js"></script>
+
+
+<!-- GenesisUI main scripts -->
+
+<script src="js/app.js"></script>
+<!--引入ymm js文件-->
+<script src="js/views/total_ymm.js" ></script>
+<!--引入富文本框js-->
+<script type="text/javascript" src="wangEditor/dist/js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="wangEditor/dist/js/wangEditor.js"></script>
+
+
+<!--
+ <script type="text/javascript">
+// 环状统计图开始
+var doughnutData = {
+    labels: [
+        '社区服务',
+        '智慧党群',
+        '平安社区',
+        '社区服务',
+        '服务企业',
+        '城区管理',
+        '文化驿站',
+        '便民指南'
+    ],
+    datasets: [{
+        data: [300, 20, 100, 30, 50, 89, 97,200],
+        backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56',
+            '#FFCE16',
+            '#FFCE26',
+            '#FFCE90',
+            '#d89d9d',
+            '#FFCT43'
+        ],
+        hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE51',
+            '#FFCE67',
+            '#FFCE75',
+            '#FFCE19',
+            '#2f2424',
+            '#FFC23F'
+        ]
+    }]
+};
+var ctx = document.getElementById('canvas-3');
+var chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: doughnutData,
+    options: {
+        responsive: true
+    }
+});
+/*线形统计图*/
+ var now_data="2017年3月",
+     categories =  ['3/31 12:00','3/31 14:00','3/31 16:00','3/31 18:00','3/31 20:00','3/31 22:00','3/31 24:00','4/1 2:00','4/1 4:00','4/1 6:00','4/1 8:00','4/1 10:00'],
+     y_data=[0,20,40,60,80,100,120,140,160],
+     user_data=[12,15,50,60,70,17,110,120,115,157,123,121];
+$('#user_day').highcharts({
+        title: {
+        text: '用户增长曲线'
+    },
+
+    subtitle: {
+        text: now_data
+    },
+        exporting: {
+                enabled:false//去掉右上角的打印及其导出按钮
+    },
+    credits: {
+              enabled:false//去掉右下角的highcharts.com
+    },
+    legend:{
+        enabled:false
+    },
+    xAxis: {
+    labels: {
+            formatter: function() {
+                return categories[this.value];
+            }
+        },
+    tickInterval:1
+    // tickLength:10px
+    },
+    yAxis: {
+        title: {
+        text: ''
+    },
+    tooltip: {
+            shared: true
+        },
+    // tooltip: {
+    // title:this.x
+    // },
+
+    startOnTick:false,
+    tickPositions:y_data
+    },
+    series: [{
+        name:'用户',
+        data:user_data
+    }]
+    });
+$('#user_mouth').highcharts({
+        title: {
+        text: '用户增长曲线'
+    },
+
+    subtitle: {
+        text: now_data
+    },
+        exporting: {
+                enabled:false//去掉右上角的打印及其导出按钮
+    },
+    credits: {
+              enabled:false//去掉右下角的highcharts.com
+    },
+    legend:{
+        enabled:false
+    },
+    xAxis: {
+    labels: {
+            formatter: function() {
+                return categories[this.value];
+            }
+        },
+    tickInterval:1
+    },
+    yAxis: {
+        title: {
+        text: ''
+    },
+    tooltip: {
+            shared: true
+        },
+    // tooltip: {
+    // title:this.x
+    // },
+
+    startOnTick:false,
+    tickPositions:y_data
+    },
+    series: [{
+        name:'用户',
+        data:user_data
+    }]
+    });
+$('#user_year').highcharts({
+        title: {
+        text: '用户增长曲线'
+    },
+
+    subtitle: {
+        text: now_data
+    },
+        exporting: {
+                enabled:false//去掉右上角的打印及其导出按钮
+    },
+    credits: {
+              enabled:false//去掉右下角的highcharts.com
+    },
+    legend:{
+        enabled:false
+    },
+    xAxis: {
+    labels: {
+            formatter: function() {
+                return categories[this.value];
+            }
+        },
+    tickInterval:1
+    },
+    yAxis: {
+        title: {
+        text: ''
+    },
+    tooltip: {
+            shared: true
+        },
+    // tooltip: {
+    // title:this.x
+    // },
+
+    startOnTick:false,
+    tickPositions:y_data
+    },
+    series: [{
+        name:'用户',
+        data:user_data
+    }]
+    });
+</script>-->
+
+<!--富文本-->
+<script>
+    createdit('commuPolcAdd');
+    createdit('banImgEdit');
+    var editor;
+    function createdit(id) {
+        //创建对象
+        editor = new wangEditor(id);
+        // 销毁编辑器
+        editor.destroy();
+        editor.undestroy();
+
+        // 取消粘贴过滤
+        editor.config.pasteFilter = true;
+
+        // 字号
+        editor.config.fontsizes = {
+            3: '正文',
+            4: '标题'
+        };
+        editor.config.menus = [
+            'source',
+            '|',
+            'bold',
+            'img',
+            'fontsize',
+            'lineheight',
+            'aligncenter'
+            // 'location',
+        ];
+        //上传图片地址
+        editor.config.uploadImgUrl = 'upload/file.aspx';
+        //上传图片
+        editor.config.uploadImgFns.onload = function (resultText, xhr) {
+            var originalName = editor.uploadImgOriginalName || '';
+            editor.command(null, 'insertHtml', '<img src="' + JSON.parse(resultText).obj + '" alt="' + originalName + '" style="width:100%;"/>');
+        };
+
+        editor.create();
+        editor.onchange = function () {
+            var html = editor.$txt.html();
+            var text =html;
+            //编辑默认样式
+            if(text.indexOf('<style>#text-intro{font-size:17px;color:#333;margin:0px 15px;text-align:justify;list-style:none; }#text-intro img{width: 100%;}</style>')==-1 && text.length>0)
+            {
+                text = '<style>#text-intro{font-size:17px;color:#333;margin:0px 15px;text-align:justify;list-style:none; }#text-intro img{width: 100%;}</style>'+text;
+                editor.$txt.html(text.replace(/<table>/g, '').replace(/<ul>/g, '&nbsp;').replace(/<ol>/g, '').replace(/<a>/g,'<span>').replace(/<\/a>/g, '</span>').replace(/href/g,''));
+            }
+
+            if(text.indexOf('<a>')!=-1 || text.indexOf('<table>')!=-1 || text.indexOf('<ul>')!=-1 || text.indexOf('<ol>')!=-1 || text.indexOf('<span>')!=-1 )
+            {
+                editor.$txt.html(text.replace(/<table>/g, '').replace(/<ul>/g, '&nbsp;').replace(/<ol>/g, '').replace(/<a>/g,'<span>').replace(/<\/a>/g, '</span>').replace(/href/g,''));
+            }
+
+        };
+
+
+
+
+
+    }
+
+
+</script>
+
+<!--提交数据-->
+<script>
+
+
+</script>
+
+
+

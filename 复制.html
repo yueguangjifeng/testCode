@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<!--    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>-->
+</head>
+<body>
+复制链接:<input type="email"  id="inp" value="http://www.baidu.com"/>
+<button>按钮</button>
+
+</body>
+</html>
+<script>
+    var btn=document.getElementsByTagName('button')[0];
+    var inp=document.getElementsByTagName('input')[0];
+    btn.onclick= function () {
+        inp.select();
+        document.execCommand('Copy');
+        alert('复制成功');
+
+    }
+
+
+</script>

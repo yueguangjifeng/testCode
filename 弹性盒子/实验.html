@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/angular.js" ></script>
+    <script src="../js/jquery.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<img ng-src="{{imgAdd}}" alt="" width="200" height="100" />
+<input type="file" id="ip" ng-change="ngChangeImg()"  />
+<button>打印图片地址</button>
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+/*        var arr=new Array();
+        arr[0]='http://ok9xod9sy.bkt.clouddn.com/8268ca947fe34690beafd3122794d32a',
+                arr[1]='http://ok9xod9sy.bkt.clouddn.com/dfeabfb14fff458fb769ec2387c2d4bc';*/
+        $scope.ngChangeImg= function () {
+            var file=document.getElementById('ip');
+            var reader=new FileReader();
+            reader.readAsDataURL(file.files[0]);
+            reader.onload= function () {
+                $scope.imgAdd=this.result;
+            };
+            var formdata=new FormData();
+            formdata.append('file','file.files[0');
+            $http({
+                method:'post',
+                url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest'
+                headers:{'content-type':undefined}
+            }).then(function (result) {
+
+
+            })
+        }
+
+            var infstreAddJson2= {
+                id: 0,
+                state: 0,
+                streetId: 5209714683,
+                name: '杨宗纬',
+                gender: 0,
+                phone: 13245678987,
+                buildingName: '上海广场',
+                officeArea: '地铁路',
+                sellArea: 1000,
+                commercialArea: 1222,
+                addr: '上海外滩',
+                intro: '这是介绍',
+                banners: ['http://ok9xod9sy.bkt.clouddn.com/8268ca947fe34690beafd3122794d32a', 'http://ok9xod9sy.bkt.clouddn.com/dfeabfb14fff458fb769ec2387c2d4bc']
+            };
+       /* var  infstreAddJson2={
+                "id": "5920376481",
+                "state": 0,
+                "streetId": "5209714683",
+                "name": "张杰22",
+                "gender": 0,
+                "phone": "13245678987",
+                "buildingName": "富都广场",
+                "officeArea": "蓝村路",
+                "sellArea": 1000,
+                "commercialArea": 1222,
+                "addr": "蓝村路",
+                "intro": "介绍介绍",
+                "banners": [
+            "http://ok9xod9sy.bkt.clouddn.com/8268ca947fe34690beafd3122794d32a",
+            "http://ok9xod9sy.bkt.clouddn.com/dfeabfb14fff458fb769ec2387c2d4bc"
+        ]
+        };*/
+        console.log(infstreAddJson2);
+        $http({
+            method: 'post',
+            data: infstreAddJson2,
+            url: 'http://test.jgsoft.org/api/SEBuildingInfo/SubmitSEBuildingInfo'
+        })
+            .then(function (result) {
+                console.log(JSON.stringify(result));
+                console.log('文件上传成功');
+            }, function (result) {
+                console.log(result);
+            })
+    });
+</script>

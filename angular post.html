@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp"  ng-controller="myctrl" >
+    <button ng-click="ff()" >按钮</button>
+    <table>
+        <thead>
+            <tr>
+                <th style="color:lightgreen" >标题</th>
+                <th style="color:green">时间</th>
+                <th>浏览量</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="arr in arrs" >
+                <td>{{arr.title}}</td>
+                <td>{{arr.date}}</td>
+                <td>{{arr.brows}}</td>
+                <td>{{arr.sort}}</td>
+                <td ng-if="arr.title" >编辑</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <img ng-src="{{imgSrc}}" width="50" height="50"  alt=""/>
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope,$http) {
+        $scope.imgSrc='http://ok9xod9sy.bkt.clouddn.com/2ecadb3834dc49be8ba268af43e50159';
+
+
+        $scope.ff= function () {
+            $scope.arrs=[{'title':'标题1','date':'20170205','brows':'3000','sort':0},
+                {'title':'标题2','date':'20170225','brows':'2000','sort':1}];
+
+            console.log(arrs);
+            var obj={
+                id:0,
+                title:'标题000',
+                author:'作者000',
+                img:'abcd',
+                sort:0,
+                streetId:5743382619,
+                intro:'街道新增一条介绍信息'
+            };
+            $http({
+                method:'post',
+                url:'http://test.jgsoft.org/api/banner/SubmitBannerInfo',
+                data:obj
+            }).then(function (result) {
+                console.log(result.data);
+
+            }, function (result) {
+                console.log('失败');
+
+            })
+
+
+
+        }
+
+    })
+
+</script>

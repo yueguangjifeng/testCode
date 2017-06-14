@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div></div>
+
+
+
+</body>
+</html>
+<script>
+    var data={key:1};
+    Object.defineProperty(data,'key', {
+        set:function(value){
+            if(value==10){
+                console.log('已经加到20啦');
+                console.log(data.key);
+            }
+        }
+    });
+console.log(data);
+    for(var i=0;i<50;i++){
+        data.key++;
+        document.getElementsByTagName('div')[0].innerText=data.key;
+        console.log(data.key);
+    }
+
+
+</script>
+<!--
+<script>
+    var data = {key:1};
+    Object.defineProperty(data, "key", {
+        set: function(value) {
+            console.log(value)
+        }
+    });
+    window.onload = function(){
+        data.key = 2;
+        data.key = 3;
+    }
+
+
+</script>-->

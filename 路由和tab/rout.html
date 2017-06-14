@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/tether.js" ></script>
+    <script src="../js/bootstrap.js" ></script>
+    <script src="../js/angular.js" ></script>
+    <script src="../js/angular-route.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="homeCtrl" >
+<ul class="nav nav-tabs" >
+    <li class="nav-item"><a href="#" id="home"  class="nav-link">首页</a></li>
+    <li class="nav-item"><a href="#" id="first"  class="nav-link">1</a></li>
+    <li class="nav-item"><a href="#" id="second" class="nav-link">2</a></li>
+    <li class="nav-item"><a href="#" id="third" class="nav-link">3</a></li>
+    <li class="nav-item"><a href="#" id="fourth" class="nav-link">4</a></li>
+</ul>
+<div class="cont"  style="background-color: cyan;height:50px;overflow:hidden">
+    <div class="" style="display:block" >
+        000
+    </div>
+    <div class=""  style="display:none">
+        001
+    </div>
+    <div class=""  style="display:none">
+        002
+    </div>
+    <div class=""  style="display:none">
+        003
+    </div>
+    <div class=""  style="display:none">
+        004
+    </div>
+</div>
+<script>
+ $('.cont>div').eq(0).show();
+    $('li').click(function () {
+        var num=$('ul>li').index(this);
+        console.log(num);
+        $('.cont>div').hide();
+        $(".cont>div").eq(num).show().siblings().hide();
+    })
+</script>
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',['ngRoute']);
+    myapp.config(['$locationProvider', function ($locationProvider) {
+        $locationProvider.hashPrefix('');
+    }]);
+    myapp.controller('homeCtrl',function ($scope){});
+</script>

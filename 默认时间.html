@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+时间:<input type="datetime-local" id="date00" placeholder="f0()" />
+
+格式化时间: <input type="datetime-local" ng-model="datetime0"  />
+
+<!--
+<div class="" style="margin-left:0;margin-right:0; height:100%;padding:0;">
+    <ul class="threeCl_ym" id="usersDataGroupList">
+        <li class="nav-item"><a href="#" class="nav-link"  style="color:#5F6C79; background-color: #B8C0C9;line-height:50px;padding:0" >资讯管理</a></li>
+        <li class="nav-item">
+            <a href="#" data-toggle="tab"  ng-if="learnTwoDoOne" class="nav-link active "  style="color:#5F6C79;line-height:40px;padding-top:0;padding-bottom:0; " >两学一做</a>
+        </li>
+        <li class="nav-item"><a href="#"  ng-if="groupTeamSpe"  class="nav-link " style="color:#5F6C79;line-height:40px;padding-top:0;padding-bottom:0;">群团专题</a></li>
+        <li class="nav-item"><a href="#"  ng-if="lawPolicy" class="nav-link "  style="color:#5F6C79;line-height:40px;padding-top:0;padding-bottom:0; " >法律政策</a></li>
+    </ul>
+</div>
+-->
+
+2017-05-22T15:39:32Z
+
+</body>
+</html>
+<script>
+    var  myapp=angular.module('myapp',[]);
+    function f0(){
+       return  new Date().getTime();
+
+    }
+
+
+    myapp.controller('myctrl', function ($scope, $filter) {
+        $scope.datetime0='2017-05-22T15:39:32Z';
+//        $scope.datetime0=new Date(new Date($scope.datetime0).getTime()-8*3600*1000);
+       /* $scope.learnTwoDoOne=1;
+        $scope.groupTeamSpe=1;
+        $scope.lawPolicy=0;*/
+        $scope.datetime0=new Date().getTime();
+
+    })
+
+
+</script>

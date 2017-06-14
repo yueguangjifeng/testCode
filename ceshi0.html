@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="./js/angular.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtr">
+    <input type="text" name="" ng-model="username">
+    <p>{{username}}</p>
+    <p>{{show()}}</p>
+</div>
+<script type="text/javascript">
+    var app = angular.module("myApp" ,[]);
+    app.controller("myCtr", function($scope,$http) {
+        var inf={
+                id:0,
+                state:0,
+                streetId:5209714683,
+                name:'企业名称',
+                gender:0,
+                phone:13333333333,
+                buildingName:'楼宇',
+                addr:'蓝村路',
+                intro:'简介',
+                banners:["http://ok9xod9sy.bkt.clouddn.com/0c09ef3e22274f419b22bc07f825ab07","http://ok9xod9sy.bkt.clouddn.com/7f9ced69eb6846c08db0f409f056aaff"],
+                companyName:'公司名称',
+                scale:'公司规模',
+                range:'公司范围',
+                wensite:'http://www.baidu.com'
+        };
+        $http({
+            method: 'post',
+            data: inf,
+            url: 'http://test.jgsoft.org/api/SECompanyInfo/SubmitSECompanyInfo'
+        })
+            .then(function (result) {
+                console.log(result);
+                console.log('文件上传成功');
+            }, function (result) {
+                console.log('失败');
+            })
+    })
+</script>
+</body>
+</html>

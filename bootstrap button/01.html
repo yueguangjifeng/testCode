@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app='myapp' ng-controller='myctrl'>
+        <button data-target="#commuPolcEdit_ym" data-toggle="modal"  >测试 模态框按钮 </button>
+       <!-- <div class="modal" id="test1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header container-fluid row content-justify-between">
+                        <h5 class=" " >增加</h5>
+                        <span  data-dismiss="modal" >&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div>内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域</div>
+                        <button class="btn btn-success">成功</button>
+                        <button class="btn btn-info">信息</button>
+                        <button class="btn btn-danger">驳回</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-success" >保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="modal fade" id="commuPolcEdit_ym" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">详情</h5>
+                        <button type="button" class="close" data-dismiss="modal"  >
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action=""  name="formName"  class="" >
+                            <div class="container-fluid">
+                                <div class="form-group row">
+                                    <label  class="col-md-3 form-control-label" >姓名</label>
+                                    <div class="col-md-6"  >
+                                        <input class="col-md-12" name="forbidInput1" placeholder="{{nameEdit}}" onfocus="forbidInput1.blur()" type="text"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label  class="col-md-3 form-control-label" >住址</label>
+                                    <div class="col-md-6"  >
+                                        <input class="col-md-12" name="forbidInput1" placeholder="{{addressEdit}}" onfocus="forbidInput1.blur()" type="text"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label  class="col-md-3 form-control-label" >联系方式</label>
+                                    <div class="col-md-6">
+                                        <input class="col-md-12" name="forbidInput3"  placeholder="{{phoneEdit}}" onfocus="forbidInput3.blur()" type="tel"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label">状态</label>
+                                    <div class="col-md-9" id="statusEdit" >
+                                        <button type="button" class="btn"   ng-click="transStatus(0,'#statusEdit')" >未处理</button>
+                                        <!--<button type="button"  class="btn"  ng-click="transStatus(1,'#statusEdit')">审核中</button>-->
+                                        <button type="button"  class="btn"  ng-click="transStatus(1,'#statusEdit')">通过</button>
+                                        <button type="button"  class="btn"  ng-click="transStatus(3,'#statusEdit')" >拒绝</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row" ng-show="remarks" >
+                                    <label class="col-md-3 form-control-label">备注</label>
+                                    <div class="col-md-9" >
+                                        <input type="text" ng-model="userRemarks" class="col-md-12" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="button" ng-click="banCarsEditSubm()" data-dismiss="modal" class="btn btn-success btn-ladda btn-save">保存</button>
+                            <button class="btn btn-secondary" onclick="confirmWindow()" type="button" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+</body>
+</html>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller('myctrl', ['$scope', function ($scope) {
+        $scope.transStatus= function (num,id) {
+            $scope.state=num;
+            if(num==1){
+                $(id).children().eq(num).addClass('btn-info').siblings().attr('class','btn');
+                $scope.remarks=0;
+            }
+            /*else if(num==2){
+             $(id).children().eq(num).addClass('btn-success').siblings().attr('class','btn');
+             $scope.remarks=0;
+             }*/
+            else if(num==0){
+                $(id).children().eq(num).addClass('btn-warning').siblings().attr('class','btn');
+                $scope.remarks=0;
+            }else if(num==3){
+                $(id).children().eq(num-1).addClass('btn-info').siblings().attr('class','btn');
+                $scope.remarks=1;
+            }
+        };
+
+    }])
+
+
+</script>  

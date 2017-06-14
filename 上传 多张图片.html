@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div id="box">
+    <input type="file" multiple='true' onchange="changeImg()"  />
+    <button ng-click="ff()" >提交</button>
+</div>
+</body>
+</html>
+<script src="js/angular.js" ></script>
+<script>
+    var arr=[];
+    var formdata=new FormData();
+    var file = document.getElementsByTagName('input')[0];
+    var changeImg = function () {
+        var box = document.getElementById('box');
+        for(var i=0;i<file.files.length;i++){
+            arr.push(file.files[i]);
+        }
+        console.log(arr);
+    };
+    angular.module('myapp',[]).controller('myctrl', function ($scope, $http,$q) {
+        var imgId;
+        var prom;
+        $scope.ff = function () { /* for(var i=0;i<file.files.length;i++){
+                $http({
+                    method:'post',
+                    data:formdata,
+                    url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                    headers:{'content-type':undefined}
+                }).then(function (result) {
+                    console.log(result.data);
+                }, function (result) {
+                    console.log('失败');
+                })
+            }
+            }*/
+            var obj1={};
+            obj1.fe= function () {
+                for(var i=0;i<arr.length;i++){
+                    var formdata=new FormData();
+                    formdata.append('file',arr[i]);
+                    (function (i){
+                        $http({
+                            method:'post',
+                            data:formdata,
+                            url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                            headers:{'Content-type':undefined}
+                        }).then(function (result) {
+                            console.log(result.data);
+                            imgId=result.data.obj;
+                            console.log(i+":"+arr[i]);
+                            console.log('第'+i+'个');
+                        }, function (result) {
+                            console.log('失败')
+                        })
+                    })(i);
+                }
+            };
+            $q.all({
+                first:obj1.fe()
+            }).then(
+                    function () {
+                        console.log(imgId)
+                    }
+            )
+
+
+        }
+
+    })
+
+
+</script>

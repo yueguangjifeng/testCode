@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="box" style="display:none">
+    div盒子
+</div>
+<button>按钮</button>
+
+</body>
+</html>
+<script>
+    var div=document.getElementsByTagName('div')[0];
+    div.onclick= function () {
+        div.style.backgroundColor='red';
+    }
+    var btn=document.getElementsByTagName('button')[0];
+    btn.onclick= function () {
+        div.style.display='block';
+    };
+</script>

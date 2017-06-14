@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../wangEditor/dist/css/wangEditor.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../wangEditor/dist/js/wangEditor.js" ></script>
+</head>
+<body>
+<textarea  id="textContent" cols="30" rows="10"></textarea>
+<button>按钮</button>
+
+</body>
+</html>
+<script>
+    var editor=new wangEditor('textContent');
+    editor.config.menus=[
+        'source',
+        '|',     // '|' 是菜单组的分割线
+        'bold',
+        'head',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor'
+    ];
+    editor.config.head=[
+
+    ]
+    editor.$valueContainer.css('margin','0 auto');
+    editor.create();
+    editor.$txt.append('<style>*{margin-left:15px;margin-right:15px;} h3{font-size:17px;color:#333;margin:0 0 10px 0;line-height:49px;border-bottom:1px solid #E1E1DF;list-style:none; }img{width: 100%;}</style>');
+
+    var btn=document.getElementsByTagName('button')[0];
+    var i=1;
+    btn.onclick= function () {
+        editor.$txt.html('<div></div>');
+        editor.$txt.append('填充内容'+i++);
+    }
+
+</script>

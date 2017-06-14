@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+
+    <div class="box"  >
+        <span>01</span>
+        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="firstCheck" ng-click="firstCheck==1?(secondCheck=thirdCheck=1):(secondCheck=thirdCheck=0)"  />
+    </div>
+<div>
+    <span>02</span>
+    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-click="transfer(firstCheck,secondCheck)" ng-model="secondCheck" />
+</div>
+<div>
+    <span>03</span>
+    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-click="transfer(firstCheck,thirdCheck)" ng-model="thirdCheck" />
+</div>
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    var flag=0;
+
+    myapp.controller('myctrl', function ($scope) {
+
+        $scope.transfer= function (cardName,value) {
+           console.log(cardName);
+            if(value==1){
+                $scope+'.'+cardName=1;
+            }else {
+                $scope.cardName=0;
+            }
+        console.log('firstChck='+$scope.firstCheck+'secondCheck='+$scope.secondCheck+'thirdCheck='+$scope.thirdCheck)
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+</script>

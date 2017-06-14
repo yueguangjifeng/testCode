@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular Filter</title>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div class="box">
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th ng-click="sort('time')" >排序</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <ul>
+            <li ng-repeat="x in dataBase |func:'num'">{{x.name}}
+            </li>
+        </ul>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script>
+    var  myapp=angular.module('myapp',[]);
+    myapp.filter('func', function () {
+        return function (x) {
+            var arr=[];
+            angular.forEach(x, function (data, id) {
+                if(data.id<10){
+                    arr.push(data);
+                }
+            });
+            return arr;
+        }
+    });
+    myapp.controller('myctrl', function ($scope, $filter) {
+        $scope.dataBase=[{
+            name:'柯南10',
+            id:10
+        },{
+            name:'火影1',
+            id:1
+        },{
+            name:'忍村2',
+            id:2
+        }]
+
+    })
+
+
+</script>

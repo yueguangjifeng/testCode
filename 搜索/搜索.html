@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js" ></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<input type="text" class="text" id="keyWordSearch_ym" placeholder="关键词搜索" />
+
+    <div class="box">
+        <table class="table">
+            <thead>
+            <tr class="text-center">
+                <th class="text-center">业务名</th>
+                <th class="text-center hidden-md-down ">浏览量</th>
+                <th class="text-center hidden-md-down rotate_ym">
+                    <i class="fa fa-arrow-up"></i>
+                    <span>上传时间</span>
+                </th>
+                <th class="text-center">作者</th>
+                <th class="text-center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" ng-repeat="x in originDataBase" >
+                <td class="hidden-md-down" >{{x.title}}</td>
+                <td class="hidden-md-down" >{{x.readCount}}</td>
+                <td class="hidden-md-down" >{{x.createDate|date:'yyyy-MM-dd'}}</td>
+                <td>{{loginName}}</td>
+                <td ng-if="x.id" ng-init="newId=x.id;obj=x">
+                    <button type="button" ng-click="saveInfo(obj)" onclick="streEdit()" data-toggle="modal" data-target="#cominfoEdd_ym" class="btn btn-info btnedit">
+                        <i class="fa fa-edit "></i>
+                    </button>
+                    <button type="button" ng-click="saveId(newId)" class="btn btn-danger" data-target="#streeDele_ym" data-toggle="modal" >
+                        <i class="fa fa-trash-o "></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+
+        $http({
+            method: 'get',
+//            url:'http://api.jgsoft.org/wcommunity/api/boss/convenience/getListByTypeId?skip='+1+'&limit='+10+'&typeId='+1238889482
+            url: 'http://dev.jgsoft.org/api/MessagePush/GetPageList?pos=' + 1 + '&pagesize=' + 10 + '&keyword=' + keyWord + '&streetId=' + 1446985237 + '&type=' + 'street'
+        }).then(function (result) {
+            console.log(result);
+            $scope.originDataBase = result.data.obj;
+        }, function (result) {
+            console.log('失败')
+        });
+
+
+        var keyWord = '';
+        $('#keyWordSearch_ym').keyup(function (e) {
+            keyWord = $('#keyWordSearch_ym').val();
+            console.log(keyWord);
+
+
+            $http({
+                method: 'get',
+//            url:'http://api.jgsoft.org/wcommunity/api/boss/convenience/getListByTypeId?skip='+1+'&limit='+10+'&typeId='+1238889482
+                url: 'http://dev.jgsoft.org/api/MessagePush/GetPageList?pos=' + 1 + '&pagesize=' + 10 + '&keyword=' + keyWord + '&streetId=' + 1446985237 + '&type=' + 'street'
+            }).then(function (result) {
+                console.log(result);
+            }, function (result) {
+                console.log('失败')
+            });
+        })
+
+    })
+
+
+
+
+
+</script>

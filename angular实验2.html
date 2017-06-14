@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp"  ng-controller="myctrl" >
+<div class="js_uploadBox ">
+    <img class="" id="imgAdd"  style="width:41px;height:41px " >
+    <input id="fileAdd" onchange="previewImg()" ng-model="uploadimage" style="width:41px; height:41px;opacity:0;position:relative;left:-40px;overflow:hidden;"  type="file" name="cover">
+</div>
+<button ng-click="ff()" >上传到服务器</button>
+<div>
+    <img ng-src="{{imm}}" alt=""/>
+</div>
+
+</body>
+</html>
+<script>
+    function  previewImg() {
+        var file = document.getElementById('fileAdd');
+        var img = document.getElementById('imgAdd');
+
+        var reader = new FileReader();
+        reader.readAsDataURL(file.files[0]);
+        console.log(reader);
+        console.log(reader.result);
+        alert(reader.result);
+        reader.onload = function (event) {
+            img.src = this.result;
+        };
+    }
+
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.ff= function () {
+            var img=document.getElementById('imgAdd');
+            var file = document.getElementById('fileAdd');
+            console.log(file.files[0]);
+            var formdata=new FormData();
+            formdata.append('file',file.files[0]);
+            console.log(formdata);
+            console.log(typeof formdata);
+            $http({
+                method:'post',
+                url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                data:formdata,
+                headers:{'Content-Type':undefined},
+//                transformRequest:angular.identity
+            }).then(function (res) {
+                console.log(res.data.obj);
+                $scope.imm=res.data.obj;
+            }, function (data) {
+                console.log('失败'+data);
+            })
+        }
+    })
+</script>
+<!--
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.reader=new FileReader();
+        $scope.img_upload= function (files) {
+            $scope.reader.readAsDataURL(files[0]);
+            $scope.reader.onload= function (event) {
+                $scope.imgsrc=files[0].result
+            }
+        }
+
+    })
+
+
+</script>-->

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>设置子管理员</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="设置子管理员">
+    <meta name="keyword" content="设置子管理员">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/glyphicons.css" rel="stylesheet">
+    <link href="css/glyphicons-filetypes.css" rel="stylesheet">
+    <link href="css/glyphicons-social.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="scss/bootstrap-theme.css" rel="stylesheet"> -->
+    <!-- <link href="scss/bootstrap.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="wangEditor/dist/css/wangEditor.css"/>
+
+    <!--引入ymm css 文件-->
+<!--    <link rel="stylesheet" href="css/total_ymm.css"/>
+    <link href="css/total_zsh.css" rel="stylesheet">-->
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/tether.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+
+    <script src="js/libs/pace.min.js"></script>
+    <script src="js/libs/Chart.min.js"></script>
+    <!--<script src="js/libs/toastr.min.js"></script>-->
+    <script src="js/libs/gauge.min.js"></script>
+    <script src="js/libs/moment.min.js"></script>
+    <script src="js/libs/daterangepicker.js"></script>
+    <!--<script src="js/views/shared.js"></script>-->
+    <script src="js/views/main.js"></script>
+    <script src="js/views/charts.js"></script>
+    <!--<script src="js/app.js"></script>-->
+    <script src="js/angular.js" ></script>
+
+    <!-- 线形图与圆环图开始-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- 线形图与圆环图结束-->
+
+</head>
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden" ng-app="commPoApp" ng-controller="subAdminSetCtrl" >
+<header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up nav_zhedie" type="button">☰</button>
+    <a class="navbar-brand left_top_log_bar" href="#"></a>
+    <fieldset class="form-group hidden-md-down place_choice">
+        <div class="controls">
+            <select id="select2-1" class="form-control">
+                <a href="">
+                    <option>桃花镇</option>
+                </a>
+            </select>
+        </div>
+    </fieldset>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown pull-right">
+            <a class="nav-link dropdown-toggle nav-link user_img" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="hidden-md-down"  id="loginAdmin_ym">{{loginName}}</span>
+                <img ng-src="{{ngImg}}" class="img-avatar" alt="admin@bootstrapmaster.com">
+            </a>
+        </li>
+    </ul>
+</header>
+<div class="app-body">
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav " style="text-indent:10px;">
+                <li class="nav-title">数据统计 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">用户统计</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> 交易统计 </a>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-title">街道管理</li>
+                <li class="nav-item" >
+                    <a href="messagSen-0.html" class="nav-link" >消息推送</a>
+                </li>
+                <li class="nav-item">
+                    <a href="firstCarousel-0.html" class="nav-link">首页轮播 </a>
+                </li>
+                <li class="nav-item" >
+                    <a href="inforMana-0.html" class="nav-link">咨讯管理 </a>
+                </li>
+                <li class="nav-item set nav-dropdown ">
+                    <a href="#" class="nav-link nav-dropdown-toggle">功能管理</a>
+                    <ul class="nav-dropdown-items" >
+                        <li  class="nav-item set nav-dropdown">
+                            <a href="street-0.html" class="nav-link" style="padding-left:10px;" >清河街道</a>
+                        </li>
+                        <li  class="nav-item set nav-dropdown ">
+                            <a href="cityService-0.html" class="nav-link"  style="padding-left:10px;" >城市服务</a>
+                        </li>
+                        <li  class="nav-item set nav-dropdown">
+                            <a href="convPeo.html" class="nav-link" style="padding-left:10px;" >便民服务</a>
+                        </li>
+                        <li class="nav-item set nav-dropdown">
+                            <a href="acceCentInput.html" class="nav-link" style="padding-left:10px;">受理中心-录入</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-title">用户管理 </li>
+                <li class="nav-item set nav-dropdown">
+                    <a href="usersData-0.html" class="nav-link">用户提交数据</a>
+                </li>
+                <li class="nav-item set nav-dropdown" >
+                    <a href="userMessages-0.html" class="nav-link ">用户信息</a>
+                </li>
+                <li class="nav-item set nav-dropdown" >
+                    <a href="acceCentFeedback.html" class="nav-link ">受理中心-反馈</a>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-title"> 账号管理</li>
+                <li class="nav-item active">
+                    <a href="subAdminSet-0.html" class="nav-link" style="background-color:#24B1DD">设置子管理员</a>
+                </li>
+                <li class="nav-item "><a href="mailBox-0.html" class="nav-link">信箱</a></li>
+                <li class="nav-item"><a href="accountMessMod.html" class="nav-link">修改账户信息</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- 主要内容区 -->
+    <main class="main">
+        <div class=""  style="">
+            <div class="animated" style="">
+                <!-- 自定义内容区域 -->
+                <div class="container-fluid " style="position:relative;">
+                    <div style="position:absolute;top:-5px;right:30px;z-index:1" class="container-fluid row hidden-sm-down" >
+                        <input type="text" class="text form-control " style="width:120px;margin-right:10px;"  placeholder="关键词搜索" />
+                        <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#inviteAdmin" style="margin-right:10px;" >邀请</button>
+                        <button type="button" ng-click="addAdministrator_ym()" class="btn btn-info" data-toggle="modal" data-target="#addAdmin"  >添加</button>
+                    </div>
+                    <div class="content">
+                        <div class="container-fluid " style="padding-left:0;margin-top:15px;padding-right:0;">
+                            <div class="contentArea_ym">
+                                <ul class="nav nav-tabs" id="cardGroupList" >
+                                    <li class="nav-item nav-link" style="border:1px solid #d1d4d7;border-right:0;border-bottom:0" onclick="saveCard('streetAdministrator')" >管理员</li>
+                                    <li class="nav-item nav-link" style="border:1px solid #d1d4d7;" onclick="saveCard('seller')" >商家</li>
+                                    <!--<li class="nav-item nav-link" style="border:1px solid #d1d4d7;" onclick="saveCard('modiMobi')">修改手机号</li>-->
+                                </ul>
+                                <div id="cardGroupContent">
+                                    <div class="tab-content" style="border-top:none;"  >
+                                        <table class="table" style="border:none;">
+                                            <thead>
+                                            <tr class="text-center">
+                                                <th class="text-center">登录名</th>
+                                                <th class="text-center hidden-md-down ">所属部门</th>
+                                                <th class="text-center hidden-md-down rotate_ym">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <span>最后登录时间</span>
+                                                </th>
+                                                <th class="text-center">状态</th>
+                                                <th class="text-center">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="text-center" ng-repeat="x in originDataBase" >
+                                                <td class="hidden-md-down" ng-bind="x.loginName" ></td>
+                                                <td class="hidden-md-down" ng-bind="x.deparment" ></td>
+                                                <td class="hidden-md-down" >{{x.lastLoginDate}}</td>
+                                                <td ng-if="x.isEnable==1" >启用</td>
+                                                <td ng-if="x.isEnable==0" style="color:red" >禁用</td>
+                                                <td ng-if="x.loginName" ng-init="newId=x.id;obj=x">
+                                                    <button type="button" ng-click="saveInfo(obj)"   data-toggle="modal" data-target="#commuPolcEdit_ym" class="btn btn-info btnedit">
+                                                        <i class="fa fa-edit "></i>
+                                                    </button>
+                                                    <button type="button" ng-click="saveId(newId)" class="btn btn-danger" data-target="#streeDele_ym" data-toggle="modal" >
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="tab-content" style="display:none"  >
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 邀请管理员 模态框-->
+                <div class="modal fade" id="inviteAdmin">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" >邀请管理员</h5>
+                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid row justify-content-between" style="padding-left:0">
+                                    <div class="col-md-10 row">
+                                        <div class="col-md-3" style="line-height:35px;" >邀请链接</div>
+                                        <input type="url" class="col-md-9" id="adminUrl_ym" placeholder="http://www.baidu.com" />
+                                    </div>
+                                    <div class="col-md-2 row">
+                                        <button class="btn btn-success" id="invite_ym"   data-dismiss="modal" >复制链接</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 添加 模态框 -->
+                <div class="modal fade " id="addAdmin" style="">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">申请成为街道子管理员</h5>
+                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form action="">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >所属部门</label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="col-md-12" ng-model="departmentAdd" placeholder="质检部" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >用户名</label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="col-md-12" ng-model="userNameAdd" placeholder="molijin" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >联系电话</label>
+                                            <div class="col-md-4">
+                                                <input type="tel"  class="col-md-12" ng-model="phoneAdd" placeholder="13452214814" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >常用邮箱</label>
+                                            <div class="col-md-4">
+                                                <input type="tel"  class="col-md-12" ng-model="mailBoxAdd" placeholder="1234567890@qq.com" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label  class="col-md-3 form-control-label" >是否启用</label>
+                                            <div class="col-md-9">
+                                                <label  class="switch switch-3d switch-primary">
+                                                    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-model="caroCheck" class="switch-input"/>
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label  class="col-md-3 form-control-label" >板块是否全开放</label>
+                                            <div class="col-md-9" >
+                                                <label  class="switch switch-3d switch-primary">
+                                                    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-model="cardCheck" class="switch-input"/>
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >权限配置</label>
+                                            <div class="col-md-4">
+                                                <ul class="list-group" style="border:1px solid red" >
+                                                    <li class="justify-content-between">
+                                                        <a href="#" class="openSwitch" ng-click="dataStatics=dataStatics==1?0:1" >数据统计</a>
+                                                        <input  type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="dataStatisticsCheck" ng-click="usersStatisticsCheck=tradeStatisticsCheck=dataStatisticsCheck==1?1:0"  />
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;"/>
+                                                        <ul style="padding-left:20px;" ng-show="dataStatics==1">
+                                                            <li>
+                                                                <span>用户统计</span>
+                                                                <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="usersStatisticsCheck" ng-click="dataStatisticsCheck=usersStatisticsCheck==1?1:(tradeStatisticsCheck==0?0:1)" />
+                                                            </li>
+                                                            <li>
+                                                                <span>交易统计</span>
+                                                                <input type="checkbox" ng-true-value="1" ng-fales-value="0" ng-model="tradeStatisticsCheck" ng-click="dataStatisticsCheck=tradeStatisticsCheck==1?1:(usersStatisticsCheck==0?0:1)" />
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="openSwitch" ng-click="streetAdmin=streetAdmin==1?0:1" >街道管理</a>
+                                                        <input type="checkbox" ng-model="streetAdminCheck" ng-click="acceptCenterInputCheck=convinenceServiceCheck=cityServiceCheck=streetCheck=messageSendCheck=firstCarouselCheck=informationAdminCheck=functionAdminCheck=streetAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0"   />
+                                                        <!--<a href="#" class="openSwitch" ng-click="ngSwitch('streetAdmin')">
+                                                            <i class="fa fa-arrow-down" ></i>
+                                                        </a>-->
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="streetAdmin==1" >
+                                                            <li>
+                                                                <span ng-if="" >消息推送</span>
+                                                                <input type="checkbox" ng-model="messageSendCheck" ng-click="streetAdminCheck=messageSendCheck==1?1:(firstCarouselCheck==1?1:(informationAdminCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <span>首页轮播</span>
+                                                                <input type="checkbox" ng-model="firstCarouselCheck" ng-click="streetAdminCheck=firstCarouselCheck==1?1:(messageSendCheck==1?1:(informationAdminCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <span>资讯管理</span>
+                                                                <input type="checkbox" ng-model="informationAdminCheck" ng-click="streetAdminCheck=informationAdminCheck==1?1:(messageSendCheck==1?1:(firstCarouselCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="openSwitch"  ng-click="functionAdmin=functionAdmin==1?0:1">功能管理</a>
+                                                                <input type="checkbox" ng-model="functionAdminCheck" ng-click="acceptCenterInputCheck=convinenceServiceCheck=cityServiceCheck=streetCheck=functionAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0" />
+                                                                <ul style="padding-left:20px;" ng-show="functionAdmin==1">
+                                                                    <li>
+                                                                        <span>清河街道</span>
+                                                                        <input type="checkbox" ng-model="streetCheck" ng-click="functionAdminCheck=streetCheck==1?1:(cityServiceCheck==1?1:(convinenceServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>城市服务</span>
+                                                                        <input type="checkbox" ng-model="cityServiceCheck" ng-click="functionAdminCheck=cityServiceCheck==1?1:(streetCheck==1?1:(convinenceServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>便民服务</span>
+                                                                        <input type="checkbox" ng-model="convinenceServiceCheck" ng-click="functionAdminCheck=convinenceServiceCheck==1?1:(streetCheck==1?1:(cityServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>受理中心-录入</span>
+                                                                        <input type="checkbox" ng-model="acceptCenterInputCheck" ng-click="functionAdminCheck=acceptCenterInputCheck==1?1:(streetCheck==1?1:(cityServiceCheck==1?1:(convinenceServiceCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li  style="margin-top:5px;"  >
+                                                        <a href="#" class="openSwitch" ng-click="usersAdmin=usersAdmin==1?0:1" >用户管理</a>
+                                                        <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="usersAdminCheck" ng-click="acceptCenterFeedbackCheck=usersInformationCheck=usersSubmitDataCheck=usersAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0" /></span>
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="usersAdmin==1" >
+                                                            <li>
+                                                                <span>用户提交数据</span>
+                                                                <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="usersSubmitDataCheck" ng-click="usersAdminCheck=usersSubmitDataCheck==1?1:(usersInformationCheck==1?1:(acceptCenterFeedbackCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>用户信息</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="usersInformationCheck" ng-click="usersAdminCheck=usersInformationCheck==1?1:(usersSubmitDataCheck==1?1:(acceptCenterFeedbackCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>受理中心-反馈</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="acceptCenterFeedbackCheck" ng-click="usersAdminCheck=acceptCenterFeedbackCheck==1?1:(usersSubmitDataCheck==1?1:(usersInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="openSwitch" ng-click="accountAdmin=accountAdmin==1?0:1" >账号管理</a>
+                                                        <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="accountAdminCheck" ng-click="ChangeAccountInformationCheck=mailBoxCheck=setSubAdministrationCheck=accountAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0"/></span>
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="accountAdmin==1">
+                                                            <li>
+                                                                <span>设置子管理员</span>
+                                                                <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="setSubAdministrationCheck" ng-click="accountAdminCheck=setSubAdministrationCheck==1?1:(mailBoxCheck==1?1:(changeAccountInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>信箱</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="mailBoxCheck" ng-click="accountAdminCheck=mailBoxCheck==1?1:(setSubAdministrationCheck==1?1:(changeAccountInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>修改账户信息</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="changeAccountInformationCheck" ng-click="accountAdminCheck=changeAccountInformationCheck==1?1:(setSubAdministrationCheck==1?1:(mailBoxCheck==1?1:0))" ng-true-value="1" ng-false-value="0"/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label ">状态</label>
+                                            <div class="col-md-8">
+                                                <button class="btn btn-primary" >未处理</button>&emsp;
+                                                <button class="btn " >处理中</button>&emsp;
+                                                <button class="btn " >已处理</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="">
+                                    <button class="btn btn-success" ng-click="operationSav()" type="button"  data-dismiss="modal" >保存</button>
+                                    <button class="btn" data-dismiss="modal" >关闭</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 编辑 模态框-->
+                <div class="modal fade " id="commuPolcEdit_ym" style="">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">申请成为街道子管理员</h5>
+                                <button class="close" type="button" data-dismiss="modal" >&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form action="">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >所属部门</label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="col-md-12" ng-model="departmentAdd" placeholder="质检部" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >用户名</label>
+                                            <div class="col-md-4">
+                                                <input type="text" class="col-md-12" ng-model="userNameAdd" placeholder="molijin" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >联系电话</label>
+                                            <div class="col-md-4">
+                                                <input type="tel"  class="col-md-12" ng-model="phoneAdd" placeholder="13452214814" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >常用邮箱</label>
+                                            <div class="col-md-4">
+                                                <input type="tel"  class="col-md-12" ng-model="mailBoxAdd" placeholder="1234567890@qq.com" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label  class="col-md-3 form-control-label" >是否启用</label>
+                                            <div class="col-md-9">
+                                                <label  class="switch switch-3d switch-primary">
+                                                    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-model="caroCheck" class="switch-input"/>
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label  class="col-md-3 form-control-label" >板块是否全开放</label>
+                                            <div class="col-md-9" >
+                                                <label  class="switch switch-3d switch-primary">
+                                                    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-model="cardCheck" class="switch-input"/>
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" >权限配置</label>
+                                            <div class="col-md-4">
+                                                <ul class="list-group" style="border:1px solid red" >
+                                                    <li class="justify-content-between">
+                                                        <a href="#" class="openSwitch" ng-click="dataStatics=dataStatics==1?0:1" >数据统计</a>
+                                                        <input  type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="dataStatisticsCheck" ng-click="usersStatisticsCheck=tradeStatisticsCheck=dataStatisticsCheck==1?1:0"  />
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;"/>
+                                                        <ul style="padding-left:20px;" ng-show="dataStatics==1">
+                                                            <li>
+                                                                <span>用户统计</span>
+                                                                <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="usersStatisticsCheck" ng-click="dataStatisticsCheck=usersStatisticsCheck==1?1:(tradeStatisticsCheck==0?0:1)" />
+                                                            </li>
+                                                            <li>
+                                                                <span>交易统计</span>
+                                                                <input type="checkbox" ng-true-value="1" ng-fales-value="0" ng-model="tradeStatisticsCheck" ng-click="dataStatisticsCheck=tradeStatisticsCheck==1?1:(usersStatisticsCheck==0?0:1)" />
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="openSwitch" ng-click="streetAdmin=streetAdmin==1?0:1" >街道管理</a>
+                                                        <input type="checkbox" ng-model="streetAdminCheck" ng-click="acceptCenterInputCheck=convinenceServiceCheck=cityServiceCheck=streetCheck=messageSendCheck=firstCarouselCheck=informationAdminCheck=functionAdminCheck=streetAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0"   />
+                                                        <!--<a href="#" class="openSwitch" ng-click="ngSwitch('streetAdmin')">
+                                                            <i class="fa fa-arrow-down" ></i>
+                                                        </a>-->
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="streetAdmin==1" >
+                                                            <li>
+                                                                <span ng-if="" >消息推送</span>
+                                                                <input type="checkbox" ng-model="messageSendCheck" ng-click="streetAdminCheck=messageSendCheck==1?1:(firstCarouselCheck==1?1:(informationAdminCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <span>首页轮播</span>
+                                                                <input type="checkbox" ng-model="firstCarouselCheck" ng-click="streetAdminCheck=firstCarouselCheck==1?1:(messageSendCheck==1?1:(informationAdminCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <span>资讯管理</span>
+                                                                <input type="checkbox" ng-model="informationAdminCheck" ng-click="streetAdminCheck=informationAdminCheck==1?1:(messageSendCheck==1?1:(firstCarouselCheck==1?1:(functionAdminCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="openSwitch"  ng-click="functionAdmin=functionAdmin==1?0:1">功能管理</a>
+                                                                <input type="checkbox" ng-model="functionAdminCheck" ng-click="acceptCenterInputCheck=convinenceServiceCheck=cityServiceCheck=streetCheck=functionAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0" />
+                                                                <ul style="padding-left:20px;" ng-show="functionAdmin==1">
+                                                                    <li>
+                                                                        <span>清河街道</span>
+                                                                        <input type="checkbox" ng-model="streetCheck" ng-click="functionAdminCheck=streetCheck==1?1:(cityServiceCheck==1?1:(convinenceServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>城市服务</span>
+                                                                        <input type="checkbox" ng-model="cityServiceCheck" ng-click="functionAdminCheck=cityServiceCheck==1?1:(streetCheck==1?1:(convinenceServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>便民服务</span>
+                                                                        <input type="checkbox" ng-model="convinenceServiceCheck" ng-click="functionAdminCheck=convinenceServiceCheck==1?1:(streetCheck==1?1:(cityServiceCheck==1?1:(acceptCenterInputCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>受理中心-录入</span>
+                                                                        <input type="checkbox" ng-model="acceptCenterInputCheck" ng-click="functionAdminCheck=acceptCenterInputCheck==1?1:(streetCheck==1?1:(cityServiceCheck==1?1:(convinenceServiceCheck==1?1:0)))" ng-true-value="1" ng-false-value="0" />
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li  style="margin-top:5px;"  >
+                                                        <a href="#" class="openSwitch" ng-click="usersAdmin=usersAdmin==1?0:1" >用户管理</a>
+                                                        <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="usersAdminCheck" ng-click="acceptCenterFeedbackCheck=usersInformationCheck=usersSubmitDataCheck=usersAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0" /></span>
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="usersAdmin==1" >
+                                                            <li>
+                                                                <span>用户提交数据</span>
+                                                                <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="usersSubmitDataCheck" ng-click="usersAdminCheck=usersSubmitDataCheck==1?1:(usersInformationCheck==1?1:(acceptCenterFeedbackCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>用户信息</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="usersInformationCheck" ng-click="usersAdminCheck=usersInformationCheck==1?1:(usersSubmitDataCheck==1?1:(acceptCenterFeedbackCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>受理中心-反馈</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="acceptCenterFeedbackCheck" ng-click="usersAdminCheck=acceptCenterFeedbackCheck==1?1:(usersSubmitDataCheck==1?1:(usersInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="openSwitch" ng-click="accountAdmin=accountAdmin==1?0:1" >账号管理</a>
+                                                        <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="accountAdminCheck" ng-click="ChangeAccountInformationCheck=mailBoxCheck=setSubAdministrationCheck=accountAdminCheck==1?1:0" ng-true-value="1" ng-false-value="0"/></span>
+                                                        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+                                                        <ul style="padding-left:20px;" ng-show="accountAdmin==1">
+                                                            <li>
+                                                                <span>设置子管理员</span>
+                                                                <span style="padding-top:1px; float:right" ><input type="checkbox" ng-model="setSubAdministrationCheck" ng-click="accountAdminCheck=setSubAdministrationCheck==1?1:(mailBoxCheck==1?1:(changeAccountInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>信箱</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="mailBoxCheck" ng-click="accountAdminCheck=mailBoxCheck==1?1:(setSubAdministrationCheck==1?1:(changeAccountInformationCheck==1?1:0))" ng-true-value="1" ng-false-value="0" /></span>
+                                                            </li>
+                                                            <li>
+                                                                <span>修改账户信息</span>
+                                                                <span style="padding-top:1px; clear:both; float:right" ><input type="checkbox" ng-model="changeAccountInformationCheck" ng-click="accountAdminCheck=changeAccountInformationCheck==1?1:(setSubAdministrationCheck==1?1:(mailBoxCheck==1?1:0))" ng-true-value="1" ng-false-value="0"/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label ">状态</label>
+                                            <div class="col-md-8">
+                                                <button class="btn btn-primary" >未处理</button>&emsp;
+                                                <button class="btn " >处理中</button>&emsp;
+                                                <button class="btn " >已处理</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="">
+                                    <button class="btn btn-success" ng-click="operationSav()" type="button"  data-dismiss="modal" >保存</button>
+                                    <button class="btn" data-dismiss="modal" >关闭</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+
+<!-- Bootstrap and necessary plugins -->
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/tether.min.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/libs/pace.min.js"></script>
+
+<!-- Plugins and scripts required by all views -->
+<script src="js/libs/Chart.min.js"></script>
+<script src="js/views/shared.js"></script>
+
+<!-- GenesisUI main scripts -->
+
+<script src="js/app.js"></script>
+<!--引入ymm js文件-->
+<script src="js/views/total_ymm.js" ></script>
+<!--引入富文本框js-->
+<script type="text/javascript" src="wangEditor/dist/js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="wangEditor/dist/js/wangEditor.js"></script>
+<!--引入angular-->
+<!--<script src="js/views/angular1.4.6.js" ></script>
+<script src="js/views/angular-route1.3.13.js" ></script>-->
+<script src="js/views/angular.js" ></script>
+<script src="js/views/angular-route.js" ></script>
+
+<script>
+    $('#cardGroupList>li').css('backgroundColor','#F6F8FB');
+    $('#cardGroupList>li').eq(0).css('backgroundColor','white');
+    $('#cardGroupList>li').click(function () {
+        var num=$('#cardGroupList>li').index(this);
+        console.log(num);
+        $('#cardGroupContent>div').eq(num).css('display','block').siblings().css('display','none');
+        $(this).css({'backgroundColor':'white','border-bottom':0}).siblings().css({'backgroundColor':'#F6F8FB','border-bottom':'1px solid #d1d4d7'});
+    })
+</script>
+<script>
+    /*
+     $('#invite_ym').click(function () {
+     var url=document.getElementById('adminUrl_ym');
+     url.select();
+     document.execCommand('copy');
+     alert('链接地址已复制!')
+     });
+     */
+    var cardName='streetAdministrator';
+    function saveCard(name) {
+        cardName=name;
+    }
+
+
+    var comFe=angular.module('commPoApp',[]);
+    comFe.controller('subAdminSetCtrl', function ($scope,$http) {
+//        控件树
+
+        $scope.$watch('functionAdminCheck', function () {
+          $scope.streetAdminCheck=$scope.functionAdminCheck==1?1:($scope.messageSendCheck==1?1:($scope.firstCarouselCheck==1?1:($scope.informationAdminCheck==1?1:0)));
+        });
+
+
+
+        $scope.dataStatisticsCheck=0;
+        $scope.dataStatics=0;
+        $scope.streetAdmin=0;
+        $scope.functionAdmin=0;
+        $scope.usersAdmin=0;
+        $scope.accountAdmin=0;
+        $scope.ngSwitch= function (name) {
+            if('dataStatics'==name){
+                $scope.dataStatics= $scope.dataStatics==1?0:1;
+            }else if('streetAdmin'==name){
+                $scope.streetAdmin=$scope.streetAdmin==1?0:1;
+            }else if('functionAdmin'==name){
+                $scope.functionAdmin=$scope.functionAdmin==1?0:1;
+            }else if('usersAdmin'==name){
+                $scope.usersAdmin=$scope.usersAdmin==1?0:1;
+            }else if('accountAdmin'==name){
+                $scope.accountAdmin=$scope.accountAdmin==1?0:1;
+            }
+        };
+
+        var recordId;
+        $http({
+            method:'get',
+            url:'http://test.jgsoft.org/api/StreetAdmin/GetPageList?pos=1&pagesize=10&streetId=1446985237&keyword=&sortparam=desc'
+        }).then(function (result) {
+            $scope.originDataBase=result.data.obj;
+            recordId=result.data.obj[0].id;
+            console.log(recordId);
+            console.log(result.data.obj);
+            $scope.loginName=loginName;
+            $scope.ngImg=img;
+
+        }, function (result) {  });
+
+        $scope.addAdministrator_ym= function (name) {
+            $http({
+                method:'get',
+                url:'http://test.jgsoft.org/api/streetadmin/GetSingle?id='+recordId
+            }).then(function (result) {
+                console.log(result);
+
+            }, function (result) {  })
+        };
+
+        $scope.operationSav= function (name) {
+
+
+            var infEdit={
+                id:0,
+                loginName:$scope.loginName,
+                streetId:$scope.streetId,
+                isAdmin:1,
+                isMain:0,
+                isEnable:1,
+                isAllOpen:1,
+                passWord:123456,
+                mobile:$scope.phoneEdit,
+                email:$scope.emailEdit,
+                deparment:$scope.deparment,
+                competence:['2287439561',]
+            }
+
+            $http({
+                data:'',
+                method:'post',
+                url:''
+            })
+
+        };
+
+        $scope.saveInfo= function (obj) {
+            $http({
+                method:'get',
+                url:''
+            })
+
+
+        }
+
+
+    })
+</script>
+
+
+
+
+
+
+
+

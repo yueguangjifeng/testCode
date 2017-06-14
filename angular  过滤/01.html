@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app='myapp' ng-controller='myctrl'>
+
+    <ul>
+        <li ng-repeat="x in datas |filter: {checked:true}" >{{x.name}}</li>
+    </ul>
+
+</body>
+</html>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller('myctrl', ['$scope','$filter', function ($scope,$filter) {
+        $scope.datas=[
+            {
+                name:'柯南',
+                checked:true
+            },
+            {
+                name:'satsuki',
+                checked:false
+            },
+            {
+                name:'naruto',
+                checked:true
+            }
+        ];
+    }])
+
+
+
+</script>  

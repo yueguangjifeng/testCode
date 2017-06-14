@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/bootstrap.js" ></script>
+    <script src="../js/angular.js" ></script>
+
+
+</head>
+<body ng-app="myapp"  ng-controller="myctrl" >
+<div>
+    <ul>
+        <li class="nav-title" >数据统计</li>
+        <li>
+            <ul class="nav-items">
+                <li>用户统计</li>
+                <li>交易统计</li>
+            </ul>
+        </li>
+        <hr/>
+        <li class="nav-title">街道管理</li>
+        <hr/>
+            <li>
+                <ul>
+                    <li>消息推送</li>
+                    <li>首页轮播</li>
+                    <li>资讯管理</li>
+                    <li>
+                        <a href="#" class="open0" ng-click="switch()" >功能管理</a></li>
+                    <li ng-if="state==1" >
+                        <ul>
+                            <li>清河街道</li>
+                            <li>城市服务</li>
+                            <li>便民服务</li>
+                            <li>受理中心录入</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl',function($scope,$http){
+        $scope.state=0;
+        $scope.switch= function () {
+            console.log($scope.state);
+            if($scope.state==0)$scope.state=1;
+            else $scope.state=0;
+            console.log($scope.state);
+        }
+
+
+
+
+
+    })
+
+</script>

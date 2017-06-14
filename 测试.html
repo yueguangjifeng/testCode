@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div id="box">
+    <input type="file" multiple='true' onchange="changeImg()"  />
+    <button>提交</button>
+</div>
+</body>
+</html>
+<script src="js/angular.js" ></script>
+<script>
+    var inp=document.getElementsByTagName('input')[0];
+    var arrId=[];
+        var changeImg = function () {
+            var box = document.getElementById('box');
+            var file = document.getElementsByTagName('input')[0];
+            for (var i = 0; i < file.files.length; i++) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file.files[i]);
+                console.log(i + '图片');
+                reader.onload = function () {
+                    var img = document.createElement('img');
+                    img.src = this.result;
+                    box.insertBefore(img, file);
+                };
+                var formdata = new FormData();
+                formdata.append('file', file.files[i]);
+
+
+                $http({
+                    data: formdata,
+                    method: 'post',
+                    url: 'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                    headers: {'Content-type': undefined}
+                }).then(function (result) {
+                    console.log('多图上传');
+                    arr.push(result.data.obj);
+                    console.log(result.data.obj);
+                }, function (result) {
+                    console.log(result);
+                });
+
+
+            }
+        }
+
+    angular.module('myapp',[]).controller('myctrl', function ($scope, $http) {   })
+
+
+</script>

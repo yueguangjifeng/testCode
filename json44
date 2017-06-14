@@ -1,0 +1,15 @@
+{
+  id: "7048153296",
+  loginName: "JG_Admin",
+  streetId: "",
+  isMain: 0,
+  isAdmin: 0,"mobile": "15821552360",
+  email: "15821552360@163.com",
+  isAllOpen: 1,
+  isEnable: 1,
+  deparment: "ºº ı≤ø",
+  passWord: "123456",
+  competence: [
+    "9379415628","9016472835"
+  ]
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+
+<input type="file" multiple="true"  />
+<button>上传</button>
+
+<div class="form-group">
+    <lable class="add-on">证件类型</lable>
+    <span class="right-add-on sl-icon-mobile-lock"></span>
+    <input type="text" id="idCardTxt" class="form-control" ng-model="inpp" placeholder="{{placehol}}" maxlength="0"
+            onfocus="idCardTxt.blur()">
+</div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope,$q, $http) {
+        $scope.placehol='身份证禁止输入';
+
+
+        var deferred=$q.defer();
+        var arrList=[];
+        function sendImgMul(inputEle){
+            for(var i= 0,leng=inputEle.files.length;i<leng;i++){
+                console.log(inputEle.files.length);
+                var formdata=new FormData();
+                formdata.append('file',inputEle.files[i]);
+                    $http({
+                        data:formdata,
+                        method:'post',
+                        url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                        headers:{'content-type':undefined}
+                    }).then(function (result) {
+                        console.log(result);
+                        arrList.push(result.data.obj);
+                    });
+            }
+            deferred.resolve(arrList);
+            console.log(deferred);
+            return deferred.promise;
+        }
+        var input=document.getElementsByTagName('input')[0];
+        console.log(input);
+        input.onchange=function () {
+            console.log(sendImgMul(input));
+            sendImgMul(input).then(function (result
+            ){
+                        console.log(result[0]);
+                    }
+
+            );
+
+        }
+    })
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<div class="form-group">
+    <label for="">收件人</label>
+    <input type="text" id="edit-name" placeholder="姓名"/>
+    <button disabled="disabled">按钮样式 需要改变</button>
+</div>
+
+</body>
+</html>
+    <script>
+    $("#edit-name").focus(function () {
+        $("#edit-name").keyup(function () {
+            if ($("#edit-name").val() != 0&&isNaN($('#edit-name').val())) {
+                $('button').removeAttr('disabled').css('background-color', 'blue');
+            } else {
+                $('button').removeAttr('style').attr('disabled','disabled');
+            }
+        })
+    });
+</script>

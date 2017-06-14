@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="bootstrap.js" ></script>
+</head>
+<body>
+    <div id="stat">
+        <button class="btn " >未通过</button>
+        <button class="btn " >审核中</button>
+        <button class="btn" >已通过</button>
+    </div>
+
+</body>
+</html>
+<script>
+    var ele=document.getElementById('stat');
+    var state=2;
+    $('#stat').children("button:eq("+state+")").addClass('btn-info').siblings();
+    $('#stat').click(function (event) {
+        $(event.target).addClass('btn-info').siblings().removeClass('btn-info');
+    })
+</script>

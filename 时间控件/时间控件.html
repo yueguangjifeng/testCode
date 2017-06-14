@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<form action="">
+    data:<input type="date"/>
+    datetime:<input type="datetime"/>
+    datetime-local:<input type="datetime-local" ng-model="originTime" />
+
+    <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm'}}</span><br>
+</form>
+
+</body>
+</html>
+<script>
+    var originTime=new Date();
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+       /* var originDateTimeLocal=new Date();
+        $scope.originTime=new Date(originDateTimeLocal.toISOString().substr(0,16)) ;*/
+        $scope.originTime=new Date(('2017-05-26T10:24:09Z').substr(0,16))
+
+
+    })
+
+
+</script>

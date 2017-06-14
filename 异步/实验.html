@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        var infstreAddJson2= {
+                id: 0,
+                streetId: 5209714683,
+                title: "标题0",
+                guideImg:"img1",
+                content: "内容0",
+                addr: "地址0",
+                banners:["img1","img2"],
+                beginDate: "2017-04-22",
+                endDate: "2017-04-29"
+//            banners: ['http://ok9xod9sy.bkt.clouddn.com/8268ca947fe34690beafd3122794d32a', 'http://ok9xod9sy.bkt.clouddn.com/dfeabfb14fff458fb769ec2387c2d4bc']
+        };
+        /* var  infstreAddJson2={
+         "id": "5920376481",
+         "state": 0,
+         "streetId": "5209714683",
+         "name": "张杰22",
+         "gender": 0,
+         "phone": "13245678987",
+         "buildingName": "富都广场",
+         "officeArea": "蓝村路",
+         "sellArea": 1000,
+         "commercialArea": 1222,
+         "addr": "蓝村路",
+         "intro": "介绍介绍",
+         "banners": [
+         "http://ok9xod9sy.bkt.clouddn.com/8268ca947fe34690beafd3122794d32a",
+         "http://ok9xod9sy.bkt.clouddn.com/dfeabfb14fff458fb769ec2387c2d4bc"
+         ]
+         };*/
+        console.log(infstreAddJson2);
+        $http({
+            method: 'post',
+            data: infstreAddJson2,
+            url: 'http://test.jgsoft.org/api/SEBuildingActity/SubmitSEBuildingActityInfo'
+        })
+            .then(function (result) {
+                console.log(JSON.stringify(result));
+                console.log('文件上传成功');
+            }, function (result) {
+                console.log(result);
+            })
+    });
+//    })
+
+
+</script>

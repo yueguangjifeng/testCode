@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <style>
+        body{padding-top:10px;font-size:16px;color:#333;margin:0 15px;text-align:justify;line-height:25px;list-style:none;}
+        h3{font-size:17px;font-weight:bold;margin:0 0 10px 0;height:49px;line-height:49px;border-bottom:1px solid #E1E1DF;list-style:none; }
+        p{margin-top:0;margin-bottom:0;}
+        img{width: 100%;}
+    </style>
+    <script src="../js/jquery.js" ></script>
+</head>
+<body>
+    <h3>标题</h3>
+    <div>测试段落</div>
+    <div>测试段落</div>
+    <div>测试段落</div>
+    <div>测试段落</div>
+
+    <p>p段落</p>
+    <p>p段落</p>
+    <p>p段落</p>
+    <p>p段落</p>
+    <p><br></p>
+    <script>
+        $('p').each(function () {
+            console.log($(this).html().toString())
+            if($(this).html().toString()=="<br>"){
+                console.log($(this));
+                $(this).remove();
+            }
+        })
+    /*    if($('p').html()=="<br>"){
+            console.log($(this));
+            $(this).remove('<br>');
+        }*/
+
+
+    </script>
+
+
+</body>
+</html>;

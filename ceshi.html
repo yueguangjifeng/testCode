@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js" ></script>
+</head>
+<body>
+<div class="box">00</div>
+<div class="box">01</div>
+<div class="box" style="background-image:url('img/avatars/1.jpg')" >02</div>
+
+<input type="tel"  />电话
+
+</body>
+</html>
+<script>
+    $('.box').click(function (event) {
+        console.log(event.target.style.backgroundImage.split("(")[1].split(")")[0]);
+    })
+
+
+</script>
+

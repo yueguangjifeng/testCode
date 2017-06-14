@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery.js" ></script>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li>02</li>
+    <li>03</li>
+</ul>
+
+
+</body>
+</html>
+<script>
+    var  tim=null;
+
+
+
+
+
+    var i=0;
+    var ti;
+    function flashData(){
+        var ele=document.getElementsByTagName('li')[0];
+        ele.innerText=++i;
+        console.log(i);
+        ti=setTimeout(flashData,1000);
+    }
+    flashData();
+
+
+
+</script>

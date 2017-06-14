@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<textarea ng-model="tex" id="" cols="30" rows="10"></textarea>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+//        $scope.$apply(
+               $scope.tex='你好';
+//        )
+    })
+
+
+
+</script>

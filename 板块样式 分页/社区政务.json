@@ -1,0 +1,102 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "sumcount": 12,
+  "sumpage": 12,
+  "obj": [
+    {
+      "id": "6585291734",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/3b7da0a3bbee458ab5d1e1da522349af",
+      "name": "社区政务",
+      "child": [
+        {
+          "name": "街道概况",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/59ad54c662804b6e804f07411cdb6b0d",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 1,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3333fff91a93694181916",
+          "id": "2526871439",
+          "createDate": "2017-03-23T10:30:23Z"
+        },
+        {
+          "name": "办公职能",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/ea6c13402f724f3c9b04008643117fad",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 2,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3334eff91a93694181917",
+          "id": "9467038521",
+          "createDate": "2017-03-23T10:30:38Z"
+        },
+        {
+          "name": "居委信息",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/14487d3018644b97bf78b52b2fa032ab",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 3,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33362ff91a93694181918",
+          "id": "6189704235",
+          "createDate": "2017-03-23T10:30:58Z"
+        },
+        {
+          "name": "街道特色",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/4e3b84abcf524e5ebfa8269d972acfdf",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 4,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33370ff91a93694181919",
+          "id": "5096243187",
+          "createDate": "2017-03-23T10:31:12Z"
+        },
+        {
+          "name": "社情民意",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/c86a9b53720344f29cc80a4d5a04716b",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 5,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3337dff91a9369418191a",
+          "id": "3738954162",
+          "createDate": "2017-03-23T10:31:25Z"
+        },
+        {
+          "name": "兵役工作",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/e1ee1017ad0a41688e35a3591a61d985",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 6,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3338aff91a9369418191b",
+          "id": "3506197428",
+          "createDate": "2017-03-23T10:31:38Z"
+        },
+        {
+          "name": "满意测评",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/2f22c14c196148cfa9166a7487fae62c",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 7,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3339bff91a9369418191c",
+          "id": "2950847163",
+          "createDate": "2017-03-23T10:31:55Z"
+        }
+      ]
+    }
+  ]
+}
+
+
+

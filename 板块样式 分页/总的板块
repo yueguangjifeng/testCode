@@ -1,0 +1,287 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "sumcount": 12,
+  "sumpage": 1,
+  "obj": [
+    {
+      "id": "6585291734",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/3b7da0a3bbee458ab5d1e1da522349af",
+      "name": "社区政务",
+      "child": [
+        {
+          "name": "街道概况",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/59ad54c662804b6e804f07411cdb6b0d",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 1,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3333fff91a93694181916",
+          "id": "2526871439",
+          "createDate": "2017-03-23T10:30:23Z"
+        },
+        {
+          "name": "办公职能",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/ea6c13402f724f3c9b04008643117fad",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 2,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3334eff91a93694181917",
+          "id": "9467038521",
+          "createDate": "2017-03-23T10:30:38Z"
+        },
+        {
+          "name": "居委信息",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/14487d3018644b97bf78b52b2fa032ab",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 3,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33362ff91a93694181918",
+          "id": "6189704235",
+          "createDate": "2017-03-23T10:30:58Z"
+        },
+        {
+          "name": "街道特色",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/4e3b84abcf524e5ebfa8269d972acfdf",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 4,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33370ff91a93694181919",
+          "id": "5096243187",
+          "createDate": "2017-03-23T10:31:12Z"
+        },
+        {
+          "name": "社情民意",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/c86a9b53720344f29cc80a4d5a04716b",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 5,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3337dff91a9369418191a",
+          "id": "3738954162",
+          "createDate": "2017-03-23T10:31:25Z"
+        },
+        {
+          "name": "兵役工作",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/e1ee1017ad0a41688e35a3591a61d985",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 6,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3338aff91a9369418191b",
+          "id": "3506197428",
+          "createDate": "2017-03-23T10:31:38Z"
+        },
+        {
+          "name": "满意测评",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/2f22c14c196148cfa9166a7487fae62c",
+          "parentId": "6585291734",
+          "content": "",
+          "sort": 7,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3339bff91a9369418191c",
+          "id": "2950847163",
+          "createDate": "2017-03-23T10:31:55Z"
+        }
+      ]
+    },
+    {
+      "id": "2376041895",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/86ea584e5acb47fd997bb1ab54d29198",
+      "name": "智慧党群",
+      "child": [
+        {
+          "name": "党建专题",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/3a88915bc7544940a0763e4a5b13309a",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 1,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d333daff91a9369418191d",
+          "id": "5640328971",
+          "createDate": "2017-03-23T10:32:58Z"
+        },
+        {
+          "name": "群团专题",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/df9157b8f9834b969f78fc5ab33f913d",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 2,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d333e9ff91a9369418191e",
+          "id": "0883417526",
+          "createDate": "2017-03-23T10:33:13Z"
+        },
+        {
+          "name": "党员活动",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/d7037f0865c2456c90af0e78846176ae",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 3,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d333f7ff91a9369418191f",
+          "id": "4453892176",
+          "createDate": "2017-03-23T10:33:27Z"
+        },
+        {
+          "name": "组织管理",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/cedb3053263c4836bf0a436ce0c02edc",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 4,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33405ff91a93694181920",
+          "id": "4142937568",
+          "createDate": "2017-03-23T10:33:41Z"
+        },
+        {
+          "name": "法规政策",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/57034e8719a34616a8d8e5cb24d2908b",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 5,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d33412ff91a93694181921",
+          "id": "7128445693",
+          "createDate": "2017-03-23T10:33:54Z"
+        },
+        {
+          "name": "党员服务",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/02717736aabd4df883c7126023aa16c2",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 6,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3341fff91a93694181922",
+          "id": "5117832964",
+          "createDate": "2017-03-23T10:34:07Z"
+        },
+        {
+          "name": "党建咨询",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/85d049de6caf4d62921cd0a8629e52d5",
+          "parentId": "2376041895",
+          "content": "",
+          "sort": 7,
+          "isEnable": 1,
+          "type": 1,
+          "Id": "58d3342cff91a93694181923",
+          "id": "1872254693",
+          "createDate": "2017-03-23T10:34:20Z"
+        }
+      ]
+    },
+    {
+      "id": "9737684251",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/7907670ab4d54231858451924314e0d7",
+      "name": "平安社区",
+      "child": []
+    },
+    {
+      "id": "2473016958",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/2ea2193fc6af4ccb8aa528b613d6f6af",
+      "name": "社区服务",
+      "child": []
+    },
+    {
+      "id": "1127456893",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/d53a73bcedd54ba380e251e6cce0b111",
+      "name": "服务企业",
+      "child": []
+    },
+    {
+      "id": "1995728364",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/142de04d5bc643b487bf71f6aa216afa",
+      "name": "城区管理",
+      "child": []
+    },
+    {
+      "id": "8637651429",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/4bbaab8df4bb488a88fa5742df5a2f24",
+      "name": "文化驿站",
+      "child": []
+    },
+    {
+      "id": "4251731986",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/f6fd0990dcf34876bd40d80e0a498ef4",
+      "name": "便民指南",
+      "child": []
+    },
+    {
+      "id": "7256531498",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/9868c5f1352441459c7f4568660231f2",
+      "name": "活动参与",
+      "child": [
+        {
+          "name": "楼宇信息",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/b12b5ccf914a453eaa31465de67f7eb0",
+          "parentId": "7256531498",
+          "content": "各标志性建筑详细情况介绍",
+          "sort": 1,
+          "isEnable": 1,
+          "type": 0,
+          "Id": "58d33f3aff91a94dec1a98f3",
+          "id": "2407153869",
+          "createDate": "2017-03-23T11:21:30Z"
+        },
+        {
+          "name": "楼宇活动",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/0a10e6a43e5e45048119237ea230f417",
+          "parentId": "7256531498",
+          "content": "发布近期时间段的楼宇建筑内的相关活动",
+          "sort": 2,
+          "isEnable": 1,
+          "type": 0,
+          "Id": "58d33f51ff91a94dec1a98f4",
+          "id": "2164503879",
+          "createDate": "2017-03-23T11:21:53Z"
+        },
+        {
+          "name": "企业信息",
+          "icon": "http://ok9xod9sy.bkt.clouddn.com/b694e1e5cc894eb29ad1a2bd4efaefb5",
+          "parentId": "7256531498",
+          "content": "社区内企业经营相关业务简介",
+          "sort": 3,
+          "isEnable": 1,
+          "type": 0,
+          "Id": "58d33f65ff91a94dec1a98f5",
+          "id": "1336497825",
+          "createDate": "2017-03-23T11:22:13Z"
+        }
+      ]
+    },
+    {
+      "id": "5236779841",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/c08021404b9f4304a2d47e0115c963e0",
+      "name": "业务申请",
+      "child": []
+    },
+    {
+      "id": "2799854316",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/6156d5629ed0408e8f13b6c188d7b3ba",
+      "name": "服务预约",
+      "child": []
+    },
+    {
+      "id": "5117382469",
+      "icon": "http://ok9xod9sy.bkt.clouddn.com/2a3c4ea04801413f828f764b2859540d",
+      "name": "意见反馈",
+      "child": []
+    }
+  ]
+}

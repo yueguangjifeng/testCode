@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div ng-include="'index.html'" ></div>
+<div>这是第 part01 页面</div>
+</body>
+</html>
+<script  >
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+
+    })
+
+
+</script>

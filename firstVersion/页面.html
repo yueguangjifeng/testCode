@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="上海基概后台系统">
+    <meta name="keyword" content="智慧中国 上海基概">
+    <link href="img/headlogo.jpg" rel="shortcut icon" type="image/x-icon"/>
+
+    <title>上海基概后台系统</title>
+    <!-- Icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Premium Icons -->
+    <link href="css/glyphicons.css" rel="stylesheet">
+    <link href="css/glyphicons-filetypes.css" rel="stylesheet">
+    <link href="css/glyphicons-social.css" rel="stylesheet">
+
+    <!-- Main styles for this application -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body class="app header-fixed aside-menu-fixed aside-menu-hidden" data-ng-app="myApp">
+<header class="app-header navbar">
+    <!--<button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">☰</button>-->
+    <a class="navbar-brand" href="#"></a>
+    <ul class="nav navbar-nav hidden-md-down" style="margin-left: 1rem;">
+        <!--<li class="nav-item">-->
+        <!--<a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>-->
+        <!--</li>-->
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                桃花镇
+            </button>
+            <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="streetchange">-->
+            <!--<a class="dropdown-item" i="2031954678">桃花镇</a>-->
+            <!--<a class="dropdown-item" i="3134986257">梅林镇</a>-->
+            <!--<a class="dropdown-item" i="7513879624">河洲街道</a>-->
+            <!--</div>-->
+        </div>
+    </ul>
+
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
+               aria-haspopup="true" aria-expanded="false">
+                <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                <span class="hidden-md-down">管理员</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item"><i class="fa fa-shield"></i>设置</a>
+                <a class="dropdown-item"><i class="fa fa-lock"></i>退出</a>
+            </div>
+        </li>
+    </ul>
+</header>
+
+<div class="app-body">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item homemenu">
+                    <a class="nav-link" ui-sref="/">
+                        <i class="icon-home"></i>首页
+                    </a>
+                </li>
+                <li class="nav-title">
+                    八大模块
+                </li>
+                <li class="nav-item set nav-dropdown closes">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i>模块资讯</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item ">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:2513799684})"><i
+                                    class="icon-puzzle"></i>社区政务</a>
+                        </li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:1620749538})"><i
+                                    class="icon-puzzle"></i>智慧党群</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:4961123857})"><i
+                                    class="icon-puzzle"></i>平安社区</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:5112789364})"><i
+                                    class="icon-puzzle"></i>社区服务</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:5706249381})"><i
+                                    class="icon-puzzle"></i>服务企业</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:9036857214})"><i
+                                    class="icon-puzzle"></i>城区管理</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:4181367259})"><i
+                                    class="icon-puzzle"></i>文化驿站</a></li>
+                        <li class="nav-item nav-dropdown">
+                            <a class="nav-link" ui-sref="model_comclass({parentId:2171895436})"><i
+                                    class="icon-puzzle"></i>便民指南</a></li>
+                </li>
+            </ul>
+            </li>
+            <li class="nav-title">
+                四大板块
+            </li>
+
+            <li class="nav-item set nav-dropdown closes">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i>活动参与</a>
+                <ul class="nav-dropdown-items ">
+                    <li class="nav-item ">
+                        <a class="nav-link" ui-sref="business_buddings"><i class="icon-puzzle"></i>楼宇信息</a>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link" ui-sref="buddingactivity"><i class="icon-puzzle"></i>楼宇活动</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link" ui-sref="business"><i class="icon-puzzle"></i>企业信息</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link" ui-sref="server_joinclaime"><i class="icon-puzzle"></i>心愿认领</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link" ui-sref="party_partyactivity"><i class="icon-puzzle"></i>党员活动</a></li>
+                </ul>
+            </li>
+            <li class="nav-item set nav-dropdown closes">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pencil"></i>业务申请</a>
+                <ul class="nav-dropdown-items">
+
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="party_message"><i class="icon-puzzle"></i>党建咨询</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="model_news({classId:9743781562})"><i class="icon-puzzle"></i>党员服务</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item set nav-dropdown closes">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-calendar"></i>服务预约</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="model_news({classId:8379712456})"><i class="icon-puzzle"></i>便民服务</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="model_news({classId:2483547196})"><i class="icon-puzzle"></i>受理中心预约</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item set nav-dropdown closes">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-heart"></i>意见反馈</a>
+                <ul class="">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="supervisefeedback"><i class="icon-puzzle"></i>百姓监督</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="community_opinion"><i class="icon-puzzle"></i>社情民意</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#/older_service/older"><i class="icon-puzzle"></i>助老服务</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#/older_service/deformity"><i class="icon-puzzle"></i>助残服务</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-title">
+                系统配置
+            </li>
+            <!--<li class="nav-item ">-->
+            <!--<a class="nav-link" ui-sref="sys_config"><i class="icon-settings"></i>系统配置</a>-->
+            <!--</li>-->
+            <li class="nav-item ">
+                <a class="nav-link" ui-sref="banner"><i class="icon-camera"></i>首页轮播</a>
+            </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <main class="main">
+        <!--面包屑导航-->
+        <ol class="breadcrumb" id="navCrumbs">
+            <li class="breadcrumb-item"><a href="#">首页</a></li>
+        </ol>
+
+        <div ui-view="" style="width: 100%;">
+
+        </div>
+
+    </main>
+
+</div>
+
+<footer class="app-footer">
+    <a href="javascript:void(0)">了解我们</a><font>© 2017 基概</font>
+    <span class="float-right">
+            Powered by <a href="javascript:void(0)">上海基概网络科技有限公司
+    </a>
+        </span>
+</footer>
+
+<!-- Bootstrap and necessary plugins -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<!-- <script  src="js/jquery.min.js"></script> -->
+<script src="js/libs/tether.min.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<!-- <script src="js/libs/pace.min.js"></script> -->
+
+
+<!-- Plugins and scripts required by all views -->
+<!--<script src="js/libs/Chart.min.js"></script>-->
+<script src="js/jquery.cookie.js"></script>
+<!-- GenesisUI main scripts -->
+<script src="js/app.js"></script>
+
+
+<!--提示layer-->
+<script src="js/layer/layer.js"></script>
+<script src="js/layer/mobile/layer.js"></script>
+
+<!--富文本插件-->
+<link rel="stylesheet" type="text/css" href="/js/dist/css/wangEditor.min.css">
+<script type="text/javascript" src="/js/dist/js/wangEditor.js"></script>
+
+<!-- Custom scripts required by this view -->
+<!--<script src="js/views/main.js"></script>-->
+<script src="js/angular.1.4.6.js"></script>
+<script src="js/angular-ui-router.js"></script>
+
+<!--地图插件-->
+<script src="http://cdn.hcharts.cn/highstock/highstock.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        localStorage.clear();//删除缓存
+        // localStorage.setItem("jg_parentId",parentId);//删除缓存
+        var aa = isIE();
+        if (aa==true){
+            document.body.style.display="none";
+            alert('浏览器版本过低，请安装最新版谷歌浏览器');
+            setTimeout(function(){
+                window.location.href = "http://sw.bos.baidu.com/sw-search-sp/software/ba34c905dbdd4/ChromeStandalone_57.0.2987.98_Setup.exe";
+            },100);
+        }
+
+        checkuserloginstate();//效验登录状态
+        $.cookie("jg_streetId", "2031954678");
+        //刷新面包屑 预加载
+        if (sessionStorage.getItem('text') != null) {
+            $("#navCrumbs").html(sessionStorage.getItem('text'));
+            $("#navCrumbs li a").unbind('click');
+            $("#navCrumbs li a").on('click', function () {
+                var clickText = $(this).text();
+                var applocation = -1;
+                for (var i = 0; i < $("#navCrumbs li a").length; i++) {
+                    var item = $("#navCrumbs li a")[i];
+                    var itemtext = $(item).text();
+                    if (clickText == itemtext) {
+                        applocation = i;
+                    }
+                    if (applocation > -1) {
+                        $("#navCrumbs li:gt(" + i + ")").remove();
+                        sessionStorage.setItem('text', $('#navCrumbs').html());
+                    }
+                }
+            })
+        }
+        //遍历菜单 保存刷新前的样式
+        $("a[class='nav-link']").each(function () {
+            if ($(this).text()==sessionStorage.getItem('menu')){
+                $(this).parent(".nav-link").addClass('active');
+                $(this).parents('.set').addClass('open').removeClass('closes');
+            }
+        })
+
+        //添加选中菜单，高亮显示
+        $("a[class='nav-link']").on('click', function () {
+            //还原历史选中
+            var list = $("a[class='nav-link active']");
+            for (var i = 0; i < list.length; i++) {
+
+                $(list[i]).attr('class', 'nav-link');
+            }
+            $(this).attr('class', 'nav-link active');
+            var text = $(this).text();
+            var href = $(this).attr('href');
+            NavHome(1, text, href);
+            sessionStorage.setItem('menu', text);
+        });
+    })
+
+    //街道切换
+    //    $("#streetchange a").on('click',function(){
+    //        $.cookie("jg_streetId",$(this).attr("i"));
+    //        var html = $(this).text();
+    //        $('#dropdownMenuButton').html(html);
+    //    })
+
+
+    //路由设置
+    var app = angular.module('myApp', ['ui.router'])
+            .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+
+                $urlRouterProvider.when("", "/index");
+
+                $stateProvider
+                    //设置默认路由 -- 数据分析页面
+                        .state('/', {
+                            url: '/index',
+                            templateUrl: 'census.html'
+                        })
+                    //八大模块-子模块
+                        .state('model_comclass', {
+                            url: '/ComClass/:parentId',
+                            templateUrl: 'home_model/ComClass.html'
+                        })
+                    //模块下普通资讯
+                        .state('model_news', {
+                            url: '/News/:classId',
+                            templateUrl: 'model_news/news.html'
+                        })
+
+                    //系统配置
+                        .state('sys_config', {
+                            url: '/xtpeizhi',
+                            templateUrl: 'xtpeizhi.html'
+                        })
+                    //banner
+                        .state('banner', {
+                            url: '/banner',
+                            templateUrl: 'jg_config/banner.html'
+                        })
+                    //社区政务--满意测评发布问题
+                        .state('community_question', {
+                            url: '/question',
+                            templateUrl: 'jg_community/question.html'
+                        })
+                    //社区政务--满意测评反馈信息
+                        .state('community_questionmessage', {
+                            url: '/questionmessage',
+                            templateUrl: 'jg_community/questionmessage.html'
+                        })
+                    //社区政务--社情民意反馈信息
+                        .state('community_opinion', {
+                            url: '/opinion',
+                            templateUrl: 'jg_community/opinion.html'
+                        })
+                    //智慧党群--党员活动发布
+                        .state('party_partyactivity', {
+                            url: '/partyactivity',
+                            templateUrl: 'jg_party/partyactivity.html'
+                        })
+                    //智慧党群--党员活动报名
+                        .state('party_partyactivitymessage', {
+                            url: '/partyactivitymessage/:claimeId',
+                            templateUrl: 'jg_party/partyactivitymessage.html'
+                        })
+                    //智慧党群--党建咨询
+                        .state('party_message', {
+                            url: '/partymessage',
+                            templateUrl: 'jg_party/partymessage.html'
+                        })
+
+                    //社区服务--为老、为残引导页
+                        .state('server_older_service', {
+                            url: '/older_service/:type',
+                            templateUrl: 'jg_server/Help_older_service.html'
+                        })
+                    //社区服务--为老、为残资讯页
+                        .state('server_older_person', {
+                            url: '/older_person/:parentId',
+                            templateUrl: 'jg_server/Help_old_person.html'
+                        })
+                    //社区服务--为老、为残报名页
+                        .state('server_older_message', {
+                            url: '/older_message/:PersonId',
+                            templateUrl: 'jg_server/Help_old_message.html'
+                        })
+                    //社区服务--心愿认领
+                        .state('server_joinclaime', {
+                            url: '/joinclaime',
+                            templateUrl: 'jg_server/sjoinclaime.html'
+                        })
+                    //社区服务--心愿认领报名页
+                        .state('server_joinclaimemessage', {
+                            url: '/joinclaimemessage/:joinclaimeId',
+                            templateUrl: 'jg_server/sjoinclaimemessage.html'
+                        })
+                    //服务企业--楼宇信息
+                        .state('business_buddings', {
+                            url: '/business_buddings',
+                            templateUrl: 'jg_business/business_budding.html'
+                        })
+                    //服务企业--企业信息
+                        .state('business', {
+                            url: '/business',
+                            templateUrl: 'jg_business/business.html'
+                        })
+                    //服务企业--楼宇活动
+                        .state('buddingactivity', {
+                            url: '/buddingactivity',
+                            templateUrl: 'jg_business/buddingactivity.html'
+                        })
+                    //服务企业--报名楼宇活动
+                        .state('buddingactivityapply', {
+                            url: '/buddingactivityapply/:activityId',
+                            templateUrl: 'jg_business/buddingactivityapply.html'
+                        })
+                    //城区管理--百姓监督
+                        .state('supervisefeedback', {
+                            url: '/supervisefeedback',
+                            templateUrl: 'supervisefeedback.html'
+                        })
+            }]);
+
+    function isIE() { //ie?
+        if (!!window.ActiveXObject || "ActiveXObject" in window)
+            return true;
+        else
+            return false;
+    }
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+    <link rel="stylesheet" href="../wangEditor/dist/css/wangEditor.css"/>
+    <script src="../wangEditor/dist/js/wangEditor.js" ></script>
+</head>
+<body>
+
+    <div class="box" id="box" style="height:500px;" >
+
+
+    </div>
+    <div class="content">
+        内容区域
+    </div>
+    <p><br></p>
+
+
+</body>
+</html>
+<script>
+        var editor=new wangEditor('box');
+        editor.onchange= function () {
+            console.log('粘贴');
+            var ele=editor.$txt.find('p');
+            $(ele).each(function () {
+                console.log($(this).html().toString());
+                if($(this).html().toString()=="<br>"){
+                    console.log($(this));
+                    $(this).remove();
+                }
+            })
+//            console.log(100);
+        };
+        editor.create();
+
+</script>

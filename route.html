@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/angular.js" ></script>
+    <script src="js/angular-route.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="homeCtrl" >
+<ul>
+    <li><a href="#/">首页</a></li>
+    <li><a href="#/page0">page0页面</a></li>
+    <li><a href="#/page1">page1页面</a></li>
+    <li><a href="#/page2">page2页面</a></li>
+</ul>
+<p>内容</p>
+<div ng-view>
+    
+</div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',['ngRoute']);
+    myapp.config(['$locationProvider', function ($locationProvider) {
+        $locationProvider.hashPrefix('');
+    }]);
+    myapp.controller('homeCtrl',function ($scope){});
+    myapp.controller('page0Ctrl',['$scope','$http', function ($scope, $http) {
+        controller('page0Ctrl打印')
+    }]);
+    myapp.controller('page1Ctrl',['$scope','$http', function ($scope, $http) {
+        controller('page1Ctrl打印');
+    }]);
+    myapp.controller('guofangCtrl',['$scope','$http', function ($scope, $http) {
+        controller('guofang');
+    }])
+    myapp.controller('page2Ctrl',['$scope','$http', function ($scope, $http) {
+        controller('page2Ctrl打印')
+    }]);
+    myapp.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/',{templateUrl:'page0.html'})
+                    .when('/page0',{templateUrl:'page0.html'})
+                    .when('/page1',{templateUrl:'subpages/defEdu.html'})
+                    .when('/defEdu',{templateUrl:'subpages/defEdu.html'})
+                    .when('/milWor',{templateUrl:'subpages/milWor.html'})
+                    .when('/milReg',{templateUrl:'subpages/milReg.html'})
+                    .when('/page2',{templateUrl:'page2.html'})
+                    .otherwise({'restrict':'/'})
+    }]);
+    myapp.controller('page0Ctrl', function ($scope) {
+
+    });
+    myapp.controller('page1Ctrl', function ($scope) {
+
+    });
+    myapp.controller('page2Ctrl', function ($scope) {
+
+    });
+    
+</script>

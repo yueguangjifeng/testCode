@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+
+<input type="file" multiple="true"  />
+<button>上传</button>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope,$q, $http) {
+        var deferred=$q.defer();
+        var arrList=[];
+        function sendImgMul(inputEle){
+            for(var i= 0,leng=inputEle.files.length;i<leng;i++){
+                console.log(inputEle.files.length);
+                var formdata=new FormData();
+                formdata.append('file',inputEle.files[i]);
+                (function () {
+                    $http({
+                        data:formdata,
+                        method:'post',
+                        url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                        headers:{'content-type':undefined}
+                    }).then(function (result) {
+                        console.log(result);
+                        arrList.push(result.data.obj);
+                    })
+                })()
+            }
+            deferred.resolve(arrList);
+           return deferred.promise;
+        }
+       var input=document.getElementsByTagName('input')[0];
+        console.log(input);
+         input.onchange=function () {
+             sendImgMul(input).then(
+                 console.log(arrList),
+                 console.log(arrList.length)
+             );
+
+         }
+    })
+</script>

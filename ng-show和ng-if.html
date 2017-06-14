@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+
+
+</head>
+<body ng-app="myapp"  ng-controller="myctrl" >
+    <ul>
+        <li class="header01"   >01</li>
+        <li>
+            <ul class="content01" >
+                <li ng-if="first" >001</li>
+                <li ng-if="second" >002</li>
+                <li ng-if="third" >003</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
+<script>
+    var data=[];
+    var obj={
+        "loginId": "4710239586",
+        "loginName": "aaa",
+        "mobile": "13216159276",
+        "img": "http://ok9xod9sy.bkt.clouddn.com/2ecadb3834dc49be8ba268af43e50159",
+        "streetId": "1446985237",
+        "token": "CD5C8552A1E662082167836715A347BE2827C900",
+        "email": "yanmingming3@163.com",
+        "adminType": 1,
+        "menuList": [
+            {
+                "title": "用户管理",
+                "path": "",
+                "type": 0,
+                "child": [
+                    {
+                        "title": "用户提交数据",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "用户信息",
+                        "path": "biadu",
+                        "type": 1,
+                        "child": []
+                    }
+                ]
+            },
+            {
+                "title": "账号管理",
+                "path": "",
+                "type": 0,
+                "child": [
+                    {
+                        "title": "设置子管理员",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "信箱",
+                        "path": "biadu",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "修改账户信息",
+                        "path": "biadu",
+                        "type": 1,
+                        "child": []
+                    }
+                ]
+            },
+            {
+                "title": "数据统计",
+                "path": "",
+                "type": 0,
+                "child": [
+                    {
+                        "title": "用户统计",
+                        "path": "baidu.com",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "交易统计",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    }
+                ]
+            },
+            {
+                "title": "街道管理",
+                "path": "",
+                "type": 0,
+                "child": [
+                    {
+                        "title": "消息推送",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "资讯管理",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    },
+                    {
+                        "title": "功能管理",
+                        "path": "baidu",
+                        "type": 1,
+                        "child": []
+                    }
+                ]
+            }
+        ]
+    };
+    data=obj.menuList.slice();
+
+
+
+
+
+
+</script>

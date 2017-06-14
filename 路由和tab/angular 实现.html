@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/tether.js" ></script>
+    <script src="../js/bootstrap.js" ></script>
+    <!--<script src="../js/angular.js" ></script>-->
+    <!--<script src="../js/angular-route.js" ></script>-->
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+    <ul class="nav nav-tabs"  >
+        <li style="width:20px;" ng-click="savecard('a0')" >0</li>
+        <li style="width:20px;" ng-click="savecard('a1')" >1</li>
+        <li style="width:20px;" ng-click="savecard('a2')" >2</li>
+        <li style="width:20px;" ng-click="savecard('a3')" >3</li>
+        <li style="width:20px;" ng-click="savecard('a4')" >4</li>
+    </ul>
+    <div>
+        <div  ng-if="card=='a0'" >000</div>
+        <div ng-if="card=='a1'">111</div>
+        <div ng-if="card=='a2'">222</div>
+        <div ng-if="card=='a3'" >333</div>
+        <div ng-if="card=='a4'">444</div>
+    </div>
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+        $scope.card='a1';
+        $scope.savecard= function (id) {
+            $scope.card=id;
+            console.log(id);
+        }
+    })
+
+
+</script>

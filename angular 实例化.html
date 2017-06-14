@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+    <button type="button" id="btn1" >按钮1 第一个angular</button>
+    <div class="box">
+        <p>{{newContent}}</p>
+    </div>
+    <button type="button" id="btn2" >按钮2 第2个angular</button>
+    <p>{{message}}</p>
+
+
+</body>
+</html>
+<script>
+        var myapp=angular.module('myapp', []);
+        myapp.controller('myctrl',function ($scope,$http) {
+            $scope.newContent='原始的数字';
+
+            $('#btn1').click(function () {
+                $scope.newContent='新增的数字123';
+                $scope.$apply();
+                console.log($scope.newContent+'01')
+        });
+            $('#btn2').click(function () {
+                $scope.newContent='新增的数字456';
+                $scope.$apply();
+                console.log($scope.newContent+'02')
+            });
+
+            $scope.message='初始化';
+/*           setTimeout(function (){
+               $scope.$apply(function (){
+                   $scope.message='time Called 方法2';
+               });
+            },2000);
+            */
+ /*           setTimeout(function () {
+                $scope.message='time Called 方法3';
+                $scope.$apply();
+            },2000);*/
+
+            var inf={
+                addr:'地址',
+                banners:["http://ok9xod9sy.bkt.clouddn.com/7fb2536bedfb4b248bf7643b4f578355"
+            ,"http://ok9xod9sy.bkt.clouddn.com/ce68b01d8ef44491a4abe230cc00e902"],
+
+
+                buildingName:'楼宇',
+                        companyName
+            :
+            "名称",
+            gender
+                    :
+                    0,
+            id
+                    :
+                    0,
+            intro
+                    :
+                    "简介",
+            name
+                    :
+                    "负责人",
+            phone
+                    :
+                    "18382938293",
+            range
+                    :
+                    "范围",
+            scale
+                    :
+                    "规模",
+            state
+                    :
+                    1,
+            streetId
+                    :
+                    5209714683,
+            website
+                    :
+                    "http://www.baidu.com"
+            }
+
+        $http({
+            method:'post',
+            url:'http://test.jgsoft.org/api/SECompanyInfo/SubmitSECompanyInfo',
+            data:inf
+        }).then(function (result) {
+            console.log(result)
+        }, function (result) {
+            console.log(失败)
+        })
+
+});
+
+
+
+
+
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="demo" />
+<div id="box"></div>
+
+</body>
+</html>
+<script>
+   var demo=document.getElementById('demo');
+   var box=document.getElementById('box');
+    
+    var obj={};
+    var temp;
+    
+/*    Object.defineProperty(obj,'val',{
+        set: function (value) {
+            temp=value;
+        },
+        get: function (value) {
+            return temp;
+        }
+    });*/
+
+    demo.onkeyup= function () {
+/*        obj.val=demo.value;
+        box.innerHTML=obj.val*/
+        box.innerHTML=demo.value
+    }
+    
+
+
+</script>

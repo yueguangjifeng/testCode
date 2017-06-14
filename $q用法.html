@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+单图:<input type="file" id="ip" onchange="changImg()" placeholder="单图" /><br>
+多图:<input type="file" multiple="true" id="manyImg" onchange="changImg2()" />
+<button id="btn" ng-click="bt()" >按钮</button>
+input
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    var file=document.getElementById('ip');
+    var mulImg=document.getElementById('manyImg');
+    var imgId;
+    var manyImgId;
+    var formdata=new FormData();
+    var arr=[];
+    function changImg(){
+        formdata.append('file',file.files[0]);
+    }
+    function changImg2(){
+        console.log(mulImg);
+        console.log(mulImg.files);
+        for(var i=0; i<mulImg.files.length;i++){
+            var formdata=new FormData();
+            formdata.append('file',mulImg.files[i]);
+            arr.push(formdata);
+        }
+        console.log(arr);
+    }
+    myapp.controller('myctrl', function ($scope, $q, $http) {
+        var imgAddMain;
+        var arrList=[];
+        $scope.bt= function () {
+            (function () {
+                    var fileMain=document.getElementById('ip');
+                    var formdataMain=new FormData();
+                    formdataMain.append('file',fileMain.files[0]);
+                    var promMain;
+                    var prom;
+                $http({
+                    method:'post',
+                    url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                    data:formdataMain,
+                    headers:{'Content-Type':undefined}
+                }).then(function (result) {
+                    console.log(result);
+                    console.log('主图上传成功id 是:'+result.data.obj);
+                    imgAddMain=result.data.obj;
+                    ftt();
+                },function (result){
+                    console.log(result);
+                });
+            })();
+            (function () {
+                var file=document.getElementById('manyImg');
+                for(var i=0;i<file.files.length;i++){
+                    (function (i) {
+                        var formdata=new FormData();
+                        formdata.append('file',file.files[i]);
+                        $http({
+                            method:'post',
+                            data:formdata,
+                            url:'http://test.jgsoft.org/api/uploadfile/ProcessRequest',
+                            headers:{'Content-Type':undefined}
+                        }).then(function (result) {
+                            console.log('多图上传成功 id 是:');
+                            console.log(result.data);
+                            arrList.push(result.data.obj);
+                            console.log("i="+i);
+
+                        }, function (result) {
+                            console.log('多图失败');
+                        })
+                    })(i)
+                }
+
+            })();
+        };
+        function ftt(){
+            console.log(imgAddMain);
+        }
+        function faa(){
+            console.log(arrList);
+        }
+
+
+
+    })
+
+
+
+    
+    
+</script>

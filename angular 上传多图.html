@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<input id="inp" type="file" multiple="true" onchange="changImg()" />
+<button ng-click="sub()" >上传</button>
+
+</body>
+</html>
+<script>
+    var arr=[];
+    var myapp=angular.module('myapp',[]);
+    var file=document.getElementById('inp');
+    function changImg(){
+        for(var i=0;i<file.files.length;i++){
+            arr.push(file.files[i]);
+        }
+        console.log(arr);
+
+    }
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.sub= function () {
+            for(var i=0;i<arr.length;i++){
+                (function (i) {
+                    var formdata=new FormData();
+                    formdata.append('file',arr[i]);
+                    prom=$http({
+                        method:'post',
+                        url:"http://test.jgsoft.org/api/uploadfile/ProcessRequest",
+                        data:formdata,
+                        headers:{'Content-type':undefined}
+                    }).then(function (result) {
+                        console.log(i);
+                        console.log(result.data)
+                    }, function (result) {
+                        console.log('失败');
+                    })
+                })(i);
+            }
+        }
+    })
+    var prom;
+    if(prom){
+        console.log();
+    }
+</script>

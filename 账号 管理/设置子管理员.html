@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>智慧社区设置总管理员</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="智慧社区设置总管理员">
+    <meta name="keyword" content="智慧社区设置总管理员">
+    <link rel="shortcut icon" href="./img/favicon.png">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/glyphicons.css" rel="stylesheet">
+    <link href="css/glyphicons-filetypes.css" rel="stylesheet">
+    <link href="css/glyphicons-social.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/total_zsh.css" rel="stylesheet">
+    <link href="css/total_ymm.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/zTreeStyle.css" type="text/css">
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/views/total_zsh.js"></script>
+    <script src="js/views/total_ymm.js"></script>
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="./js/views/totalAngular.js"></script>
+    <!-- 行政区三级联动 -->
+    <script language="JavaScript" src="http://passport.baidu.com/js/sitedata_bas.js" charset="GBK"></script>
+    <script src="js/views/area.js"></script>
+    <script src="js/views/jquery.uploadView.js"></script>
+    <script type="text/javascript" src="js/views/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="js/views/jquery.ztree.excheck.js"></script>
+</head>
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden" ng-app="project_app" ng-controller="setAdmin" ng-cloak>
+<!-- 引入公共header部分 -->
+<div ng-include="'header.html'"></div>
+<div class="app-body">
+    <!-- 引入公共sideBar区域开始 -->
+    <!--<div ng-include="'sideBar.html'"></div>-->
+
+
+    <!-- Main content -->
+    <main class="main">
+        <div class="container-fluid self_container_padding">
+            <div class="animated">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true" ng-click="changeStreetActive($event)">管理员</a>
+                            </li>
+                        </ul>
+                        <!-- 管理员顶部管理开始 -->
+                        <div class="streetUser  float-right col-md-8">
+                            <div class="pull-right">
+                                <button class="btn btn-primary btn-md pull-right user_add_btn pull-left" data-toggle="modal" data-target="#streetUser_add">
+                                    添加
+                                </button>
+                            </div>
+                            <div class="input-group col-md-8 pull-right streetUserSearch">
+                                <input type="text" class="form-control" placeholder="关键词搜索" ng-keypress="searchAdmin($event)">
+                            </div>
+                        </div>
+                        <!-- 管理员顶部管理结束 -->
+                        <div class="tab-content">
+                            <!-- 管理员 -->
+                            <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+                                <div class="col-lg-12 edit_col-lg-12">
+                                    <div class="card col-md-12">
+                                        <div class="card-block padding-top-none">
+                                            <table class="table">
+                                                <thead class="public_borderBottom">
+                                                <tr>
+                                                    <th>登录名</th>
+                                                    <th>所属部门</th>
+                                                    <th class="create_street_date" ng-click="adminSort()">
+                                                        <i class="fa fa-arrow-up"></i> 最后登录时间
+                                                    </th>
+                                                    <th>状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="public_tbody_border">
+                                                <tr ng-repeat="admin in adminList" class="del{{admin.id}}">
+                                                    <td>
+                                                        {{admin.loginName}}
+                                                        <span class="badge badge-info" ng-show="{{admin.isMain=='1'}}">管理员</span>
+                                                    </td>
+                                                    <td class="hidden-md-down">{{admin.deparment}}</td>
+                                                    <td class="hidden-md-down">
+                                                        {{admin.lastLoginDate}}
+                                                    </td>
+                                                    <td class="hidden-md-down">
+                                                        {{admin.isEnable=='1' ? '启用' : '禁用'}}
+                                                    </td>
+                                                    <td class="hidden-md-down">
+                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#menus_edit" ng-click="editAdmin(admin.id)">
+                                                            <i class="fa fa-edit "></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="modal fade show" id="menus_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog street_edit">
+                                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" name="editAdminForm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="">编辑</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                    ×
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-2">所属部门</label>
+                                                                    <input type="text" class="form-control col-md-3" ng-model="singleAdmin.deparment" required minlength="3" maxlength="10" name="StreetUserFormBm" ng-pattern="/[\u4e00-\u9fa5\w]{3,10}/" placeholder="3~10个字符">
+                                                                </div>
+                                                                    <span class="help-block" style="color:red;" ng-show="editAdminForm.StreetUserFormBm.$dirty && editAdminForm.StreetUserFormBm.$invalid">
+                                                                    <span ng-show="editAdminForm.StreetUserFormBm.$error.required">
+                                                                        部门是必须的
+                                                                    </span>
+                                                                    <span ng-show="editAdminForm.StreetUserFormBm.$error.pattern">
+                                                                        请输入3-10个字符的部门名称
+                                                                    </span>
+                                                                    </span>
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-2">登录名</label>
+                                                                    <input type="text" class="form-control col-md-3" ng-model="singleAdmin.loginName" required minlength="6" maxlength="14" placeholder="6~14个字符(支持数字/字母)" ng-pattern="/[\w]{6,14}/" name="StreetUserFormLn">
+                                                                </div>
+                                                                    <span class="help-block" style="color:red;" ng-show="editAdminForm.StreetUserFormLn.$dirty && editAdminForm.StreetUserFormLn.$invalid">
+                        <span ng-show="editAdminForm.StreetUserFormLn.$error.required">
+                            登录名是必须的
+                        </span>
+                                                                    <span ng-show="editAdminForm.StreetUserFormLn.$error.pattern">
+                            请输入6-14个字符的登录名称
+                        </span>
+                                                                    </span>
+                                                                <div class="form-group row tits_input" ng-hide="type_default=='0'">
+                                                                    <label class="col-md-2">级别</label>
+                                                                    <select name="" id="" class="col-md-2" ng-model="adminType" ng-options="x.id as x.name for x in streetAdminType">
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group row ">
+                                                                    <label class="col-md-2">是否启用</label>
+                                                                    <div class="col-md-7">
+                                                                        <label class="switch switch-3d switch-primary">
+                                                                            <input type="checkbox" class="switch-input AdminIsEnable{{singleAdmin.id}}" checked ng-false-value="0" ng-true-value="1" ng-model="editAdmin_isEnable" ng-change="changeAdminIsenableSwitch()">
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row ">
+                                                                    <label class="col-md-2">权限全开放</label>
+                                                                    <div class="col-md-7">
+                                                                        <label class="switch switch-3d switch-primary">
+                                                                            <input type="checkbox" class="switch-input AdminIsOpen{{singleAdmin.id}}" checked ng-false-value="0" ng-true-value="1" ng-model="edittAdmin_isOpen" ng-change="changeAdminisOpenSwitch()" />
+                                                                            <span class="switch-label"></span>
+                                                                            <span class="switch-handle"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row " ng-hide="edittAdmin_isOpen=='1'">
+                                                                    <label class="col-md-2">权限配置</label>
+                                                                    <div class="col-md-4">
+                                                                        <div class="zTreeDemoBackground left">
+                                                                            <ul id="editAdminTree{{singleAdmin.id}}" class="ztree">
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="input-group col-md-4 street_form_btn_left">
+                                                                    <input type="text" class="form-control" placeholder="输入'确认删除'" style="margin-right:5px;">
+                                                                    <button class="btn btn-danger" type="button" ng-click="delAdmin($event)">删除</button>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button" class="btn btn-primary btn-success" ng-click="editAdminSubmit()" ng-disabled="editAdminForm.StreetUserFormBm.$dirty && editAdminForm.StreetUserFormBm.$invalid || editAdminForm.StreetUserFormLn.$dirty && editAdminForm.StreetUserFormLn.$invalid">
+                                                                        保存
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <section class="pull-right" ng-if="totalItems > items_per_page">
+                                                <pagination items-per-page="items_per_page" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged(currentPage)" previous-text="上一页" next-text="下一页"></pagination>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 管理员顶部管理内容区开始 -->
+                        <!-- 添加 -->
+                        <div class="modal fade show" id="streetUser_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog street_edit">
+                                <form enctype="multipart/form-data" class="form-horizontal" name="addStreetUserForm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="">添加</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                ×
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group row tits_input">
+                                                <label class="col-md-2">级别</label>
+                                                <select name="" id="" class="col-md-2" ng-model="adminType" ng-options="x.id as x.name for x in streetAdminType">
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">所属部门</label>
+                                                <input type="text" class="form-control col-md-3" ng-model="addAdmin_deparment" required minlength="3" maxlength="10" name="StreetUserFormBm" ng-pattern="/[\u4e00-\u9fa5\w]{3,10}/" placeholder="3~10个字符">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.StreetUserFormBm.$dirty && addStreetUserForm.StreetUserFormBm.$invalid">
+                        <span ng-show="addStreetUserForm.StreetUserFormBm.$error.required">
+                            部门是必须的
+                        </span>
+                                                <span ng-show="addStreetUserForm.StreetUserFormBm.$error.pattern">
+                            请输入3-10个字符的部门名称
+                        </span>
+                                                </span>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">登录名</label>
+                                                <input type="text" class="form-control col-md-3" ng-model="adminLoginName" required minlength="6" maxlength="14" placeholder="6~14个字符(支持数字/字母)" ng-pattern="/[\w]{6,14}/" name="StreetUserFormLn">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.StreetUserFormLn.$dirty && addStreetUserForm.StreetUserFormLn.$invalid">
+                        <span ng-show="addStreetUserForm.StreetUserFormLn.$error.required">
+                            登录名是必须的
+                        </span>
+                                                <span ng-show="addStreetUserForm.StreetUserFormLn.$error.pattern">
+                            请输入6-14个字符的登录名称
+                        </span>
+                                                </span>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">密码</label>
+                                                <input type="password" class="form-control col-md-3" name="addStreetUserPas" ng-model="addAdmin_pass" required minlength="6" maxlength="18" ng-pattern="/[\w]{6,18}/" placeholder="6~18位字符">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.addStreetUserPas.$dirty && addStreetUserForm.addStreetUserPas.$invalid">
+                    <span ng-show="addStreetUserForm.addStreetUserPas.$error.required">
+                    密码是必须的
+                    </span>
+                                                <span ng-show="addStreetUserForm.addStreetUserPas.$error.pattern">
+                    请输入6-18个字符的密码
+                    </span>
+                                                </span>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">确认密码</label>
+                                                <input type="password" class="form-control col-md-3" name="addStreetUserRepas" ng-model="addAdmin_passWord" required minlength="6" maxlength="18" ng-pattern="/[\w]{6,18}/" placeholder="6~18位字符">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.addStreetUserRepas.$dirty && addStreetUserForm.addStreetUserRepas.$invalid">
+                    <span ng-show="addStreetUserForm.addStreetUserRepas.$error.required">
+                    确认密码是必须的
+                    </span>
+                                                <span ng-show="addStreetUserForm.addStreetUserRepas.$error.pattern">
+                    请输入6-18个字符的确认密码
+                    </span>
+                                                </span>
+                                                <span style="color:red;" ng-show="addStreetUserForm.addStreetUserRepas.$valid">
+                    <span ng-show="addAdmin_pass !== addAdmin_passWord">两次密码不一致</span>
+                                                </span>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">联系电话</label>
+                                                <input type="text" class="form-control col-md-3" ng-model="addAdmin_mobile" required minlength="11" maxlength="11" ng-pattern="/^1[3|5|7|8][0-9]{9}/" name="shopFPhone" placeholder="11位手机号码">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.shopFPhone.$dirty && addStreetUserForm.shopFPhone.$invalid">
+                    <span ng-show="addStreetUserForm.shopFPhone.$error.required">
+                    联系电话是必须的
+                    </span>
+                                                <span ng-show="addStreetUserForm.shopFPhone.$error.pattern">
+                    请输入11位正确联系电话
+                    </span>
+                                                </span>
+                                            <div class="form-group row">
+                                                <label class="col-md-2">常用邮箱</label>
+                                                <input type="email" class="form-control col-md-3" ng-model="addAdmin_email" required name="useremail" maxlength="30" ng-pattern="/^[\w\-]+@[\w\-]+(\.[\w\-]+)+$/" placeholder="qq、163等邮箱">
+                                            </div>
+                                                <span class="help-block" style="color:red;" ng-show="addStreetUserForm.useremail.$dirty && addStreetUserForm.useremail.$invalid">
+                    <span ng-show="addStreetUserForm.useremail.$error.required">邮箱是必须的</span>
+                                                <span ng-show="addStreetUserForm.useremail.$error.email">请输入正确的邮箱地址</span>
+                                                </span>
+                                            <div class="form-group row ">
+                                                <label class="col-md-2">是否启用</label>
+                                                <div class="col-md-7">
+                                                    <label class="switch switch-3d switch-primary">
+                                                        <input type="checkbox" class="switch-input" checked ng-model="addAdmin_isEnable" ng-false-value="0" ng-true-value="1" ng-init="addAdmin_isEnable='0'" />
+                                                        <span class="switch-label"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row ">
+                                                <label class="col-md-2">权限全开放</label>
+                                                <div class="col-md-7">
+                                                    <label class="switch switch-3d switch-primary">
+                                                        <input type="checkbox" class="switch-input" checked ng-model="addAdmin_isOpen" ng-false-value="0" ng-true-value="1" ng-init="addAdmin_isOpen='0'" />
+                                                        <span class="switch-label"></span>
+                                                        <span class="switch-handle"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row " ng-hide="addAdmin_isOpen=='1'">
+                                                <label class="col-md-2">权限配置</label>
+                                                <div class="col-md-4">
+                                                    <div class="zTreeDemoBackground left">
+                                                        <ul id="addAdminTree" class="ztree">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row " ng-hide="true">
+                                                <label class="col-md-2">默认所有权限</label>
+                                                <div class="col-md-4">
+                                                    <div class="zTreeDemoBackground left">
+                                                        <ul id="AdminTreeAll" class="ztree">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div>
+                                                <button type="button" class="btn btn-primary btn-success" ng-click="addAdmin()" ng-disabled="addStreetUserForm.StreetUserFormBm.$dirty && addStreetUserForm.StreetUserFormBm.$invalid || addStreetUserForm.StreetUserFormLn.$dirty && addStreetUserForm.StreetUserFormLn.$invalid || addStreetUserForm.addStreetUserPas.$dirty && addStreetUserForm.addStreetUserPas.$invalid || addStreetUserForm.addStreetUserRepas.$dirty && addStreetUserForm.addStreetUserRepas.$invalid || addStreetUserForm.shopFPhone.$dirty && addStreetUserForm.shopFPhone.$invalid || addStreetUserForm.useremail.$dirty && addStreetUserForm.useremail.$invalid">
+                                                    保存
+                                                </button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- /.modal-content -->
+                            </div>
+                        </div>
+                        <!-- 管理员顶部管理内容区结束 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+
+</html>
+<script type="text/javascript">
+    // 正式服务器:
+    httpBaseUrl = "http://backend.jgsoft.org";
+    // 测试服务器：
+    // httpBaseUrl="http://Dev.jgsoft.org";
+    var app = angular.module("project_app", ['ui.bootstrap']);
+    app.value("defPageSize", 10);
+    var loginKey = JSON.parse(window.sessionStorage.getItem("userData"));
+    if (loginKey == null) {
+        alert("请先登录！");
+        window.location.href = "./index.html";
+    } else {
+        /*设置总、子管理员开始*/
+        app.controller("setAdmin", function($scope, $http, $location, defPageSize) {
+            // 取得用户登录的帐号相关信息
+            $scope.userLoginUserData = JSON.parse(window.sessionStorage.getItem("userData"));
+            $scope.logID = JSON.parse(window.sessionStorage.getItem("userData")).loginId;
+            $scope.streetID = JSON.parse(window.sessionStorage.getItem("userData")).streetId;
+            // console.log($scope.userLoginUserData);
+            // 街道管理员级别
+            $scope.streetAdminType = [{
+                "id": "0",
+                "name": "子管理员"
+            }, {
+                "id": "1",
+                "name": "主管理员"
+            }];
+            // 赋予默认值
+            $scope.adminType = $scope.streetAdminType['0']['id'];
+            // 列表
+            $http.get(httpBaseUrl + "/api/StreetAdmin/GetTotalPageList?pos=1&pagesize=" + defPageSize + "&keyword=&sortparam=asc").then(function(response) {
+                if (response.data.code !== 200) {
+                    alert(response.data.msg);
+                } else if (response.data.code == 200) {
+                    if (response.data.obj == "") {
+                        alert("当前无总管理员、请添加！");
+                    } else if (response.data.obj !== "") {
+                        $scope.adminList = response.data.obj;
+                        $scope.items_per_page = defPageSize; // 每页显示的条数
+                        $scope.maxSize = 10; // 限制分页按钮显示的数量大小为10个按钮
+                        $scope.totalItems = response.data.sumcount; // 总条数
+                        $scope.currentPage = 1; // 指定当前页码为第一页
+                        $scope.pageChanged = function(activePage) {
+                            $http.get(httpBaseUrl + "/api/StreetAdmin/GetTotalPageList?pos=" + activePage + "&pagesize=" + defPageSize + "&keyword=&sortparam=asc").then(function(response) {
+                                if (response.data.code !== 200) {
+                                    alert(response.data.msg);
+                                } else if (response.data.code == 200) {
+                                    $scope.adminList = response.data.obj;
+                                }
+                            }, function() {
+                                alert("对不起、列表获取失败、请重新获取！");
+                            });
+                        };
+                    }
+                }
+            }, function() {
+                alert("对不起、当前网络较慢、请重新获取总管理员列表！");
+            });
+            // 新增
+            // 默认的树形权限菜单
+            $http.get(httpBaseUrl + "/api/MenuServer/GetMenuServerListByTreeCrt?adminType=total&loginId=" + $scope.logID + "&streetId=" + $scope.streetID + "&streetLoginId=").then(function(response) {
+                $scope.treeDatas = response.data.obj;
+                // console.log($scope.treeDatas);
+                var setting = {
+                    check: {
+                        enable: true, //设置 zTree 的节点上是否显示 checkbox / radio
+                        // nocheckInherit: false //当父节点设置 nocheck = true 时，设置子节点是否自动继承 nocheck = true
+                    },
+                    data: {
+                        simpleData: {
+                            enable: true
+                        }
+                    }
+                };
+                //ztree用于初始化的静态数据
+                var zNodes = $scope.treeDatas;
+                //过滤节点的机制 直接return node表示不做任何过滤
+                function filter(node) {
+                    return node;
+                };
+                $(document).ready(function() {
+                    $.fn.zTree.init($("#addAdminTree"), setting, zNodes).expandAll(false);
+                    $.fn.zTree.init($("#AdminTreeAll"), setting, zNodes).expandAll(false);
+                });
+            });
+            $scope.addAdmin = function() {
+                /*获取树形模块配置信息并将组装成id的数组集合*/
+                var addAdminTreelist = $.fn.zTree.getZTreeObj("addAdminTree").getCheckedNodes(true),
+                        addAdminTreelistAll = $.fn.zTree.getZTreeObj("AdminTreeAll").getCheckedNodes(false);
+                var addAdminArrayId = new Array(),
+                        addAdminArrayIdAll = new Array();
+                $.each(addAdminTreelist, function(key) {
+                    var ColumnList = addAdminTreelist[key]['id'];
+                    addAdminArrayId.push(ColumnList);
+                });
+                $.each(addAdminTreelistAll, function(key) {
+                    var ColumnList = addAdminTreelistAll[key]['id'];
+                    addAdminArrayIdAll.push(ColumnList);
+                });
+                var addAdminData = {
+                    "id": 0,
+                    "loginName": $scope.adminLoginName,
+                    "streetId": $scope.streetID,
+                    "isMain": $scope.adminType,
+                    "isAdmin": 0,
+                    "mobile": $scope.addAdmin_mobile,
+                    "email": $scope.addAdmin_email,
+                    "isAllOpen": $scope.addAdmin_isOpen,
+                    "isEnable": $scope.addAdmin_isEnable,
+                    "deparment": $scope.addAdmin_deparment,
+                    "passWord": $scope.addAdmin_passWord,
+                    "competence": $scope.addAdmin_isOpen == "1" ? addAdminArrayIdAll : addAdminArrayId
+                };
+                if ($scope.addAdmin_deparment == undefined) {
+                    alert("请输入最少3个最多10个字符的部门名称！");
+                } else if ($scope.adminLoginName == undefined) {
+                    alert("请输入最少2个最多8个字符的登录名！");
+                } else if ($scope.addAdmin_pass == undefined) {
+                    alert("请输入至少6位数的密码！");
+                } else if ($scope.addAdmin_passWord == undefined) {
+                    alert("请输入确认密码！");
+                } else if ($scope.addAdmin_mobile == undefined) {
+                    alert("请输入11位正确手机号码！");
+                } else if ($scope.addAdmin_email == undefined) {
+                    alert("请输入正确的邮箱地址！");
+                } else if ($scope.addAdmin_isOpen == "0" && addAdminArrayId == "") {
+                    alert("请手动勾选权限！");
+                } else if ($scope.addAdmin_pass !== $scope.addAdmin_passWord) {
+                    alert("两次密码输入不一致！");
+                } else {
+                    $http.post(httpBaseUrl + "/api/StreetAdmin/SubmitStreetAdminInfo", addAdminData).then(function(response) {
+                        if (response.data.code !== 200) {
+                            alert(response.data.msg);
+                        } else if (response.data.code == 200) {
+                            alert("恭喜你、新增成功！");
+                            // console.log(addAdminData);
+                            window.location.reload();
+                        }
+                    }, function() {
+                        alert("对不起、当前网速较慢、请稍后编辑！");
+                    });
+                }
+            };
+            // 搜索
+            $scope.searchAdmin = function($event) {
+                if ($event.keyCode == 13) {
+                    $scope.adminKey = angular.element($event.target).val();
+                    $http.get(httpBaseUrl + "/api/StreetAdmin/GetTotalPageList?pos=1&pagesize=" + defPageSize + "&keyword=" + $scope.adminKey + "&sortparam=asc").then(function(response) {
+                        if (response.data.code !== 200) {
+                            alert(response.data.msg);
+                        } else if (response.data.code == 200) {
+                            if (response.data.obj == "") {
+                                $scope.adminList = response.data.obj;
+                                alert("抱歉、未搜索到与之匹配的总管理员！");
+                            } else if (response.data.obj !== "") {
+                                $scope.adminList = response.data.obj;
+                            }
+                        }
+                    }, function() {
+                        alert("当前网速较慢、请重新搜索总管理员");
+                    });
+                }
+            };
+            // 排序
+            $scope.sortFlag = 'asc'; //声明标识变量并初始化排序方式
+            $scope.adminSort = function() {
+                var th_sort = $("th.create_street_date");
+                $scope.sortFlag = $scope.sortFlag;
+                if ($scope.sortFlag === 'asc') {
+                    th_sort.children("i").replaceWith("<i class='fa fa-arrow-down'></i>");
+                    $scope.sortFlag = 'desc';
+                    $http.get(httpBaseUrl + "/api/StreetAdmin/GetTotalPageList?pos=1&pagesize=" + defPageSize + "&keyword=&sortparam=" + $scope.sortFlag).then(function(response) {
+                        if (response.data.code !== 200) {
+                            alert(response.data.msg);
+                        } else if (response.data.code == 200) {
+                            $scope.adminList = response.data.obj;
+                        }
+                    });
+                } else if ($scope.sortFlag !== 'asc') {
+                    th_sort.children("i").replaceWith("<i class='fa fa-arrow-up'></i>");
+                    $scope.sortFlag = 'asc';
+                    $http.get(httpBaseUrl + "/api/StreetAdmin/GetTotalPageList?pos=1&pagesize=" + defPageSize + "&keyword=&sortparam=" + $scope.sortFlag).then(function(response) {
+                        if (response.data.code !== 200) {
+                            alert(response.data.msg);
+                        } else if (response.data.code == 200) {
+                            $scope.adminList = response.data.obj;
+                        }
+                    });
+                }
+            };
+            //编辑时候动态获得id值
+            $scope.editAdmin = function(editAdminID) {
+                // 获得编辑时的详细信息
+                $http.get(httpBaseUrl + "/api/streetadmin/GetSingle?id=" + editAdminID).then(function(response) {
+                    if (response.data.code !== 200) {
+                        alert(response.data.msg);
+                    } else if (response.data.code == 200) {
+                        $scope.singleAdmin = response.data.obj;
+                        // $scope.streetLoginId=response.data.obj.id;
+                        $scope.adminType = JSON.stringify(response.data.obj.isMain);
+                        $scope.editAdmin_isEnable = response.data.obj.isEnable;
+                        $scope.edittAdmin_isOpen = response.data.obj.isAllOpen;
+                        // console.log( $scope.singleAdmin);
+                        /*对取得的isEnable的值进行页面样式的转换*/
+                        $scope.changeAdminIsenableSwitch = function() {
+                            var _this = $("input.AdminIsEnable" + editAdminID);
+                            if ($scope.editAdmin_isEnable == '1') {
+                                _this.prop('checked', true);
+                            } else if ($scope.editAdmin_isEnable == '0') {
+                                _this.prop('checked', false);
+                            };
+                        };
+                        /*对取得的isOpen的值进行页面样式的转换*/
+                        $scope.changeAdminisOpenSwitch = function() {
+                            var _this = $("input.AdminIsOpen" + editAdminID);
+                            if ($scope.edittAdmin_isOpen == '1') {
+                                _this.prop('checked', true);
+                            } else if ($scope.edittAdmin_isOpen == '0') {
+                                _this.prop('checked', false);
+                            };
+                        };
+                        // 编辑时的树形菜单
+                        $http.get(httpBaseUrl + "/api/MenuServer/GetMenuServerListByTreeCrt?adminType=total&loginId=" + $scope.logID + "&streetId=" + $scope.streetID + "&streetLoginId=" + editAdminID).then(function(response) {
+                            $scope.treeDatas = response.data.obj;
+                            /*将获得的数组进行重新组装让其在页面中呈现勾稽关系*/
+                            $.each($scope.treeDatas, function(key) {
+                                // 给数组追加一个checked的键名同时赋予和check键名同样的值
+                                $scope.treeDatas[key]['checked'] = $scope.treeDatas[key]['check'];
+                            });
+                            // console.log($scope.treeDatas);
+                            var setting = {
+                                check: {
+                                    enable: true, //设置 zTree 的节点上是否显示 checkbox / radio
+                                    // nocheckInherit: false //当父节点设置 nocheck = true 时，设置子节点是否自动继承 nocheck = true
+                                },
+                                data: {
+                                    simpleData: {
+                                        enable: true
+                                    }
+                                }
+                            };
+                            //ztree用于初始化的静态数据
+                            var zNodes = $scope.treeDatas;
+                            //过滤节点的机制 直接return node表示不做任何过滤
+                            function filter(node) {
+                                return node;
+                            };
+                            $(document).ready(function() {
+                                $.fn.zTree.init($("#editAdminTree" + editAdminID), setting, zNodes).expandAll(false);
+                            });
+                        });
+                        // 提交编辑
+                        $scope.editAdminSubmit = function() {
+                            /*获取树形模块配置信息并将组装成id的数组集合*/
+                            var editTreelist = $.fn.zTree.getZTreeObj("editAdminTree" + editAdminID).getCheckedNodes(true),
+                                    editTreelistAll = $.fn.zTree.getZTreeObj("AdminTreeAll").getCheckedNodes(false);
+                            var editArrayId = new Array(),
+                                    editArrayIdAll = new Array();
+                            $.each(editTreelist, function(key) {
+                                var ColumnList = editTreelist[key]['id'];
+                                editArrayId.push(ColumnList);
+                            });
+                            $.each(editTreelistAll, function(key) {
+                                var ColumnList = editTreelistAll[key]['id'];
+                                editArrayIdAll.push(ColumnList);
+                            });
+                            var editAdminData = {
+                                "id": editAdminID,
+                                "loginName": $scope.singleAdmin.loginName,
+                                "streetId": $scope.streetID,
+                                "isMain": $scope.adminType,
+                                "isAdmin": 0,
+                                "isAllOpen": $scope.edittAdmin_isOpen,
+                                "isEnable": $scope.editAdmin_isEnable,
+                                "deparment": $scope.singleAdmin.deparment,
+                                "competence": $scope.edittAdmin_isOpen == '1' ? editArrayIdAll : editArrayId
+                            };
+                            // console.log(editAdminData);
+                            if ($scope.singleAdmin.deparment == undefined) {
+                                alert("请填写所属部门！");
+                            } else if ($scope.singleAdmin.loginName == undefined) {
+                                alert("请填写登录名！");
+                            } else if ($scope.edittAdmin_isOpen == "0" && editArrayId == "") {
+                                alert("请手动勾选权限！");
+                            } else {
+                                $http.post(httpBaseUrl + "/api/StreetAdmin/SubmitStreetAdminInfo", editAdminData).then(function(response) {
+                                    if (response.data.code !== 200) {
+                                        alert(response.data.msg);
+                                    } else if (response.data.code == 200) {
+                                        alert("恭喜你、编辑成功！");
+                                        window.location.reload();
+                                        // console.log(editAdminData);
+                                    }
+                                }, function() {
+                                    alert("对不起、当前网速较慢、请稍后编辑！");
+                                });
+                            }
+                        };
+                        // 删除
+                        $scope.delAdmin = function($event) {
+                            $scope.confirm_del = angular.element($event.target).prev('input').val();
+                            if ($scope.confirm_del === '确认删除') {
+                                $http.get(httpBaseUrl + "/api/streetadmin/RemoverStreetAdmin?id=" + editAdminID).then(function(response) {
+                                    if (response.data.code !== 200) {
+                                        alert(response.data.msg);
+                                    } else if (response.data.code == 200) {
+                                        alert("恭喜你、成功删除该管理员！");
+                                        $("tr.del" + editAdminID).remove();
+                                        window.location.reload();
+                                    }
+                                }, function() {
+                                    alert("对不起、请重新删除该管理员！")
+                                });
+                            } else if ($scope.confirm_del === '') {
+                                alert("请输入左侧框中的文字！");
+                            } else if ($scope.confirm_del !== '确认删除') {
+                                alert("请正确输入左侧框中的文字！");
+                            }
+                        };
+                    }
+                }, function() {
+                    alert("当前网速较慢、请重新查询该管理员信息！");
+                });
+            };
+        });
+        /*设置总、子管理员结束*/
+    };
+</script>

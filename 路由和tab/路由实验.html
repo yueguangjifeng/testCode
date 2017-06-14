@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery.js" ></script>
+    <script src="../js/angular.js" ></script>
+    <script src="../js/angular-route.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myCtrl"  >
+<ul>
+    <li><a href="#/page0">00</a></li>
+    <li><a href="#/page1">01</a></li>
+    <li><a href="#/page2">02</a></li>
+    <li><a href="#/page3">03</a></li>
+    <li><a href="#/page4">04</a></li>
+
+</ul>
+<div ng-view class="ngViews_ym" >
+    替换的内容
+
+</div>
+</body>
+</html>
+<script>
+    function ff(){
+        $('.idceshi').click(function () {
+            console.log(1000);
+        })
+    }
+/*window.onload= function () {
+    $('.ngViews_ym').on('click','.idceshi', function () {
+
+    })
+}*/
+</script>
+<script>
+    var myapp=angular.module('myapp',['ngRoute']);
+    myapp.config(['$routeProvider', function ($routeProvider){
+        $routeProvider
+                .when('/',{templateUrl:'00.html'})
+                .when('/page0',{templateUrl:'00.html'})
+                .when('/page1',{templateUrl:'01.html'})
+                .when('/page2',{templateUrl:'02.html'})
+                .when('/page3',{templateUrl:'03.html'})
+                .when('/page4',{templateUrl:'04.html'})
+                .otherwise({restrict:'/'})
+    }]);
+    myapp.config(['$locationProvider',function ($locationProvider){
+        $locationProvider.hashPrefix('');
+    }])
+
+    myapp.controller('myCtrl',function ($scope,$http){
+
+
+    })
+    myapp.controller('page1Ctrl',function ($scope,$http){
+        console.log(0)
+
+
+    })
+    myapp.controller('Ctrl00',function ($scope,$http){
+
+        console.log(0)
+    })
+
+    myapp.controller('Ctrl01',function ($scope,$http){
+
+        console.log(1)
+    })
+    myapp.controller('Ctrl02',function ($scope,$http){
+
+        console.log(2)
+
+    })
+    myapp.controller('Ctrl03',function ($scope,$http){
+
+        console.log(3)
+
+    })
+
+
+
+</script>

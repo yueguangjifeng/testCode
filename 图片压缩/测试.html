@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+    <script src="imgCompress.js"></script>
+</head>
+<body>
+图片上传:<input type="file"  id="fileId"/>
+
+</body>
+</html>
+<script>
+    var formData = new FormData(),
+            oFile = $('#'+fileId)[0].files[0],
+            imgSize = oFile.size;
+
+    if(imgSize < 256 * 1024){
+        formData.append(fileId, oFile);
+        uploadPic(formData, picNum);
+    } else {    // 图片压缩处理
+        var reader   = new FileReader(),
+                maxWidth = 400,
+                maxHeight= 400,
+                suffix = oFile.name.substring(oFile.name.lastIndexOf('.') + 1);
+
+        if(imgSize > 2 * 1024 * 1024){
+            maxWidth = 800;
+            maxHeight= 800;
+        }
+
+        reader.onload = function(e) {
+            var base64Img= e.target.result;
+            //--执行resize。
+            var _ir=ImageResizer({
+                resizeMode:"auto",
+                dataSource:base64Img,
+                dataSourceType:"base64",
+                maxWidth:maxWidth, //允许的最大宽度
+                maxHeight:maxHeight, //允许的最大高度。
+                onTmpImgGenerate:function(img){
+                },
+                success:function(resizeImgBase64,canvas){
+                    var blob = dataURLtoBlob(resizeImgBase64);
+                    formData.append(fileId, blob, oFile['name']);
+
+                    uploadPic(formData, picNum);
+                }
+            });
+        };
+        reader.readAsDataURL(oFile);
+    }
+</script>

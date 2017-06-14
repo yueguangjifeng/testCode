@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../jquery.js" ></script>
+</head>
+<body>
+账号:<input type="text" id="usern" name="userName" />
+密码: <input type="password" id="passw" name="userPassword" />
+
+
+</body>
+</html>
+<script>
+    var name=$('input').val();
+    var pass=$('#passw').val();
+    var obj={};
+    var sessionData;
+
+    $('#passw').keydown(function (e) {
+        if(e.keyCode==13){
+            obj.name= $('input').val();
+            obj.pass=$('#passw').val();
+            console.log(obj);
+//            console.log(obj.pass);
+            sessionStorage.setItem('userData',JSON.stringify(obj));
+            sessionData=sessionStorage.getItem('userData');
+            document.write(sessionStorage.getItem('userData'));
+        }
+    });
+
+
+
+
+
+
+
+
+</script>

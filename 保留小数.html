@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js" ></script>
+</head>
+<body>
+<input type="number" class="number"  />
+<input type="text" class="amount" />
+
+<button>按钮</button>
+
+
+</body>
+</html>
+<script>
+    var i = $(".number").val();
+    var amount = $(".amount").text();
+
+    // 计算单行价格
+    function getSubtotal() {
+        $('.amount').html((parseInt(i)*parseFloat(amount)).toFixed(2));
+    }
+    $(".less").on("click",function(){
+        if (i <= 1) {
+            i = 1;
+            $(".number").val(i);
+        }else{
+            i--;
+            $(".number").val(i);
+            getSubtotal();
+        }
+    });
+    $(".add").on("click",function(){
+        if($('.number').val()<data.num){
+            i++;
+        }else {
+            i=data.num;
+        }
+        $(".number").val(i);
+        getSubtotal();
+    });
+
+
+
+
+    $('.number').keyup(function () {
+        var val = parseInt($(this).val());
+        i = val;
+        if (isNaN(val) || val <= 0) {
+            i = 1;
+            $('.number').val(1);
+        }
+        else if (i >= data.num) {
+            $(".number").val(data.num);
+            $(".buyMax").css('display', 'block');
+        }else if(i>0&&i<data.num ){
+            $(".buyMax").css('display','none');
+        }
+        getSubtotal();
+    });
+    $('.number').change(function () {
+        var val = parseInt($(this).val());
+        i = val;
+        if (isNaN(val) || val <= 0) {
+            i = 1;
+            $('.number').val(1);
+        }
+        else if (i >= data.num) {
+
+            $(".number").val(data.num);
+            $(".buyMax").css('display', 'block');
+        }else if(i>0&&i<data.num ){
+            $(".buyMax").css('display','none');
+        }
+        getSubtotal();
+    });
+
+
+
+
+</script>

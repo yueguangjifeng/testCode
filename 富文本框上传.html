@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="wangEditor/dist/css/wangEditor.css"/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/angular.js" ></script>
+
+    <script  src="wangEditor/dist/js/wangEditor.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div class="box" style="width:500px;" >
+ <!--   <div id="content" ng-bind="ngent" style="height:200px" >
+
+    </div>-->
+    <textarea name="" ng-model="ngent" id="content" cols="30" rows="10">
+
+    </textarea>
+</div>
+<button type="button" id="btn" >富文本内容复制到 div.content 里面</button>
+
+<div id="newDiv" >{{message}}</div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope ,$timeout) {
+
+
+    var  textContent;
+    var editor=new wangEditor('content');
+    editor.destroy();
+    editor.undestroy();
+    editor.config.menus=[
+            'source', '|','bold','undeline','bgcolor','link','img','video','insertcode'
+    ];
+    editor.config.colors = {
+        '#880000': '暗红色',
+        '#800080': '紫色',
+        '#ff0000': '红色'
+    };
+
+    editor.config.uploadImgUrl='http://test.jgsoft.org/api/uploadfile/ProcessRequest';
+    editor.config.uploadHeaders={
+        "Content-Type": undefined
+    };
+//    editor.config.withCredentials = true;
+//    editor.config.hideLInkImg=true;
+//
+    editor.config.uploadImgFns.onload= function (resultText,xhr) {
+        var originalName=editor.uploadImgOriginalName|| '';
+        console.log(resultText);
+        editor.command(null,'insertHtml','<img src="'+resultText+'"alt="'+originalName+'" style="max-width:100%;"/>');
+    };
+/*    editor.config.uploadImgFns.onerror= function (xhr) {
+        alert('上传错误');
+    };*/
+
+
+    editor.create();
+    textContent=editor.$txt.html();
+    $('#btn').click(function () {
+        editor.$txt.append(editor.$txt.html());
+        $scope.$apply(function () {
+            editor.$valueContainer.html(editor.$txt.html());
+        })
+       console.log() ;
+        editor.updateValue();
+        console.log($scope.ngent);
+    });
+        
+        
+        $scope.message='waiting 200ms for update';
+        $timeout(function () {
+            $scope.message='timeout called';
+        },2000);
+    })
+
+</script>
+<script>
+
+</script>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body>
+    <h3 style="border:1px solid red;padding-bottom:5px;" >标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</h3>
+    <p> 正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
+
+
+    <div class="modal fade" id="commuPolcEdit_ym" tabindex="-1" data-backdrop="static">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">申请成为桃花街道主管理员</h5>
+                    <button type="button"  class="close" data-dismiss="modal" >
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" name="formName"   >
+                        <div class="container-fluid">
+                            <div class="form-group  row">
+                                <label  class="col-md-2 form-control-label" >用户名</label>
+                                <div class="col-md-10"  >
+                                    <input class="col-md-5" ng-model="nameEdit" type="text" placeholder=""  />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2">联系电话</label>
+                                <div class="col-md-10">
+                                    <input type="text" ng-model="phoneEdit" class="col-md-12" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2">常用邮箱</label>
+                                <div class="col-md-10">
+                                    <input type="email" ng-model="mailEdit" class="col-md-12" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2">行政区域</label>
+                                <div class="col-md-10">
+                                    <input type="text" ng-model="countryEdit" class="col-md-12" placeholder="" />
+                                </div>
+                            </div>
+                            <!--<div class="form-group row">
+                                <label class="col-md-2">主图</label>
+                                <div class="col-md-10">
+                                    <label id="upImgEdit" class="col-md-3 form-control-label" style="width:160px;height:100px; background:url({{imgBg}}) no-repeat center center;background-size:160px 100px; " >
+                                        <input type="file" id="banCarseImgEdit_ym"  style="width:160px;height:100px;opacity:0" />
+                                    </label>
+                                </div>
+                            </div>-->
+                            <!--<div class="form-group row">
+                                <label class="col-md-2">内容</label>
+                                <div class="col-md-10">
+                                    <textarea  id="commuPolcEdit"    class="col-md-12"></textarea>
+                                </div>
+                            </div>-->
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div style="float:left">
+                        <button type="button" ng-click="banCarsEditSubm()" onclick="switchState(2)" class="btn btn-danger">拒绝</button>
+                    </div>
+                    <div style="float:right" >
+                        <button type="button"   ng-click="banCarsEditSubm()" onclick="switchState(1)" data-dismiss="modal" class="btn btn-success btn-ladda btn-save">通过并发送通知邮件</button>
+                        <button class="btn btn-secondary" onclick="confirmWindow()" type="button" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

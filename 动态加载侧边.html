@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery.js" ></script>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div>
+    <p>盒子</p>
+    <div>内容</div>
+</div>
+
+</body>
+</html>
+<script>
+    var div=document.getElementsByTagName('div')[0];
+//    div.textContent()
+
+</script>
+<script>
+    var requestData={
+        loginName:'aaa',
+        passWord:'123456'
+    };
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $http({
+            method:'post',
+            data:JSON.stringify(requestData),
+            url:'http://test.jgsoft.org/api/streetadmin/UserLogin'
+        }).then(function (result) {
+            console.log(result);
+            console.log(result.data.obj.menuList);
+        }, function (result) {
+            console.log('失败');
+        })
+    })
+</script>
+<script>
+    var  div=document.getElementsByTagName('p')[0];
+    console.log( typeof div.innerText);
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../wangEditor/dist/css/wangEditor.css"/>
+    <script src="../js/jquery.js" ></script>
+    <script src="../wangEditor/dist/js/wangEditor.js" ></script>
+</head>
+<body>
+<textarea name="" id="cc" cols="100" rows="30">
+
+</textarea>
+
+</body>
+</html>
+<script>
+    var  editor=new wangEditor('cc');
+    editor.config.pasteFilter=true;
+    editor.onchange= function () {
+        console.log(editor.$txt)
+        editor.$txt.find('a').removeAttr('href');
+        console.log(editor.$txt.find('a')[0])
+
+    }
+    editor.create();
+
+
+
+</script>

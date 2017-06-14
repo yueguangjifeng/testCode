@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+    <script src="js/angular-route.js" ></script>
+
+</head>
+<body ng-app='myapp'  ng-controller="myctrl" >
+    <div class="box">
+        外部区域
+       <!-- <ul>
+            <li ng-if="outData.name=='01'" >001</li>
+            <li>002</li>
+            <li>003</li>
+            <li>004</li>
+            <li>005</li>
+        </ul>-->
+        <div ng-view >
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',['ngRoute']);
+
+
+    myapp.controller('myctrl', function ($scope, $http) {
+
+    });
+    myapp.config('$routeProvider', function ($routeProvider) {
+        $routeProvider
+                .when('/',{templateUrl:'controllerInner.html'})
+    })
+    myapp.controller('innerCtrl', function ($scope, $http) {
+
+    })
+
+
+
+
+</script>

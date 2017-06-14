@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<div class="col-md-4">
+    <ul class="list-group" style="border:1px solid red">
+        <li class="justify-content-between">
+            <a href="#" class="openSwitch" onclick="transfer()">数据统计</a>
+            <input  type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="dd" ng-init="" ng-click="dd==1?uu=tt=1:uu=tt=0"  />
+            <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;"/>
+            <ul class="dataStaticsClass" style="padding-left:20px;display:none" >
+                <li>
+                    <span>用户统计</span>
+                    <input type="checkbox"  ng-true-value="1" ng-false-value="0" ng-model="uu" ng-click="uu==1?dd=1:tt==0?dd=0:dd=1" />
+                </li>
+                <li>
+                    <span>交易统计</span>
+                    <input type="checkbox"  ng-true-value="1" ng-fales-value="0" ng-model="tt" ng-click="tt==1?dd=1:uu==0?dd=0:dd=1" />
+                </li>
+            </ul>
+        </li>
+<!--
+        <li>
+            <a href="#" class="openSwitch" ng-click="streetAdmin=streetAdmin==1?0:1" >街道管理</a>
+            <input type="checkbox" ng-model="streetAdminCheck" ng-click="streetAdminCheck==1?messageSendCheck=1:messageSendCheck=0" ng-true-value="1" ng-false-value="0"   />
+            &lt;!&ndash;<a href="#" class="openSwitch" ng-click="ngSwitch('streetAdmin')">
+                <i class="fa fa-arrow-down" ></i>
+            </a>&ndash;&gt;
+            <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+            <ul style="padding-left:20px;"  ng-if="streetAdmin==1" >
+                <li>
+                    <span>消息推送</span>
+                    <input type="checkbox" ng-model="messageSendCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>首页轮播</span>
+                    <input type="checkbox" ng-model="firstCarouselCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>资讯管理</span>
+                    <input type="checkbox" ng-model="informationAdminCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <a href="#" class="openSwitch"  ng-click="functionAdmin=functionAdmin==1?0:1" >功能管理</a>
+                    <input type="checkbox" ng-model="functionAdminCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                    <ul style="padding-left:20px;" ng-if="functionAdmin==1">
+                        <li>
+                            <span>清河街道</span>
+                            <input type="checkbox" ng-model="streetCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                        </li>
+                        <li>
+                            <span>城市服务</span>
+                            <input type="checkbox" ng-model="cityServiceCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                        </li>
+                        <li>
+                            <span>便民服务</span>
+                            <input type="checkbox" ng-model="convinenceServiceCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                        </li>
+                        <li>
+                            <span>受理中心-录入</span>
+                            <input type="checkbox" ng-model="acceptCenterInputCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="openSwitch" ng-click="usersAdmin=usersAdmin==1?0:1" >用户管理</a>
+            <input type="checkbox" ng-model="usersAdminCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+            <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+            <ul style="padding-left:20px;" ng-if="usersAdmin==1" >
+                <li>
+                    <span>用户提交数据</span>
+                    <input type="checkbox" ng-model="usersSubmitDataCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>用户信息</span>
+                    <input type="checkbox" ng-model="usersInformationCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>受理中心-反馈</span>
+                    <input type="checkbox" ng-model="acceptCenterFeedbackCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+            </ul>
+        </li>
+        <hr style="width:100%;margin-top:0.5rem;margin-bottom:0.5rem;" />
+        <li>
+            <a href="#" class="openSwitch" ng-click="accountAdmin=accountAdmin==1?0:1" >账号管理</a>
+            <input type="checkbox" ng-model="accountAdminCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+            <ul style="padding-left:20px;" ng-if="accountAdmin==1">
+                <li>
+                    <span>设置子管理员</span>
+                    <input type="checkbox" ng-model="setSubAdministrationCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>信箱</span>
+                    <input type="checkbox" ng-model="mailBoxCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+                <li>
+                    <span>修改账户信息</span>
+                    <input type="checkbox" ng-model="ChangeAccountInformationCheck" ng-click="" ng-true-value="1" ng-false-value="0" />
+                </li>
+            </ul>
+        </li>-->
+    </ul>
+</div>
+
+</body>
+</html>
+<script>
+    var flag=0;
+    function transfer(){
+
+        flag=flag==0?1:0;
+        if(flag){
+            $('.dataStaticsClass').css('display','block');
+            console.log('flag= '+flag);
+        }else {
+            $('.dataStaticsClass').css('display','none');
+            console.log('flag='+flag);
+        }
+    }
+
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl',function($scope,$http){
+
+
+    })
+
+
+
+
+</script>

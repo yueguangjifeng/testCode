@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var Foo= function (a) {
+        function bar(){
+            console.log(a);
+        }
+        this.baz= function () {
+            console.log(a);
+        };
+    };
+    Foo.prototype={
+        biz: function () {
+            console.log(a);
+        }
+    };
+    var f=new Foo(7);
+    f.bar();
+    f.baz();//7
+    f.biz();//undefined
+
+</script>
+

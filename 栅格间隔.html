@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href='css/bootstrap.css'/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js"></script>
+    <script src="js/bootstrap.js" ></script>
+
+</head>
+<body>
+    <!--<div class="box1 container-fluid">
+        <div class="area1 col-md-6 " style="height:30px;padding:0 10px;">
+            <div style="border:1px solid blue;padding:0 10px" >左边的区域</div>
+        </div>
+        <div class="area2 col-md-6 " style="height:30px;padding:0 10px">
+            <div style="border:1px solid red;padding:0 10px" >右边的区域</div>
+        </div>
+    </div>-->
+
+    <div class="container-fluid row">
+        <div class="col-md-6 justify-content-between" >
+            <div class="imgContent " style="line-height:100px;height:100px;vertical-align:middle;">
+                <div onclick="tranCard()" ng-click="ngTranCard(x)" >
+                    <img  src="img/avatars/1.jpg" style="margin-right:10px;" height="100px" alt=""/>
+                </div>
+            </div>
+            <div class="">
+                <div class="justify-content-between" style="display:flex;">
+                    <div onclick="tranCard()" ng-click="ngTranCard(x)">
+                        <h6 >给灾区捐献生活用品</h6>
+                    </div>
+                </div>
+                <p>与街道孤寡老与街道孤寡老人一起织毛衣</p>
+                <div class="justify-content-between" style="display:flex;">
+                <span>
+                    <i class="fa fa-edit "></i><button data-toggle="modal" data-target="#commuPolcEdit_ym" ng-click="saveInfo(x)" onclick="streEdit()" style="padding:0;border:0;background-color:white" >&nbsp;编辑&emsp;</button>
+                    <i class="fa fa-trash-o "></i><button data-toggle="modal" data-target="#streeDele_ym" ng-click="saveId(x.id)" style="padding:0;border:0;background-color:white" >&nbsp;删除</button>
+               </span>
+                    <small><i class="fa fa-arrow-right" style="width:5px;color:#C8D1E4;"></i></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 justify-content-between" >
+            <div class="imgContent " style="line-height:100px;height:100px;vertical-align:middle;">
+                <div onclick="tranCard()" ng-click="ngTranCard(x)" >
+                    <img  src="img/select2.png" style="margin-right:10px;" height="100" alt=""/>
+                </div>
+            </div>
+            <div class="">
+                <div class="justify-content-between" style="display:flex;">
+                    <div onclick="tranCard()" ng-click="ngTranCard(x)">
+                        <h6 >给灾区捐献生活用品</h6>
+                    </div>
+                </div>
+                <p>与街道孤寡老与街道孤寡老人一起织毛衣</p>
+                <div class="justify-content-between" style="display:flex;">
+                <span>
+                    <i class="fa fa-edit "></i><button data-toggle="modal" data-target="#commuPolcEdit_ym" ng-click="saveInfo(x)" onclick="streEdit()" style="padding:0;border:0;background-color:white" >&nbsp;编辑&emsp;</button>
+                    <i class="fa fa-trash-o "></i><button data-toggle="modal" data-target="#streeDele_ym" ng-click="saveId(x.id)" style="padding:0;border:0;background-color:white" >&nbsp;删除</button>
+               </span>
+                    <small><i class="fa fa-arrow-right" style="width:5px;color:#C8D1E4;"></i></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>

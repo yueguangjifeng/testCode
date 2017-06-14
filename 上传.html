@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js" ></script>
+</head>
+<body>
+<input type="button" id="btt" onclick="ff(this,btt,1)" placeholder="anniu" >
+
+</body>
+</html>
+<script>
+    function ff(obj,callback,id,count) {
+
+        if($("#"+id).find(".thumb").length >= count)
+        {
+            layer.msg('上传图片已达上限',{time:1000});
+            return;
+        }
+        var formData = new FormData();
+        formData.append("file", obj.files[0]);
+        $.ajax({
+            url: "upload/file.aspx",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                res = JSON.parse(res);
+                if (res.code == 200) {
+                    var src =res.obj;
+                    // $(id).attr("src", res.obj);
+                    window[callback](src);
+                }
+                else {
+                    layer.msg(res.msg, { timer: 1000 });
+                }
+            }
+        });
+    }
+
+
+</script>

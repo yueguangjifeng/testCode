@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>智慧社区商家邀请注册第一步</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="智慧社区商家邀请注册第一步">
+    <meta name="keyword" content="智慧社区商家邀请注册第一步">
+    <link rel="shortcut icon" href="./img/favicon.png">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/glyphicons.css" rel="stylesheet">
+    <link href="css/glyphicons-filetypes.css" rel="stylesheet">
+    <link href="css/glyphicons-social.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/total_zsh.css" rel="stylesheet">
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/tether.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/pace.min.js"></script>
+    <script src="js/libs/Chart.min.js"></script>
+    <script src="js/libs/gauge.min.js"></script>
+    <script src="js/libs/moment.min.js"></script>
+    <script src="js/libs/daterangepicker.js"></script>
+    <script src="js/views/shared.js"></script>
+    <script src="js/views/main.js"></script>
+    <script src="js/views/charts.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/views/total_zsh.js"></script>
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+</head>
+
+<body class="app flex-row align-items-center" style="background:url('./img/bg2.png')no-repeat left top;background-size:100% 100%;" ng-app="project_app" ng-controller="yaoqingShop" ng-cloak>
+<img src="./img/logo2.png" class="login_pub_logo register_log" alt="左上角logo图">
+<div class="container">
+    <h4 class="text-center register_top_tit">欢迎加入智慧社区</h4>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card mx-3 regitster_zhihui_card">
+                <div class="card-block p-1 regitster_zhihui">
+                    <h5>第一步：填写账户信息</h5>
+                    <p class="text-muted">
+                        填写您的基本登录信息我们与您联系
+                    </p>
+                    <form novalidate name="shopForm1">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input type="text" class="form-control" placeholder="6~14位字符（支持数字/字母）" name="userName" ng-model="shopUser" required minlength="6" maxlength="14" ng-pattern="/[\w]{6,14}/">
+                                <span style="color:red;" ng-show="shopForm1.userName.$dirty && shopForm1.userName.$invalid">
+            <span ng-show="shopForm1.userName.$error.required">用户名是必须的</span>
+                                <span ng-show="shopForm1.userName.$error.pattern">请输入正确的用户名</span>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                            <input type="password" class="form-control" placeholder="6~18位字符（支持数字/字母）" ng-model="userPass" required minlength="6" maxlength="18" name="userpass" ng-pattern="/[\w]{6,18}/">
+                                <span style="color:red;" ng-show="shopForm1.userpass.$dirty && shopForm1.userpass.$invalid">
+            <span ng-show="shopForm1.userpass.$error.required">密码是必须的</span>
+                                <span ng-show="shopForm1.userpass.$error.pattern">请输入正确的密码</span>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">确认密码</label>
+                            <input type="password" class="form-control" placeholder="重复确认密码" required ng-model="userePass" minlength="6" maxlength="18" ng-pattern="/[\w]{6,18}/" name="userepass">
+                                <span style="color:red;" ng-show="shopForm1.userepass.$dirty && shopForm1.userepass.$invalid">
+            <span ng-show="shopForm1.userepass.$error.required">确认密码是必须的</span>
+                                <span ng-show="shopForm1.userepass.$error.pattern">请输入正确的确认密码</span>
+                                </span>
+                                <span style="color:red;" ng-show="shopForm1.userepass.$valid">
+            <span ng-show="userPass !== userePass">两次密码不一致</span>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">手机号</label>
+                            <input type="text" class="form-control inputPhone" placeholder="常用联系电话" required minlength="11" maxlength="11" ng-model="phone" ng-pattern="/^1[3578]{1}[\d]{9}/" name="mobile">
+                                <span style="color:red;" ng-show="shopForm1.mobile.$dirty && shopForm1.mobile.$invalid">
+            <span ng-show="shopForm1.mobile.$error.required">手机号是必须的</span>
+                                <span ng-show="shopForm1.mobile.$error.pattern">请输入正确的手机号</span>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">短信验证码</label>
+                            <div class="input-group messageYzBtn">
+                                <input type="text" class="form-control" placeholder="短信验证码" required ng-model="messageYZM" minlength="4" maxlength="4" name="yzm" ng-pattern="/[\d]{4}/">
+                                <input type="button" class="btn btn-primary col-md-4 yanzheng" value="获取验证码" onClick="settime(this)" />
+                            </div>
+                                <span style="color:red;" ng-show="shopForm1.yzm.$dirty && shopForm1.yzm.$invalid">
+            <span ng-show="shopForm1.yzm.$error.required">验证码是必须的</span>
+                                <span ng-show="shopForm1.yzm.$error.pattern">请输入正确的验证码</span>
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">常用邮箱</label>
+                            <input type="email" class="form-control" placeholder="使用该邮箱接收后台登陆地址" required ng-model="userEmail" name="useremail" maxlength="30" ng-pattern="/^[\w\-]+@[\w\-]+(\.[\w\-]+)+$/">
+                                <span style="color:red;" ng-show="shopForm1.useremail.$dirty && shopForm1.useremail.$invalid">
+            <span ng-show="shopForm1.useremail.$error.required">邮箱是必须的</span>
+                                <span ng-show="shopForm1.useremail.$error.email">请输入正确的邮箱地址</span>
+                                </span>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary" ng-click="shopSecond()" ng-disabled="shopForm1.userName.$dirty && shopForm1.userName.$invalid || shopForm1.userpass.$dirty && shopForm1.userpass.$invalid || shopForm1.userepass.$dirty && shopForm1.userepass.$invalid || shopForm1.mobile.$dirty && shopForm1.mobile.$invalid || shopForm1.yzm.$dirty && shopForm1.yzm.$invalid || shopForm1.useremail.$dirty && shopForm1.useremail.$invalid">
+                            下一步
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center fixed-bottom register_footer">
+        © 2017 ChinaScope Limited All Rights Reserved 沪ICP备11039653号-7
+    </p>
+</div>
+</body>
+
+</html>
+<script type="text/javascript">
+    // 正式服务器:
+    httpBaseUrl = "http://backend.jgsoft.org";
+    // 测试服务器：
+    // httpBaseUrl="http://Dev.jgsoft.org";
+    var app = angular.module("project_app", []);
+    // 获取邀请商家的信息
+    app.config(['$locationProvider', function($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }]);
+    /*修改手机号短信60秒发送*/
+    var countdown = 60;
+
+    function settime(obj) {
+        var correctPhone = /^1[3|5|7|8][0-9]{9}/,
+                phone = $(".inputPhone").val(),
+                sf = phone.match(correctPhone);
+        if (phone == "") {
+            alert("请输入11位手机号码！");
+        } else if (sf == null) {
+            alert("请输入11位正确手机号码！");
+        } else {
+            if (countdown == 0) {
+                obj.removeAttribute("disabled");
+                obj.value = "获取验证码";
+                countdown = 60;
+                return;
+            } else {
+                obj.setAttribute("disabled", true);
+                obj.value = "重新发送(" + countdown + ")";
+                countdown--;
+                if (countdown >= 59) {
+                    $.ajax({
+                        type: "GET",
+                        url: httpBaseUrl + "/api/Mailbox/SendSMSVCode?mobile=" + phone + "&key=register",
+                        success: function(response) {
+                            if (response.code !== 200) {
+                                alert(response.msg);
+                            } else if (response.code == 200) {
+                                alert("恭喜你、短信验证码已发送、请注意查收！");
+                            }
+                        },
+                        error: function() {
+                            alert("对不起、当前网络较慢、请稍后请求！");
+                        }
+                    });
+                }
+            };
+            setTimeout(function() {
+                settime(obj)
+            }, 1000);
+        }
+    };
+    app.controller("yaoqingShop", function($scope, $http, $location) {
+        /*通过监听URL获取邀请商家的部分信息*/
+        $scope.streetShopId = $location.search().checkId;
+        $scope.Type = $location.search().type;
+        $scope.streetid = $location.search().streetId;
+        $scope.loginid = $location.search().mainId;
+        $scope.shopSecond = function() {
+            if ($scope.shopUser == undefined) {
+                alert("请输入用户名！");
+            } else if ($scope.userPass == undefined) {
+                alert("请输入密码！");
+            } else if ($scope.userePass == undefined) {
+                alert("请输入确认密码！");
+            } else if ($scope.phone == undefined) {
+                alert("请输入手机号！");
+            } else if ($scope.messageYZM == undefined) {
+                alert("请输入短信验证码！");
+            } else if ($scope.userEmail == undefined) {
+                alert("请输入常用邮箱！");
+            } else if ($scope.userPass !== $scope.userePass) {
+                alert("两次密码不一致！");
+            } else {
+                var shopDataOne = {
+                    "loginName": $scope.shopUser,
+                    "passwd": $scope.userePass,
+                    "email": $scope.userEmail,
+                    "mobile": $scope.phone,
+                    "mainId": $scope.loginid,
+                    "checkId": $scope.streetShopId,
+                    "address": "",
+                    "type": $scope.Type,
+                    "storeName": "",
+                    "companyName": "",
+                    "streetId": $scope.streetid
+                };
+                window.sessionStorage.setItem("shopData", JSON.stringify(shopDataOne));
+                window.location.href = "./shopRegisterS.html"
+            }
+        };
+    });
+</script>

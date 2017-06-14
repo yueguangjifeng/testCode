@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+    <style>
+        .year-interest{
+            border:1px solid red;
+        }
+        .etc-text{
+            border:1px solid blue;
+        }
+    </style>
+</head>
+<body ng-app='myapp' ng-controller='myctrl'>
+<div class="box0">
+    <div class="box1">
+        <div class="box2">
+            <div class="box3" ng-class="{true: 'year-interest', false: 'etc-text'}[$parent.$parent.$parent.$first]">
+                    盒子
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box" >
+
+    <table class="table table-bordered">
+        <tr ng-repeat="info in ttzInfo" ng-cloak>
+            <td class="col-xs-2 adjust-col-2 text-right title-desc" ng-bind="info.title"></td>
+            <td class="col-xs-3 adjust-col-3 text-center" ng-repeat="key in ['ttz', 'yeb', 'bank']">
+            <span ng-if="info[key]">
+                  <span ng-if="info[key].length" ng-bind="info[key]" ng-class="{'year-interest': $parent.$parent.$parent.$first}"></span>
+                  <span ng-if="!info[key].length" class="glyphicon glyphicon-ok"></span>
+            </span>
+            <span ng-if="!info[key]" class="glyphicon glyphicon-remove"></span>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+</body>
+</html>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller('myctrl', function ($scope) {
+        $scope.ttzInfo=[
+            {
+                title:'柯南',
+                ttz:0,
+                yeb:0,
+                bank:1
+            },{
+                title:'名人',
+                ttz:1,
+                yeb:0,
+                bank:1
+            },{
+                title:'火影',
+                ttz:10,
+                yeb:0,
+                bank:0
+            }
+        ];
+
+
+
+
+    })
+
+
+</script>  

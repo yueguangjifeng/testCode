@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl"  >
+<div class="box">
+    来访:<input type="checkbox" ng-model="variable00" ng-checked="variable00=='来访'"  />
+    数据:<input type="checkbox" ng-model="variable00" ng-checked="variable00=='数据'"  />
+    测试:<input type="checkbox" ng-model="variable00" ng-checked="variable00=='测试'"  />
+</div>
+
+</body>
+</html>
+<script>
+    var  myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.variable00='数据';
+    })
+
+</script>

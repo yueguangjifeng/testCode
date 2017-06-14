@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app='myapp' ng-controller='myctrl'>
+
+<table class="table table-bordered">
+    <tr class="head-title">
+        <th class="col-xs-3"></th>
+        <th class="col-xs-3 text-center">P2P</th>
+        <th class="col-xs-3 text-center">余额宝</th>
+        <th class="col-xs-3 text-center">银行理财产品</th>
+    </tr>
+    <tr ng-repeat="info in infoList" ng-cloak>
+        <td class="text-right title-desc" ng-bind="info.title"></td>
+        <td class="text-center" ng-repeat="key in ['p2p', 'yeb', 'bank']">
+        <span ng-if="info[key]">
+            <span ng-if="info[key].length" ng-bind="info[key]" ng-class="{true: 'year-interest', false: 'etc-text'}[$parent.$parent.$parent.$first]"></span>
+            <span ng-if="!info[key].length" class="glyphicon glyphicon-ok is-support"></span>
+        </span>
+            <span ng-if="!info[key]" class="glyphicon glyphicon-remove is-support"></span>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller('myctrl', ['$scope', function ($scope) {
+        $scope.infoList = [
+            {
+                title: '预期年化收益率',
+                p2p: '7% - 14%',
+                bank: '约 4% - 5.5%',
+                yeb: '约 3% - 4%'
+            },
+            {
+                title: '买入当天生息',
+                p2p: true,
+                bank: false,
+                yeb: false
+            },
+            {
+                title: '买入次日开始付息',
+                p2p: true,
+                bank: false,
+                yeb: false
+            },
+            {
+                title: '每日付息',
+                p2p: true,
+                bank: false,
+                yeb: true
+            },
+            {
+                title: '每日利息自动复投',
+                p2p: true,
+                bank: false,
+                yeb: '同货币基金'
+            },
+            {
+                title: '期限灵活，随时可取',
+                p2p: true,
+                bank: false,
+                yeb: true
+            },
+            {
+                title: '可以零钱增投',
+                p2p: true,
+                bank: false,
+                yeb: true
+            }
+        ];
+
+    }])
+
+
+</script>  

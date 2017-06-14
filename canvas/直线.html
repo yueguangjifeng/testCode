@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="canvas" style="background-color:black;" >当前浏览器不支持</canvas>
+
+
+
+
+</body>
+</html>
+<script>
+    var canvas=document.getElementById('canvas');
+    canvas.width=500;
+    canvas.height=500;
+
+    var context=canvas.getContext('2d');
+    context.strokeStyle='red';
+    context.lineWidth=5;
+
+    var a=10;
+    context.beginPath();
+    context.moveTo(a*2,200);
+    context.lineTo(a*50,300);
+    context.closePath();
+    context.stroke();
+
+    /*
+     * params
+     * 圆心x坐标
+     * 圆心y坐标
+     * 半径
+     * 起始角度
+     * 结束角度
+     * 方向，true 逆时针   false 顺时针  默认false，不写表示false
+     */
+  /*  context.arc(200,200,100,0,Math.PI/2,false);
+    context.closePath();
+    context.stroke();
+
+    context.strokeStyle = 'red';
+    context.arc(200,200,100,0,Math.PI/2, true);
+    context.closePath();
+    context.stroke();
+*/
+
+
+
+
+
+</script>

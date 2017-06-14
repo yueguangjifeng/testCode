@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+
+</head>
+<body>
+<div class="container-fluid" style="display:flex; padding:0;height:100%">
+    <!-- 左侧内容区-->
+    <div class="container-fluid col-md-2 hidden-sm-down" style="height:100%;padding:0;">
+        <ul class="nav nav-tabs threeCl_ym" >
+            <li class="nav-item"><a href="#" class="nav-link"  >社区政务</a></li>
+            <li class="nav-item">
+                <a href="#general" data-toggle="tab" class="nav-link " >街道概况</a>
+            </li>
+            <li class="nav-item"><a href="#office"  data-toggle="tab" class="nav-link "  >办公职能</a></li>
+            <li class="nav-item"><a href="#居委信息"  data-toggle="tab"  class="nav-link " >居委信息</a></li>
+            <li class="nav-item"><a href="#街道特色"  data-toggle="tab"  class="nav-link " >街道特色</a></li>
+            <li class="nav-item"><a href="#社情民意"  data-toggle="tab"  class="nav-link " >社情民意</a></li>
+            <li class="nav-item"><a href="#兵役共作"  data-toggle="tab"  class="nav-link " >兵役共作</a></li>
+            <li class="nav-item"><a href="#满意测评"  data-toggle="tab"  class="nav-link " >满意测评</a></li>
+        </ul>
+    </div>
+    <!-- 右侧主要内容区-->
+    <div class="tab-content col-md-10" style="padding-left:0" >
+        <div class="tab-pane "  id="general" style="margin-top:15px;margin-left:30px;padding-left:0">
+            <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#commuPolcAdd_ym" style="width:80px;height:34px;" >新增</button>
+            </div>
+            <div class="content">
+                <div class="container-fluid " style="padding-left:0;margin-top:15px;">
+                    <div class="contentArea_ym">
+                        <table class="table">
+                            <thead>
+                            <tr class="text-center">
+                                <th class="text-center">标题</th>
+                                <th class="text-center hidden-md-down ">浏览量</th>
+                                <th class="text-center hidden-md-down rotate_ym">
+                                    <i class="fa fa-arrow-up"></i>
+                                    <span>上传时间</span>
+                                </th>
+                                <th class="text-center">作者</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="text-center" ng-repeat="x in originDataBase" >
+                                <td class="hidden-md-down" >{{x.title}}</td>
+                                <td class="hidden-md-down">2625</td>
+                                <td class="hidden-md-down" >{{x.createDate}}</td>
+                                <td>{{x.author}}</td>
+                                <td ng-if="x.title" ng-init="newId=x.id;obj=x">
+                                    <button type="button" ng-click="saveInfo(obj)" data-toggle="modal" data-target="#firstPageCircleEdit_ym" class="btn btn-info btnedit">
+                                        <i class="fa fa-edit "></i>
+                                    </button>
+                                    <button type="button" ng-click="saveId(newId)" class="btn btn-danger" data-target="#bannDele_ym" data-toggle="modal" >
+                                        <i class="fa fa-trash-o "></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧主要内容区-->
+        <div class="tab-pane">
+            <div id="办公职能">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#commuPolcAdd_ym" style="width:80px;height:34px;" >新增</button>
+            </div>
+            <div class="content">
+                <div class="container-fluid " style="padding-left:0;margin-top:15px;">
+                    <div class="contentArea_ym">
+                        <table class="table">
+                            <thead>
+                            <tr class="text-center">
+                                <th class="text-center">标题</th>
+                                <th class="text-center hidden-md-down ">浏览量</th>
+                                <th class="text-center hidden-md-down rotate_ym">
+                                    <i class="fa fa-arrow-up"></i>
+                                    <span>上传时间</span>
+                                </th>
+                                <th class="text-center">作者</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="text-center" ng-repeat="x in originDataBase" >
+                                <td class="hidden-md-down" >{{x.title}}</td>
+                                <td class="hidden-md-down">2625</td>
+                                <td class="hidden-md-down" >{{x.createDate}}</td>
+                                <td>{{x.author}}</td>
+                                <td ng-if="x.title" ng-init="newId=x.id;obj=x">
+                                    <button type="button" ng-click="saveInfo(obj)" data-toggle="modal" data-target="#firstPageCircleEdit_ym" class="btn btn-info btnedit">
+                                        <i class="fa fa-edit "></i>
+                                    </button>
+                                    <button type="button" ng-click="saveId(newId)" class="btn btn-danger" data-target="#bannDele_ym" data-toggle="modal" >
+                                        <i class="fa fa-trash-o "></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

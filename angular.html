@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/angular.js"></script>
+
+<body ng-app="myapp" ng-controller="myctrl" ng-init="obj={}" >
+
+
+<!--<div >
+
+   &lt;!&ndash; <table>
+        <thead>
+            <tr>
+                <td>第一列</td>
+                <td>第二列</td>
+                <td>第三列</td>
+                <td>第四列</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in names">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </tbody>
+
+    </table>&ndash;&gt;
+&lt;!&ndash;    <form action="">
+        <input type="text" ng-model="name"  />
+    </form>&ndash;&gt;
+   <button class="btn btn-success" ng-click=""  >按钮</button>
+
+</div>-->
+
+<!--<div ng-app="myApp" ng-controller="siteCtrl">
+    <ul>
+        <li ng-repeat="x in names">
+            {{ x.Name + ', ' + x.Country }}
+        </li>
+    </ul>
+</div>-->
+<button ng-click="bt()" >按钮</button>
+<input type="file" id="inputImg" />
+<button ng-click="upload()" >上传图片</button>
+
+</body>
+</html>
+<!--<script>
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http({
+            method:'get',
+            url:'http://test.jgsoft.org/api/menuapp/getpagelist?pos=1&pagesize=10',
+
+        })
+            .then(function (response) {
+                $scope.names=response.data.sites;
+                alert('成功')
+            },function (response) {
+                alert('请求失败'+response);
+            })
+    })
+
+
+</script>-->
+
+
+
+<!--ajax 方法-->
+
+
+
+<!--angular 方法-->
+<!--<script>
+    var myapp=angular.module('myapp',[]);
+   /* myapp.config(function ($httpProvider) {
+        $httpProvider.defaults.transformRequest = function(obj){
+            var str = [];
+            for(var p in obj){
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+            return str.join("&");
+        }
+
+        $httpProvider.defaults.headers.get = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })*/
+    myapp.controller('myctrl', function ($scope, $http) {
+
+        $http({
+            data:JSON.stringify({ id: '5209714683',
+                province: '陕西省',
+                city: '西安市',
+                county: '碑林区',
+                streetName: '隆发街道',
+                isEnable: 1,
+                isOpen: 1,
+                competence: [
+                    '9737684251',
+                    '9467038521'
+                ]}),
+            method:'post',
+            url:'http://test.jgsoft.org/api/street/SubmitStreetInfo',
+            header: {
+             'Content-Type':'application/json'
+             }
+        })
+
+                .then(function (data) {
+                    console.log('传输成功' +JSON.stringify(data) );
+                }, function (data) {
+                    console.log('传输失败' + data);
+                    console.log($scope.formdata);
+                    console.log(JSON.stringify($scope.formdata));
+                })
+    })
+</script>-->
+
+<!--图片上传-->
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.upload= function () {
+            var formdata=new FormData();
+            formdata.append('file',document.getElementById('inputImg').files[0]);
+            $http({
+                method:'post',
+                url:'http://test.jgsoft.org///api/uploadfile/ProcessRequest',
+                data:formdata
+            }).then(function (result) {
+                console.log(result.data);
+            }, function () {
+                console.log('失败');
+            })
+
+        }
+    })
+
+
+
+</script>
+

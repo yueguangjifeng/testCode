@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+
+
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<!--<input type="tel" placeholder="13999999999"  ng-pattern=""  /><span>{{showValue}}</span>-->
+<form action="" name="angularForm" >
+
+</form>
+<input class="" name="phone" ng-model="phoneAdd" ng-pattern="/^0/" type="tel"  />
+<span class="warning" ng-show="angularForm.phone.$error.pattern">电话号码不正确</span>
+
+</body>
+</html>
+<script>
+    var  myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+
+    })
+
+
+
+</script>

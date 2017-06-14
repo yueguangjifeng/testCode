@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<select name="" id="" ng-model="selec" ng-init="selec=arrs[0].name" ng-options="x in arrs" >
+
+
+</select>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+        $scope.arrs=[
+            {
+                id:0,
+                name:'柯南'
+            },
+            {
+                id:1,
+                name:'福尔摩斯'
+            }
+        ];
+        $scope.selec=$scope.arrs[0].name;
+
+
+    })
+
+</script>

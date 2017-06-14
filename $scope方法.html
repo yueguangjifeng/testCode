@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <script src="js/jquery.js" ></script>
+    <script src="js/tether.js" ></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/angular.js" ></script>
+</head>
+
+<body ng-app="app" ng-controller="c">
+<div dir ng-repeat="item in items track by $index " ng-model="m">
+    {{item}} + {{m}} <br>
+</div>
+</body>
+<script>
+    var app = angular.module("app", []);
+    app.controller('c', function ($scope) {
+        $scope.items = [1,2,2,3,4,5,5];
+        $scope.m = "string";
+    });
+
+    app.directive("dir",function($parse){
+        return {
+            compile : function( $compile ){
+                return function(s,e,a){
+                    //what   ..             ..
+                    //a.ngModel
+                    //用$("xxx").scope.xx = model
+                    //assign 分配
+                    //console.log( $parse( a.ngModel ).assign(s,"sdfs__________newValue__________dfd") )
+                    s.m = "sdfs____#@$#@$#@$@#$__dfd这两个效果一摸一样";
+                }
+            }
+        }
+    });
+</script>
+</html>

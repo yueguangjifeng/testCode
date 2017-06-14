@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.js" ></script>
+</head>
+<body>
+    <button onclick="ff()" >ajax按钮</button>
+    <button ng-app="myapp" ng-controller="myctrl" ng-click="fm()" >
+        angular 请求
+    </button>
+
+    <script src="js/angular.js" ></script>
+</body>
+</html>
+<script>
+    $.post('http://test.jgsoft.org/api/menuapp/SubmitMenuInfo',{
+        "id": "0",
+        "name": "社区政务",
+        "icon": "abc",
+        "parentId": "0",
+        "sort": 0,
+        "isEnable": 1,
+        "type": 1
+
+    }, function (data) {
+            console.log(JSON.stringify(data));
+    })
+
+</script>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        $scope.fm= function () {
+            $http({
+                method:'post',
+                url:'http://test.jgsoft.org/api/menuapp/SubmitMenuInfo',
+                data:JSON.stringify({
+                    id: 0,
+                    name:'社区政务',
+                    icon:'abc',
+                    parentId:0,
+                    sort:0,
+                    isEnable:1,
+                    type:1
+                }),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+                    .then(function (data) {
+                        console.log(JSON.stringify(data));
+                    }, function (data) {
+                        console.log('传输失败'  );
+//                        console.log($scope.ob);
+                    })
+        }
+
+    })
+
+</script>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="app" ng-controller="promiseControl" >
+
+
+
+
+</body>
+</html>
+<script>
+    var app = angular.module('app',[]);
+    app.controller('promiseControl',function($scope,$q,$http) {
+        function getJson(url){
+            var deferred = $q.defer();
+            $http.get(url)
+                    .success(function(d){
+                        d = parseInt(d);
+                        console.log(d);
+                        deferred.resolve(d);
+                    });
+            return deferred.promise;
+        }
+        getJson('json1.txt').then(function(){
+            return getJson('json2.txt');
+        }).then(function(){
+            return getJson('json1.txt');
+        }).then(function(){
+            return getJson('json2.txt');
+        }).then(function(d){
+            console.log('end');
+        });
+    });
+
+
+</script>

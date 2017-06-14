@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app='myapp' ng-controller='myctrl'>
+<input type="file" ng-change="uploadImg()" ng-model="imgs" multiple  class="imgLoad"/>
+
+<button>按钮</button>
+
+
+
+</body>
+</html>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller('myctrl', ['$scope', function ($scope) {
+        $scope.uploadImg= function () {
+
+
+        }
+
+
+    }])
+
+
+</script>  

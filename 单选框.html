@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js" ></script>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<form action="">
+    01:<input type="radio" name="test" ng-model="consult.comeVisit" ng-true-value="来访"  />
+    02:<input type="radio" id="inp2" name="test" ng-model="consult.phone" ng-true-value="电话"/>
+    03:<input type="radio" name="test" ng-model="consult.letter" ng-true-value="信函"/>
+    04:<input type="radio" name="test" ng-model="consult.netWork" ng-true-value="网络"/>
+</form>
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        var  inpu=angular.element('input');
+
+
+
+//        $scope.$apply(function () {
+                    $scope.consult={
+
+        }
+                    console.log($scope.consultWay);
+//        })
+    })
+
+
+</script>

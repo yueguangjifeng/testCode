@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+<input type="file"   />
+<div style="width:200px;height:100px;border:1px solid red;" ></div>
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+        var file=document.getElementsByTagName('input')[0];
+        var div=document.getElementsByTagName('div')[0];
+       file.onchange= function () {
+            console.log(1);
+            var formdata=new FormData();
+//            for)
+            formdata.append('file',file.files[0]);
+            $http({
+                method:'post',
+                url:"http://test.jgsoft.org/api/uploadfile/ProcessRequest",
+                data:formdata,
+                headers:{'Content-Type':undefined}
+            }).then(function (result) {
+                console.log(result.data.obj);
+                div.style.backgroundImage='url('+result.data.obj+')';
+                div.style.backgroundSize='100px 100px';
+                div.style.backgroundRepeat='no-repeat';
+
+            }, function (result) {
+                console.log('失败');
+            })
+        }
+    })
+
+</script>

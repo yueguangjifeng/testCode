@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo $title;?></title>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="maximum-dpr=1" name="flexible" />
+    <script src="assets/scripts/netease/jquery-2.1.4.min.js"></script>
+    <script src="assets/scripts/datatime/Commodity_live/flexible_css.debug.js"></script>
+    <!--  二次分享  -->
+    <?php
+    require_once "Wxjssdk.php";
+    $jssdk = new Wxjssdk("wx6e03ad5638219e00", "281daccd7d07615e8fa79b8ede4f0e03"); //微信公共平台的appid和secretid
+    $signPackage = $jssdk->GetSignPackage();
+    ?>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var url="<?php echo $realurl;?>/?t=l&i=<?php echo $_REQUEST['live_id']?>&share_id=<?php echo $_REQUEST['uid']?>"
+        console.log(url);
+        wx.config({
+            debug: false,
+            appId: '<?php echo $signPackage["appId"];?>',
+            timestamp: <?php echo $signPackage["timestamp"];?>,
+        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+                signature: '<?php echo $signPackage["signature"];?>',
+                jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            'onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ'
+        ]
+        });
+        wx.ready(function () {
+            var title = "<?php echo $title;?>";
+            var text="<?php
+            $desp=str_replace(array("\r\n", "\r", "\n"), "", $desp);
+            $desp=str_replace(array("\""), "”", $desp);
+            $desp=str_replace(array("'"), "‘", $desp);
+            echo empty($desp)?date("Y-m-d H:i:s",time()):$desp;?>";
+            var img="<?php echo $cover;?>";
+            wx.onMenuShareAppMessage({
+                title: title, // 分享标题
+                desc: text, // 分享描述
+                link: url, // 分享链接
+                imgUrl: img, //
+                // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareTimeline({
+                title: title, // 分享标题
+                link: url, // 分享链接
+                imgUrl: img, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareQQ({
+                title: title, // 分享标题
+                desc: text, // 分享描述
+                link: url, // 分享链接
+                imgUrl: img, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        });
+    </script>
+    <script>
+        ;(function(win,lib){var doc=win.document;var docEl=doc.documentElement;var metaEl=doc.querySelector('meta[name="viewport"]');var flexibleEl=doc.querySelector('meta[name="flexible"]');var dpr=0;var scale=0;var tid;var flexible=lib.flexible||(lib.flexible={});if(metaEl){console.warn('将根据已有的meta标签来设置缩放比例');var match=metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);if(match){scale=parseFloat(match[1]);dpr=parseInt(1/scale)}}else if(flexibleEl){var content=flexibleEl.getAttribute('content');if(content){var initialDpr=content.match(/initial\-dpr=([\d\.]+)/);var maximumDpr=content.match(/maximum\-dpr=([\d\.]+)/);if(initialDpr){dpr=parseFloat(initialDpr[1]);scale=parseFloat((1/dpr).toFixed(2))}if(maximumDpr){dpr=parseFloat(maximumDpr[1]);scale=parseFloat((1/dpr).toFixed(2))}}}if(!dpr&&!scale){var isAndroid=win.navigator.appVersion.match(/android/gi);var isIPhone=win.navigator.appVersion.match(/iphone/gi);var devicePixelRatio=win.devicePixelRatio;if(isIPhone){if(devicePixelRatio>=3&&(!dpr||dpr>=3)){dpr=3}else if(devicePixelRatio>=2&&(!dpr||dpr>=2)){dpr=2}else{dpr=1}}else{dpr=1}scale=1/dpr}docEl.setAttribute('data-dpr',dpr);if(!metaEl){metaEl=doc.createElement('meta');metaEl.setAttribute('name','viewport');metaEl.setAttribute('content','initial-scale='+scale+', maximum-scale='+scale+', minimum-scale='+scale+', user-scalable=no');if(docEl.firstElementChild){docEl.firstElementChild.appendChild(metaEl)}else{var wrap=doc.createElement('div');wrap.appendChild(metaEl);doc.write(wrap.innerHTML)}}function refreshRem(){var width=docEl.getBoundingClientRect().width;if(width/dpr>540){width=540*dpr}var rem=width/10;docEl.style.fontSize=rem+'px';flexible.rem=win.rem=rem}win.addEventListener('resize',function(){clearTimeout(tid);tid=setTimeout(refreshRem,33)},false);win.addEventListener('pageshow',function(e){if(e.persisted){clearTimeout(tid);tid=setTimeout(refreshRem,300)}},false);if(doc.readyState==='complete'){doc.body.style.fontSize=12*dpr+'px';doc.body.style.display='block'}else{doc.addEventListener('DOMContentLoaded',function(e){doc.body.style.fontSize=12*dpr+'px';doc.body.style.display='block'},false)}refreshRem();flexible.dpr=win.dpr=dpr;flexible.refreshRem=refreshRem;flexible.rem2px=function(d){var val=parseFloat(d)*this.rem;if(typeof d==='string'&&d.match(/rem$/)){val+='px'}return val};flexible.px2rem=function(d){var val=parseFloat(d)/this.rem;if(typeof d==='string'&&d.match(/px$/)){val+='rem'}return val}})(window,window['lib']||(window['lib']={}));
+    </script>
+    <link href="//nos.netease.com/vod163/nep.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/Commodity_live/tab.bootstrap.min.css">
+    <link rel="stylesheet" href="css/Commodity_live/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="css/Netease_live.css">
+    <!--    <link rel="stylesheet" href="css/Commodity_live/reset.css">-->
+    <!--    <link rel="stylesheet" href="css/Commodity_live/pullToRefresh.css">-->
+    <style>
+        video{
+            width: 100%;
+            height: 100%;
+            background:transparent url('<?php echo $cover;?>') 50% 50%  no-repeat;
+            /*下面就是background-size，每种浏览器都写一个配置*/
+            -webkit-background-size:100% 100%;
+            -o-background-size:100% 100%;
+            background-size:100% 100%;
+            -moz-background-size:100% 100%;
+            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+                    src='<?php echo $cover;?>',
+                    sizingMethod='scale');
+        }
+
+        .loader {
+            display: inline-block;
+            font-size: 0px;
+            padding: 0px;
+            /*display: none;*/
+        }
+        .loader span {
+            vertical-align: middle;
+            border-radius: 100%;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 2px;
+            -webkit-animation: loader 0.8s linear infinite alternate;
+            animation: loader 0.8s linear infinite alternate;
+        }
+        .loader span:nth-child(1) {
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+            background: rgba(137, 137, 137,0.6);
+        }
+        .loader span:nth-child(2) {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+            background: rgba(137, 137, 137,0.8);
+        }
+        .loader span:nth-child(3) {
+            -webkit-animation-delay: -0.26666s;
+            animation-delay: -0.26666s;
+            background: rgba(137, 137, 137,1);
+        }
+        .loader span:nth-child(4) {
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+            background: rgba(137, 137, 137,0.8);
+        }
+        .loader span:nth-child(5) {
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+            background: rgba(137, 137, 137,0.4);
+        }
+        @keyframes loader {
+            from {
+                transform: scale(0, 0);
+            }
+            to {
+                transform: scale(1, 1);
+            }
+        }
+        @-webkit-keyframes loader {
+            from {
+                -webkit-transform: scale(0, 0);
+            }
+            to {
+                -webkit-transform: scale(1, 1);
+            }
+        }
+    </style>
+</head>
+<body >
+<div id="Commodity_live">
+    <!--  网易视频  -->
+    <div class="g-container-video">
+        <!--  vjs-big-play-centered 大播放按钮居中 -->
+        <video id="my-video" class="video-js vjs-playing vjs-big-play-centered" x-webkit-airplay="allow" webkit-playsinline controls  preload="auto" crossOrigin="anonymous" width="100%" height="250">
+            <source src="" type="video/x-flv">
+        </video>
+    </div>
+
+    <!-- 模态框之密码 -->
+    <div class="live_modal"></div>
+
+    <!-- 模态框之下载昀魔方-->
+    <div id="modal-over">
+        <div class="modal-content">
+            <p class="modal-p">请下载昀魔方app获得更多优质体验</p>
+            <button class="modal-btn btn-off" >取消</button>
+            <button class="modal-btn btn-download">下载昀魔方</button>
+        </div>
+    </div>
+
+
+
+    <!-- tab切换栏 -->
+    <div class="live-tabs">
+        <ul id="myTabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#chart" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">聊天</a></li>
+
+            <li role="presentation" class="active"><a href="#details" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">详情</a></li>
+        </ul>
+        <!-- 内容 -->
+        <div id="myTabContent" class="tab-content">
+            <!-- 聊天 -->
+            <div role="tabpanel" class="tab-pane fade" id="chart" aria-labelledby="home-tab">
+                <!--                <div id="wrapper" style="height: 8rem">-->
+                <!--                    <ul>-->
+                <!--                    </ul>-->
+                <!--                </div>-->
+
+                <div class="swiper-container">
+                    <ul class="swiper-wrapper">
+                    </ul>
+                    <!-- Add Scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+
+                <!-- 底部发送 -->
+                <div class="chart-footer">
+                    <button class="chart-buy">赏</button>
+                    <input type="text" class="chart-input" placeholder="我来说两句"  onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                    <button class="chart-send">发送</button>
+                </div>
+            </div>
+            <!-- 详情 -->
+            <div role="tabpanel" class="tab-pane fade in active" id="details" aria-labelledby="profile-tab">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- 详情之标题 -->
+                        <div class="swiper-slide details-header">
+                            <p><?php echo $title?></p>
+                            <div class="details-title">
+                                <img src="<?php  echo $group['logo'];?>" alt="">
+                                <span><?php echo $group['name']?></span>
+                            </div>
+                            <div class="details-privacy">
+                                <?php
+                                if ($is_public){
+                                    ?>公开<?php
+                                }else{
+                                    ?>加密<?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                        <!-- 详情之商品名称 -->
+                        <?php
+                        if ($type){
+                            ?>
+                        <div class="swiper-slide details-name">
+                            <p>商品名称</p>
+                            <p>名称名称</p>
+                        </div>
+                        <?php
+                        }
+                        ?>
+
+
+                        <!-- 内容介绍 -->
+                        <div class="swiper-slide details-content">
+                            <p>内容介绍</p>
+                            <div class="details-line"></div>
+                        </div>
+                        <!-- 图文详情 -->
+                        <?php if (!empty($detail)){
+                            foreach ($detail as $v){
+                                if ($v['type']==2){     ?>
+                        <div class="swiper-slide swiper-padding" style="width: 100%;height: auto;background-color: #fff">
+                            <?php echo $v['content']?>
+                        </div>
+                        <?php   }else{  $content=json_decode($v['content'],true);
+                                    ?>
+                        <img width="100%" class="swiper-slide swiper-padding" height="<?php $w=$content['width'];$h=$content['height']; $a=100*$h/$w; echo $a; ?>%" src="<?php  echo $content['url']?>" style="background-color: #fff">
+                        <?php
+                                }
+                            }
+                        }else{
+                            ?>
+                        <div class="swiper-slide" style="width: 100%;background-color: #fff; "><?php echo $desp;?></div>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+                    <!-- Add Scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+                <!-- 我要预约 -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/scripts/datatime/Commodity_live/tab.bootstrap.min.js"></script>
+<!-- 网易直播 -->
+<script src="//nos.netease.com/vod163/nep.min.js"></script>
+<!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+<script src="assets/scripts/datatime/Commodity_live/dropload.min.js"></script>
+<script src="assets/scripts/datatime/Commodity_live/iscroll.js"></script>
+<script src="assets/scripts/datatime/Commodity_live/pullToRefresh.mini.js"></script>
+<script src="assets/scripts/datatime/Commodity_live/swiper-3.4.2.jquery.min.js"></script>
+<script src="assets/scripts/core/Common_all.js"></script>
+<script src="assets/scripts/datatime/Netease_live.js"></script>
+
+<script>
+    var timer = null;
+    var timer2 = null;
+    //    页面滑动设置
+    var swiper = new Swiper('#chart .swiper-container', {
+        scrollbar: '#chart .swiper-scrollbar',
+        scrollbarHide: true,        //滚动条自动隐藏
+        slidesPerView: 'auto',      //显示几个slider
+        grabCursor: true,
+        direction : 'vertical',
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        onTouchEnd: function(s){
+            if (s.translate>50) {
+                swiper.params.onlyExternal=true;  //值为true时，slide无法拖动
+                swiper.setWrapperTranslate(0,100,0);
+                $('#chart .swiper-container').prepend('<div class="loader"><span></span><span></span><span></span><span></span></div>');
+                loadNew();
+            }
+//            else if(s.translate < -20){
+//                if(!swiper.isEnd){
+//                    console.log(222)
+//                    clearTimeout(timer);
+////                    swiper.update();
+//                }else if(swiper.isEnd){
+//                    timer = setTimeout(showList,3000);
+//                    console.log('end')
+//                }
+//            }
+        }
+    });
+
+    var swiper2 = new Swiper('#details .swiper-container', {
+        scrollbar: '#details .swiper-scrollbar',
+        scrollbarHide: true,
+        slidesPerView: 'auto',
+        grabCursor: true,
+        direction : 'vertical',
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true//修改swiper的父元素时，自动初始化swiper
+    });
+    var swiper3 = new Swiper('#buyer .swiper-container', {
+        scrollbar: '#buyer .swiper-scrollbar',
+//        scrollbarHide: true,
+        slidesPerView: 'auto',
+        grabCursor: true,
+        direction : 'vertical',
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true//修改swiper的父元素时，自动初始化swiper
+    });
+
+    //    视频设置
+    var myPlayer = neplayer("my-video",{controls:true,preload:'auto',poster:"images/chat_expression@2x.png"},function(){
+        console.log("播放器初始化完成");
+        myPlayer.setDataSource([
+            {type: "video/x-flv",src: "<?php echo $url;?>"},
+            {type: "application/x-mpegURL",src: "<?php echo $url;?>"},
+            {type: "application/x-mpegURL",src: "<?php echo $url;?>"},
+
+        ]);
+
+    });
+
+    /**
+     * 聊天
+     */
+    var uid = href.getAddrVal('uid');
+    /**
+     * ajax请求获取评论列表
+     */
+    var commentId;
+    function acceptRequest(commentID,callBack) {
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            url: '?c=Live&m=get_comment',
+            data: {
+                'live_id': hr,
+                'min_comment_id': commentID
+            },
+            success: function (rep) {
+                commentId = commentID;
+                callBack(rep);
+
+            }
+        })
+    }
+    //
+    /**
+     * 消息列表第一次显示
+     */
+    acceptRequest(0,function (data) {
+        if(data.result_code == 0){
+            var result = commentListToHtml(data.data.comment_list);
+            $('#chart .swiper-wrapper').append(result);
+        }
+
+    });
+
+
+//    timer = setTimeout(showList,3000); // 第一次开启定时器
+
+    function showList() {
+        acceptRequest(0,function (data) {
+            if(data.result_code == 0){
+                var result = commentListToHtml(data.data.comment_list);
+                $('#chart').find('li').remove();
+                $('#chart').find('ul').append(result);
+            }
+
+
+        });
+        swiper.update();
+        sendMsg();
+        console.log(100);
+        timer=setTimeout(showList,3000);
+    }
+    //    showList();
+    /**
+     * 下拉加载
+     */
+    function loadNew() {
+        setTimeout(function () {
+            acceptRequest(parseInt(commentId+1),function (data) {
+                if(data.result_code == 0){
+                    var result = commentListToHtml(data.data.comment_list);
+                    $('#chart .swiper-wrapper').prepend(result);
+                }
+            });
+            swiper.update();
+            sendMsg();
+            swiper.setWrapperTranslate(0,0,0);
+            swiper.params.onlyExternal=false;
+            $('.loader').remove();
+        },1000)
+    }
+    /**
+     * comment list -> html
+     * @param comment_list 评论列表
+     * @return result 所有评论li
+     */
+    function commentListToHtml (comment_list) {
+        var result = '';
+        for(var i = 0; i < comment_list.length;i++){
+            if(comment_list[i].reply_id == 0){
+                result += '<li class="swiper-slide" data-commentid="' + comment_list[i].comment_id + '" data-name="' + comment_list[i].name + '" data-touid="'+ comment_list[i].uid +'">' +
+                        '<div class="chart-comments">' +
+                        '<div class="chart-id">' +
+                        '<img src="'+ comment_list[i].avatar +'" alt=""><span>'+ comment_list[i].name +'</span>' +
+                        '<span>'+ comment_list[i].create_time +'</span>' +
+                        '</div>' +
+                        '<p>'+ comment_list[i].comment +'</p>' +
+                        '</div>' +
+                        '<div class="chart-line"></div>' +
+                        '</li>';
+            }else {
+                result += '<li class="swiper-slide" data-name="' + comment_list[i].name + '" data-touid="'+ comment_list[i].uid +'"><div class="chart-comments chart-reply">' +
+                        '<div class="chart-to-id">' +
+                        '<img class="chart-avatar" src="'+ comment_list[i].avatar +'" alt="">' +
+                        '<div class="chart-to-uid">' +
+                        '<span>'+ comment_list[i].name +'</span>' +
+                        '<img src="images/to@2x.png" alt="">' +
+                        '<span>'+ comment_list[i].to_uid_name +'</span>' +
+                        '</div>' +
+                        '<span class="chart-to-times">'+ comment_list[i].create_time +'</span>' +
+                        '</div>' +
+                        '<p>'+ comment_list[i].comment +'</p>' +
+                        '</div>' +
+                        '<div class="chart-line"></div>' +
+                        '</li>';
+            }
+        }
+        return result;
+    }
+
+    /**
+     *回复别人的消息处理
+     */
+    function sendMsg() {
+        $('.swiper-wrapper li').on('click',function () {
+            $('.chart-input').focus();
+            $('.chart-input').attr('placeholder','回复'+$(this).attr  ('data-name'));
+            var comment_id = $(this).attr('data-commentid');
+            var touid = $(this).attr('data-touid');
+            $('.chart-input').attr('data-replyid',comment_id);
+            $('.chart-input').attr('data-touid',touid);
+        })
+    }
+    sendMsg();
+    /**
+     * 发送消息
+     */
+    $('.chart-send').on('touchstart',function () {
+        chartSend();
+    });
+
+    document.addEventListener('keyup',function(event){
+        if(event.keyCode=='13'){
+            chartSend();
+        }
+    });
+
+    /**
+     * ajax请求发送消息
+     */
+    function sendRequest(callback) {
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            url: '?c=Live&m=publish_comment',
+            data: {
+                'live_id': hr,
+                'uid': uid,
+                'reply_id': $('.chart-input').attr('data-replyid'),
+                'content': $('.chart-input').val(),
+                'to_uid': $('.chart-input').attr('data-touid')
+            },
+            success: function (data) {
+                callback(data);
+            }
+        })
+    }
+    /**
+     *发送消息的处理
+     */
+    function chartSend() {
+//        clearTimeout(timer);
+//        timer2 = setTimeout(showList,3000); //第二次
+        sendRequest(function (data) {
+            var send = '';
+            if(data.result_code == 0) {
+                if (data.comment.reply_id == 0) {
+                    send += '<li class="swiper-slide" data-name="'+ data.comment.name +'"><div class="chart-comments">' +
+                            '<div class="chart-id">' +
+                            '<img src="'+ data.comment.avatar +'" alt=""><span>' + data.comment.name + '</span>' +
+                            '<span>' + data.comment.create_time + '</span>' +
+                            '</div>' +
+                            '<p>' + data.comment.comment + '</p>' +
+                            '</div>' +
+                            '<div class="chart-line"></div>' +
+                            '</li>';
+                } else {
+                    send += '<li class="swiper-slide" data-name="'+ data.comment.name +'"><div class="chart-comments chart-reply">' +
+                            '<div class="chart-to-id" >' +
+                            '<img src="' + data.comment.avatar + '"  class="chart-avatar">' +
+                            '<div class="chart-to-uid">' +
+                            '<span>' + data.comment.name + '</span>' +
+                            '<img src="images/to@2x.png" alt="">' +
+                            '<span>' + data.comment.to_uid_name + '</span>' +
+                            '</div>' +
+                            '<span class="chart-to-times">' + data.comment.create_time + '</span>' +
+                            '</div>' +
+                            '<p>' + data.comment.comment + '</p>' +
+                            '</div>' +
+                            '<div class="chart-line"></div>' +
+                            '</li>'
+                }
+            }
+            swiper.appendSlide(send);
+            $('.chart-input').val('');
+            $('.chart-input').attr('placeholder','我来说两句');
+
+        });
+        swiper.update();
+        sendMsg();
+        var swiperLength = swiper.slides.length;
+        swiper.slideTo(swiperLength+1,100)
+    }
+
+    //    $('#details').click(function () {
+    //        clearInterval(timer2)
+    //    })
+
+
+
+</script>
+
+</body>
+</html>

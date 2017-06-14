@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+
+    <div class="box" ng-if="showHide" >
+        变化的值:<input type="text" ng-model="$parent.inputValue" />
+
+    </div>
+<button  ng-click="switch()" >按钮</button>
+
+
+
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+        $scope.showHide=0;
+        var i=1;
+        $scope.inputValue=++i;
+        $scope.switch= function () {
+            $scope.showHide= $scope.showHide==1?0:1;
+        }
+
+
+
+    })
+
+
+
+</script>

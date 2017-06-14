@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl" >
+    <div class="box">{{createDate|date:'yyyy-mm-dd'}}</div>
+    <div class="">
+        {{time00|limitTo:10}}
+    </div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope) {
+        $scope.time00=new Date().getFullYear();
+
+    })
+
+
+
+
+</script>

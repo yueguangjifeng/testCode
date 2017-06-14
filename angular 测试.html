@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+    <script src="js/jquery.js" ></script>
+
+
+</head>
+<body>
+<div class="box" ng-app="myapp"  ng-controller="myctrl" >
+        数据部分
+    <input type="text" ng-model="usersRemarks" />
+</div>
+<button>按钮</button>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+
+    angular.module('myapp', [], function($httpProvider) {
+        // Use x-www-form-urlencoded Content-Type
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+        /**
+         * The workhorse; converts an object to x-www-form-urlencoded serialization.
+         * @param {Object} obj
+         * @return {String}
+         */
+        var param = function(obj) {
+            var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+
+            for(name in obj) {
+                value = obj[name];
+
+                if(value instanceof Array) {
+                    for(i=0; i<value.length; ++i) {
+                        subValue = value[i];
+                        fullSubName = name + '[' + i + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value instanceof Object) {
+                    for(subName in value) {
+                        subValue = value[subName];
+                        fullSubName = name + '[' + subName + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value !== undefined && value !== null)
+                    query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+            }
+
+            return query.length ? query.substr(0, query.length - 1) : query;
+        };
+
+        // Override $http service's default transformRequest
+        $httpProvider.defaults.transformRequest = [function(data) {
+            return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+        }];
+    });
+
+    myapp.config(['$httpProvider'], function ($httpProvider) {
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    });
+
+    myapp.controller('myctrl', function ($scope, $http,$httpProvider) {
+        var editInfo={
+            id:'0565347575',
+            SubType:0,
+            state:1,
+            remarks:$scope.usersRemarks,
+            type:1
+        };
+        console.log(editInfo);
+        console.log();
+        document.getElementsByTagName('button')[0].onclick= function () {
+
+            $http({
+                method:'post',
+                data:editInfo,
+                url:'http://123.206.99.109:10101/wcommunity/api/boss/community/updateState',
+//                headers : {'Content-Type':'x-www-form-urlencoded' }
+            }).then(function (result) {
+                console.log('编辑成功');
+                console.log(result.data);
+            }, function (result) {
+                console.log(result);
+            });
+        }
+    })
+
+</script>
+<script>
+    $.ajax({
+        type: "POST",
+        dataType:'json',
+        url:'http://123.206.99.109:10101/wcommunity/api/boss/community/updateState',
+        data:{
+            id:'0565347575',
+            SubType:0,
+            state:1,
+            remarks:123,
+            type:1
+        },
+//        crossDomain: true,
+        success: function(data, status, xhr) {
+            console.log(data);
+        }
+    });
+
+
+
+
+</script>
+<script>
+    http://api.jgsoft.org/wcommunity/api/boss/community/getListByType?Skp='+2+'&Limit='+10+'&Type=1&cid='+1446985237
+
+</script>

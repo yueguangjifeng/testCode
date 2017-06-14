@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js" ></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl"  >
+<div>
+    <span>街道简介</span>
+    <input type="checkbox" ng-model="streetIntroCheck" ng-true-value="1" ng-false-value="0"  />
+</div>
+<div>
+    <span>办公职能</span>
+    <input type="checkbox" ng-model="officeFuncCheck" ng-true-value="1" ng-false-value="0"   />
+</div>
+<div>
+    <span>居委信息</span>
+    <input type="checkbox" ng-model="commInfoCheck" ng-true-value="1" ng-false-value="0" />
+</div>
+<div>
+    <span>网格管理</span>
+    <input type="checkbox" ng-model="gridAdminCheck" ng-true-value="1" ng-false-value="0" />
+</div>
+
+</body>
+</html>
+<script>
+    var myapp=angular.module('myapp',[]);
+    myapp.controller('myctrl', function ($scope, $http) {
+
+        $scope.$watch('streetIntroCheck', function () {
+                    if($scope.streetIntroCheck==0){
+                        $scope.officeFuncCheck=0;
+                    }
+                    if($scope.streetIntroCheck==1){
+                        $scope.officeFuncCheck=1;
+                    }
+
+
+        }
+        )
+
+
+
+    })
+
+
+
+</script>
